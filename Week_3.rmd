@@ -1,0 +1,167 @@
+---
+title: "Week 3 - Genetics"
+output: webexercises::webexercises_default
+---
+
+```{r}
+library(webexercises) # for solution button. Details needed in the yaml for the buttons to work
+```
+
+# Week 3
+
+##Introduction
+
+The aim of this exercise is to reproduce the following figure from [Bravo-Gutierrez et al (2021)](https://doi.org/10.3390/genes12081276). The figure shows the percentage of methylation for two genes, AHRR (fig. 2a) and PRSS23 (fig. 2b), as compared across smokers and non-smokers. The genetics aspect might be confusing (at least to us psychologists) but the statistics are very basics (a Mann-Whitney U test). The authors found a significant difference across smokers AHRR gene (p=0.003) but not across the PRSS23 gene (p=0.276) 
+
+(r, echo=FALSE, out.width='50%', fig.align='center')
+knitr::include_graphics('https://github.com/RichClarkePsy/NS7154/blob/main/Images/Bravo-Gutierrez%202021%20-%20Figure%202.png?raw=true')
+
+
+The authors of the paper have made the data from the study open access (as all good scientists should!), but not their code. Let's replicate the analysis and see if we can find the same results and get to the same image.  
+
+## Step 1: Load in packages and data
+
+Our first step as always is to load in our packages. If this is the first time using any of the packages you will need to run `install.package("packagename")` for each uninstalled package. I recommend running this from the console rather than including it from your script or rmarkdown, as you wont need to run it again anytime soon.  
+
+```{r,  message=FALSE, warning=FALSE}
+library(tidyverse) # tidy grammer and ggplot for the graphs
+library(broom) # tidys up and statistical findings
+library(ggpubr) # to add p values to graph
+```
+
+Next we need to read in the data. The authors attach a lot of data to the supplemental materials as a excel file. We only need one page of the excel file so I have extracted that and have uploaded that to [my github](https://github.com/RichClarkePsy) as a CSV file. So to import the data you don't need to download it all you need to do is run the following code. This will point Rstudio towards the file and import it as an dataframe object   
+
+```{r, message=FALSE, warning=FALSE}
+raw_data <- read_csv("https://raw.githubusercontent.com/RichClarkePsy/Datasets/main/genes-1338748-supplementary%20figure%202.csv")
+```
+
+You can view the data by running `View(raw_data)` or by clicking on the object you have created in the environment windown. See if you can spot which variables we will be needing to recreate the analysis and image. 
+
+## Step 2: Data wrangling
+
+We only actually need three variables from this dataset so the first thing we are going to do to tidy this data set up is to pull out those variables and put them in a new object called `fig2_data`.
+
+Use the `select` function (as mentioned in week 1) to take the variables `Sample_ID`, `%5mc-AHRR` & `%5mc-PRSS23` and create a new object called `fig2_data` 
+
+```{r, message=FALSE, warning=FALSE} 
+fig2_data <- raw_data %>%
+  select(Sample_ID, `%5mc-AHRR`,`%5mc-PRSS23`)
+```
+
+If you look at the `Sample_ID` variable, you'll see that the variable indicates if the participant is a non-smoker (NS) or smoker (S) and it includes their ID number. In order to recreate the analysis we need to create a new variable that just contains the smoker or non-smoker data.  
+
+There are a number of ways to do this, but here is what I did: 
+
+```{r,  message=FALSE, warning=FALSE}
+fig2_data <- fig2_data %>%
+  mutate(smoker = case_when(str_starts(Sample_ID, "NS") ~ "Non-Smoker",
+                            str_starts(Sample_ID, "S") ~ "Smoker")) 
+```
+
+The first line tells R to just overwrite the same data object with whatever we do next. I then used the `mutate` function to create a new variable. This variable will be called `smoker` and I've told R to look at the start of each string of data in the variable `Sample_ID` and if the letters "NS" are first then put "Non-Smoker" in the new variable, and if the letter "S" if first then put "Smoker" in the new variable.
+
+If you were to `View(fig2_data)` now you will see a new variables has been created with our smoker/non-smoker information. 
+
+Lets also change the names on our gene variables while we're at it:
+
+```{r, message=FALSE, warning=FALSE}
+fig2_data <- fig2_data %>%
+  rename(AHRR = `%5mc-AHRR`,
+         PRSS23 = `%5mc-PRSS23`)
+```
+
+`r hide("Note about variable names")`
+Variable names need to be in a specific format for R to recognise them as such. Our original data starts with a % sign which confuses R. To get around this issue it encloses the name in `` punctuation, as a way to indicate that this is a string. More commonly you'll see this when your variable name have a SPACE between words. It's worth recording these when you see them as they can be a bit of a pain when it comes to using auto-complete in your analysis later on. 
+`r unhide()`
+
+## Step 3: Discriptive statistics and basic visulisation
+
+Now we'll run some basic summary statistics to get a feel of the data.
+
+Create a new dataframe called `fig2_discriptives` out of the `fig2_data` object. This dataframe needs to contain the number of partcipants and the mean, median, and standard deviation of AHRR methylation split by smokers and non-smokers.
+
+For this you will need to use the `group_by` and `summarise` functions as mentioned in week 2. There is also some missing data so you will also need to include the following code at various points `na.rm = TRUE`
+
+`r hide("Click for solution")`
+```{r,  message=FALSE, warning=FALSE}
+fig2_discriptives <- fig2_data %>%
+  group_by(smoker) %>%
+  summarise(N = n(), 
+            Mean = mean(AHRR, na.rm = TRUE), 
+            Median = median(AHRR, na.rm = TRUE), 
+            SD = sd(AHRR, na.rm = TRUE))
+
+```
+`r unhide()`
+
+Next use `ggplot` to create a basic box plot of the `AHRR` methylation variable as separated by our `smoker` independent variable.  
+
+`r hide("Click for solution")`
+```{r,  message=FALSE, warning=FALSE}
+fig2_data %>%
+  ggplot(aes(x=smoker, y=AHRR)) +
+  geom_boxplot()
+```
+`r unhide()`
+
+## Step 4: Statistical test 
+
+Now for the statistical test
+
+```{r,  message=FALSE, warning=FALSE}
+test_result <- wilcox.test(AHRR ~ smoker, data=fig2_data) %>%
+  tidy() %>%
+  mutate(p.value = round(p.value, digits = 3))
+```
+
+ cg05575921
+```{r,  message=FALSE, warning=FALSE}
+my_comparisons <- list(c("Smoker", "Non-Smoker"))
+
+fig2_data %>%
+  ggplot(aes(x=smoker, y=AHRR, fill=smoker)) +
+  geom_boxplot() +
+  scale_fill_brewer(palette="Dark2") +
+  stat_compare_means(comparisons = my_comparisons) +
+  geom_jitter(width = .25) + 
+  scale_y_continuous(name = "%5mc-cg05575921") +
+  theme(legend.position = "none")
+```
+
+## Test yourself exercise
+
+Create a new script and create the following for the PRSS23 gene
+
+* A dataframe containing the summary statistics
+* A dataframe containing the comparison analysis
+* Figure 2b from the original paper.
+
+
+Note to create Figure 2b you will need this additional line of code that will re-scale the y-axis:
+`scale_y_continuous(limits=c(0, 10), name = "PRSS23")`
+
+
+
+```{r,  message=FALSE, warning=FALSE}
+# reveal for answer
+fig2_discriptives <- fig2_data %>%
+  group_by(smoker) %>%
+  summarise(N = n(), 
+            Mean = mean(PRSS23, na.rm = TRUE), 
+            Median = median(PRSS23, na.rm = TRUE), 
+            SD = sd(PRSS23, na.rm = TRUE))
+
+
+fig2_data %>%
+  ggplot(aes(x=smoker, y=PRSS23, fill=smoker)) +
+  geom_boxplot() +
+  scale_fill_brewer(palette="Dark2") +
+  stat_compare_means(comparisons = my_comparisons, label.y = 10) +
+  geom_jitter(width = .25) + 
+  scale_y_continuous(limits=c(0, 10), name = "PRSS23") + # limits added to make it look like the paper 
+  theme(legend.position = "none")
+
+# more work needed to add the p values
+
+```
+

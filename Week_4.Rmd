@@ -1,0 +1,34 @@
+---
+title: "Week 4-Correlation"
+output: webexercises::webexercises_default
+---
+```{r}
+library(ggcorrplot) # for the correlation matrix
+```
+# Week 4
+
+The following uses the `ggcorrplot` package which I found [here](http://www.sthda.com/english/wiki/ggcorrplot-visualization-of-a-correlation-matrix-using-ggplot2).  
+
+This code creates a pretty good correlation matrix
+
+```{r}
+corr_matrix_data <- data %>%
+  select(4:18)
+
+cor(na.omit(corr_matrix_data)) %>%
+  ggcorrplot()
+```
+
+But if we play around with some of the options we can end up with this: 
+
+```{r}
+cor(na.omit(corr_matrix_data)) %>%
+  ggcorrplot(type = "lower", 
+             outline.color = "white",
+             lab = TRUE,
+             lab_col = "black",
+             lab_size = 2,
+             title = "Figure 1. Correlation matrix of 2015 life expectance data",
+             legend.title = "Correlation 
+coefficient")
+```

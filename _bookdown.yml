@@ -1,0 +1,7 @@
+delete_merged_file: true
+before_chapter_script:
+- R/psyteachr_setup.R
+- R/webex.R
+language:
+  ui:
+    chapter_name: "Chapter "
