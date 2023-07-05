@@ -1,0 +1,417 @@
+---
+title: "Week 2 - Basic visualisation"
+output: html_document
+---
+
+# Week 2 - Basic visualisation 
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(webexercises)
+library(tidyverse) 
+library(ggrepel)
+```
+
+## Introduction
+
+In this chapter, I want to introduce you to the data visualisation package `ggplot2` (which is contained within the `tidyverse`). `ggplot` is an incredibly versatile way of creating graphs and has become the standard throughout academic publishing and data journalism. 
+
+`r hide("The proliferation of ggplot")` 
+Here is a [link](https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535) to a post from the BBC talking about how they recently moved to using `ggplot` for all their data visualisations 
+
+Soon you'll be spotting figures everywhere and start saying to yourself "I bet I could recreate that with ggplot", and then get sad when you find out they didn't share the data :-(   
+`r unhide()`
+
+For the following examples and exercises, we'll be using a 2015 country-level summary of World Health Organisation data related to life expectancy  ([source](https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who)). In the next chapter, I will show you how to upload your own data files but for now I've given you the code that imports the dataset directly from my GitHub (the web hosting system that I use for this book). 
+
+```{r, echo=TRUE, message=FALSE, error=FALSE, warning=FALSE}
+# Run this code to get the data for this chapter
+library(tidyverse)
+
+who_rawdata <- read_csv("https://raw.githubusercontent.com/RichClarkePsy/Datasets/main/Life%20expectancy%20dataset.csv") 
+```
+
+For this chapter you will need to following packages: 
+
+```{r, echo=TRUE, message=FALSE, error=FALSE, warning=FALSE}
+
+library(tidyverse) # contains the ggplot2 package
+library(ggrepel) # used for add text labels to data points
+```
+
+`r hide("Reminder about packages")`
+Remember if you are using any of these packages for the first time you will need to run `install.packages("packagename")`. It is often best to run this in the console just so you're not re-installing the package each time you run your code.
+
+Note the quotation marks around the package name. R is quite sensitive to this sort of precision and, as such, attention to detail ends up solving most of the errors you get. Either that or just ask ChatGPT to do it for you. Both completely legitimate ways to code!    
+
+If you've worked your way through the previous chapters, then you'll already have `tidyverse` installed but you'll likely need to install `ggrepel`. 
+`r unhide()`
+
+### Getting stuck and overwhelmed?
+
+Throughout this week there is going to be chucks of code where you have little to no clue what is going on. That's ok! One of the best ways to learn R is to just play around with pre-existing, change parts and see what happens. If you run into errors that you don't understand, or code you want explained, just copy and past it into a ChatGPT conversation and it will explain it to you (I've included an example of this later). You can even ask follow up questions or ask it to adapt the code to your specifications. Though it does help to know at least a little about what your code is doing, especially later on in the course when we move on to analysis.
+
+## Getting an overview of your data 
+
+By this point you should have your packages loaded and have a data file in the top right *Environment* window named `who_rawdata`. Just by looking at the data in this window we can see two aspects of the dataset; the number of observations and the number of variables. Observations in this case are the individual countries and variables are going to be the various health and social data. 
+
+Click on the dataset or run `view(who_rawdata)` to take a look at the data. When you do a new tab will appear with a view similar to this: 
+
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("Images/Data view.png")
+```
+
+Viewing your data like this is good for a quick look at the data, however, in health we are often using datasets with many hundreds of variables and thousands of observations. So we won't be looing at the data directly as much as we might when using SPSS. Instead we want to get into the habit of exploring the dataset through code.
+
+The following gives you some basics information about the dataset: 
+
+```{r, eval=FALSE}
+
+dim(who_rawdata)
+
+str(who_rawdata)
+
+summary(who_rawdata)
+
+```
+
+From viewing the output of the above code...
+
+What is the variable name for life expectancy? `r fitb("Life_exp")`
+
+Name a variable that has string/character data `r fitb(c("Country","Continent"))`  
+
+What is the average number of years of schooling across all countries? `r fitb(12.93)`
+
+## Visualising global life expectancy
+
+Statistics are great (and if you've done the undergraduate here you know I love them!), but often, when we want to get a quick and easy understanding of a dataset, we can get everything we want from simple data visualisation. 
+
+### Histograms
+
+Histograms are a good first step towards understanding a continuous variable like life expectancy. To create a histogram we're going to take our dataset then we're going to *pipe* `%>%` it in to the `ggplot` function.
+
+`r hide("Extra details on pipes %>%")`
+A pipe is basically a way of saying "and then" in code it helps tidy things up so that we're not creating object after object. So in this case we're saying: take the data *and then* use that data with the following ggplot expression. 
+
+This can all be done on one line but its a lot neater to hit enter after each pipe and start the next expression on the next line. It also indents for ease of navigation. This is part of the grammar of coding that your'll get use to in time. 
+PsyTeachR has [a great chapter on pipes](https://psyteachr.github.io/data-skills-v1/pipes.html) that explains the concept in depth. For now you can just adapt the code I have given you. 
+
+You'll see the code for pipes like this `%>%` through this module but this `|>` also does the same job. [The difference is far too nerdy for any of us to care about](https://www.r-bloggers.com/2021/05/the-new-r-pipe/), but just know that they both do basically the same thing.   
+
+`r unhide()`
+
+Each ggplot visulisation is made up of layers. You start by mapping an aesthetic (`aes`), which involves the organisation of what data goes on what axis and how data is segmented within the visualisation. Then you layer on (using a `+` sign) a geometry to combine the data with a desired visual format. The following example places life expectancy on the x-axis and uses the histogram geometry. 
+
+```{r, echo=TRUE, message=FALSE, error=FALSE, warning=FALSE}
+who_rawdata %>%
+  ggplot(aes(x=Life_exp)) +
+  geom_histogram()
+```
+
+This is fine for our quick exploration of the data but we could also tidy this up to the point at which it would be perfectly fine to include it in a paper.  
+
+```{r, echo=TRUE, message=FALSE, error=FALSE, warning=FALSE}
+who_rawdata %>%
+  ggplot(aes(x=Life_exp)) +
+  geom_histogram(binwidth = 1, 
+                 colour = "black", 
+                 fill = "#58A139") +
+  labs(title = "Figure 1. Histogram of Global Life Expectancy",
+       subtitle = "N = 183 countries",
+       x = "Life expectancy from birth",
+       y = "Number of countries",
+       caption = "Year: 2015 | Data source: WHO") +
+  theme_light() +
+  theme(plot.caption = element_text(hjust = 0.5))
+  
+```
+
+### Exercise 1
+
+Take the above code and adapt it to work out what each of the *arguments* (e.g. "binwidth" or "subtitle") control. Colours can be in words or in hex codes. Here's a useful website where you can get hex codes [www.htmlcolorcodes.com](https://htmlcolorcodes.com/).  
+
+`r hide("Note: None of this is magic btw")`
+At some point or other I've *Googled* how to do pretty much every element here.
+
+Try searching for the following and see if you can find similar looking code:
+
+* "Change the colour of histogram bars in ggplot"
+* "Add a caption to a ggplot figure"
+* "Align caption to center in ggplot"
+
+Also [here's a conversation with ChatGPT](https://chat.openai.com/share/9831a115-fdde-4643-89b3-e3d0c97d251a) where it makes some changes to this final version and then suggests some genuinely helpful additions (dotted gridlines are a nice touch).  
+`r unhide()`
+
+### Facet wrap
+
+This is a good starting visualisation, but say we want to understand the distribution for each region. To do this all we need to do is add the last line of the code below a create a nicely formatted version of the six histograms together. 
+
+```{r, message=FALSE, error=FALSE, warning=FALSE}
+who_rawdata %>%
+  ggplot(aes(x=Life_exp)) +
+  geom_histogram(binwidth = 1, 
+                 colour = "black", 
+                 fill = "#58A139") +
+  labs(title = "Figure 1. Histogram of Global Life Expectancy",
+       subtitle = "N = 183 countries",
+       x = "Life expectancy from birth",
+       y = "Number of countries",
+       caption = "Year: 2015 | Data source: WHO") +
+  theme_light() +
+  theme(plot.caption = element_text(hjust = 0.5)) +
+  facet_wrap(~ Continent)
+```
+
+`r hide("Note about ~")`
+The `~` is often used in R to denote a relationship. You'll often see it in regression analysis but in this case it's telling `ggplot` to facet (i.e. seperate) the graph by Continent 
+`r unhide()`
+
+### Boxplots
+
+The histograms definitely has value (for instance we can now see the difference in life expectancy between Europe and Africa very clearly), but a better way to visualise the same data might be to change from a histogram to a boxplot.
+
+```{r, message=FALSE, error=FALSE, warning=FALSE}
+who_rawdata %>%
+  ggplot(aes(x=Life_exp, y=Continent)) +
+  geom_boxplot() +
+  theme_light()
+```
+
+Much better, instantly we can see how the distribution of life expectancy differs across continents. A few things spring to mind to make this figure more informative. 
+
+1. Label the outliers (it'd be nice to know what countries they are)
+2. Add some colour
+3. Add title etc
+
+The first point is genuinely quite hard to solve and involves the two lines of code below. 
+
+The first line creates a new function that can be used to identify outliers in a variable. Then, in the next line, I uses the function to make a new variables where ever time the function finds an outlier in `Life_exp` it assigns the text from the `Country` variable.  
+
+```{r, message=FALSE, error=FALSE, warning=FALSE}
+findoutlier <- function(x) {
+  return(x < quantile(x, .25) - 1.5*IQR(x) | x > quantile(x, .75) + 1.5*IQR(x))
+  }   
+
+who_with_outliers <- who_rawdata %>% 
+  group_by(Continent) %>%
+  mutate(outlier_LE = ifelse(findoutlier(Life_exp), Country, NA)) 
+```
+
+Also, because I've made a change to the data (in this case added a new variable) I've assigned it (with this `<-`) to a new object name as I always try to keep the raw data in the same form as it was read in. Just in case I need to use it again later. Notice that you should have a new dataframe object in the environment window after running this.  
+
+To add these outlines to the figure I've added a layer of text above the box plot layer.
+
+For the other two points I've selected a pre-existing colour pallet and mapped it to our `Continent` variable and I've added labels with the labs function.    
+
+```{r}
+who_with_outliers %>%
+  ggplot(aes(x=Life_exp, y=Continent, fill = Continent)) +
+  geom_boxplot(width = 0.5,
+               alpha = 0.75,
+               show.legend = FALSE) +
+  geom_text_repel(aes(label=outlier_LE),
+                  position = "identity",
+                  size = 3,
+                  na.rm=TRUE) +
+  scale_fill_brewer(palette = "Dark2") +
+  labs(title = "Figure 2. Boxplot of Global Life Expectancy",
+       subtitle = "N = 183 countries",
+       x = "Life expectancy from birth",
+       y = "",
+       caption = "Year: 2015 | Data source: WHO") +
+  theme_light() +
+  theme(plot.caption = element_text(hjust = 0))
+```
+
+Now that is a good looking figure!
+
+There's a lot going on to make these figures but luckily you don't need to keep it all in your head at one time. I often go back to old code or code from webbooks like this or [PsyTeachR](https://psyteachr.github.io/) and adapt and change it for my needs.
+
+In fact lets adapt this code for BMI insterad of life expectancy
+
+### Exercise 2
+
+Adapt the code above to make a histogram and boxplot for the `BMI` variable instead of life expectancy. 
+
+Note: Here is the code for calculating the outliers for BMI, as this requires adding in the extra line `drop_na(BMI)`. This tells R to remove any missing data in the variable `BMI`. Note the change in dataset name as well.
+
+
+```{r, include=FALSE}
+findoutlier <- function(x) {
+  return(x < quantile(x, .25) - 1.5*IQR(x) | x > quantile(x, .75) + 1.5*IQR(x))
+}
+
+who_BMI <- who_rawdata %>%
+  drop_na(BMI) %>%
+  group_by(Continent) %>%
+  mutate(outlier_BMI = ifelse(findoutlier(BMI), Country, NA)) 
+```
+
+`hide(hint)`
+
+After running the code above you'll need to start with the data_BMI file rather than the rawdata. 
+
+Look to see all the parts of the code that say `Life_exp` and change these out for `BMI`
+
+Make sure you remember to change the title and axis lables.
+
+`unhide()`
+
+`hide(Solution)`
+
+This is one way the histogram coul look: 
+
+```{r} 
+who_BMI %>%
+  ggplot(aes(x=BMI)) +
+  geom_histogram(binwidth = 1, 
+                 colour = "black", 
+                 fill = "#58A139") +
+  labs(title = "Figure 1. Histogram of Body Mass Index",
+       subtitle = "N = 183 countries",
+       x = "BMI",
+       y = "Number of countries",
+       caption = "Year: 2015 | Data source: WHO") +
+  theme_light() +
+  theme(plot.caption = element_text(hjust = 0.5))
+```
+
+And this is one way the box plot could look:
+
+```{r, echo=TRUE, message=FALSE, error=FALSE}
+who_BMI %>%
+  ggplot(aes(x=BMI, y=Continent, fill = Continent)) +
+  geom_boxplot(width = 0.5,
+               alpha = 0.75,
+               show.legend = FALSE) +
+  geom_text_repel(aes(label=outlier_BMI),
+                  position = "identity",
+                  size = 3,
+                  na.rm=TRUE) +
+  scale_fill_brewer(palette = "Dark2") +
+  labs(title = "Figure 3. Boxplot of global BMI",
+       subtitle = "N = 181 countries",
+       x = "BMI",
+       y = "",
+       caption = "Year: 2015 | Data source: WHO") +
+  theme_light() +
+  theme(plot.caption = element_text(hjust = 0))
+
+```
+
+`unhide()`
+
+What do you notice about the data from this visual check? 
+
+Personally, I'm concerned about those low BMI data points, BMI should never really be that low. Perhaps this is a data recording issue. No way to know without the raw data to go into. For further analysis we may want to filter out these data points, or at least check them against other data sources. 
+
+## Correlation between variables
+
+Next lets take a look at how good `ggplot` is for making scatter plots. The following code plots number of years of schooling (on the x-axis) against life expectancy (on the y=axis) for each of our 183 countries. 
+
+Again, this takes the dataset *pipes* it into ggplot. The aestectic is years of schooling on the x axis and life expectancy on the y axis. The geometry layer is using `geom_point` (rather `geom_boxplot` or `geom_histogram`) which creates a scatter plot.   
+
+```{r, message=FALSE, error=FALSE, warning=FALSE}
+who_rawdata %>%
+  ggplot(aes(x = Schooling, y = Life_exp)) +
+  geom_point()
+``` 
+
+A very clear correlation. In the comming chapters we'll look at how strong this correlation is, but for now, to tidy this up, we can add the regression line (by adding an extra geometry layer of `geom_smooth`) and titles.  
+
+```{r, message=FALSE, error=FALSE, warning=FALSE}
+who_rawdata %>%
+  ggplot(aes(x = Schooling, y = Life_exp)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              formula = y ~ x) +
+  labs(title = "Figure 2. A scatter plot of life expectancy by number of years of schooling",) +
+  xlab(label = "Average number of years of schooling")+
+  ylab(label = "Average life expectancy (in years)")
+```
+
+What happens when you change the order and put the geom_smooth before the geom_point function? `r mcq(c("Only the dots are visable","Only the line is visable", answer = "The dots now appear ontop of the line","Everything brakes!"))`
+
+There are usually multiple different ways to achieve what you with using ggplot. Can you delete the bottom two lines of code and find a way to label the x and y axis within the labs function?
+
+`r hide("Hint")`
+Check the code from earlier
+`unhide()`
+
+`r hide("Solution")`
+```{r}
+who_rawdata %>%
+  ggplot(aes(x = Schooling, y = Life_exp)) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              formula = y ~ x) +
+  labs(title = "Figure 2. A scatter plot of life expectancy by number of years of schooling",
+       x = "Average number of years of schooling",
+       y = "Average life expectancy (in years)") 
+```
+`r unhide()`
+
+### Adding to the aestetic
+
+We have a bit more freedom in what we can do with the aestetic for our scatter plot. We can map colour to our data points using the `Continent` variable in our dataset. 
+
+```{r, message=FALSE, error=FALSE, warning=FALSE}
+who_rawdata %>%
+  ggplot(aes(x = Schooling, y = Life_exp, colour = Continent)) +
+  geom_point() +
+  geom_smooth(aes(group = 1), method = "lm", 
+              formula = y ~ x, colour = "black") +
+  labs(title = "Figure 3. A scatter plot of life expectancy by number of years of schooling",
+       x = "Average number of years of schooling",
+       y = "Average life expectancy (in years)") # delete aes(group = 1) & ,colour = "black" to see why I included them
+
+``` 
+
+We can even map the size of the points to the `Population` variable so that the larger the population the larger the dot.  
+
+```{r, message=FALSE, error=FALSE, warning=FALSE}
+who_rawdata %>%
+  ggplot(aes(x = Schooling, y = Life_exp, colour = Continent, size = Population)) +
+  geom_point() +
+  geom_smooth(aes(group = 1), method = "lm", formula = y ~ x, colour = "black") +
+  labs(title = "Figure 3. A scatter plot of life expectancy by number of years of schooling",
+       x = "Average number of years of schooling",
+       y = "Average life expectancy (in years)") +
+  guides(size = FALSE) # delete this line to see why I included it 
+``` 
+
+The comments in the code also indicate parts where I had AI assistants. I couldn't remember how to make these changes off the top of my head. Googleing would have taken about 15 mins to find the right guide with the right code but my [requests to ChatGPT](https://chat.openai.com/share/5c8c2f2e-31b8-49ac-bed1-b247198bb340) took less than a minute and also gave an explanation of how the extra code works.
+
+
+## Exercise 3 - Applying what you have learnt
+
+[The Gapminder organisation](https://www.gapminder.org/) is one of my non-profits. Their mission is to promote a fact-based worldview that everyone can understand. Never have I seen data about demography and global helath issues communicated in such an engaging way. For instance,[here is the best 5 minutes of data communication I've ever seen](https://www.youtube.com/watch?v=Z8t4k0Q8e8Y). Sadly we lost Hans Rosling in 2017 but his [son](https://twitter.com/OlaRosling) and [daughter-in-law](https://twitter.com/AnnaGapminder) continue to do amazing work and are worth following.
+
+Gapminder also has a R package that contains data similar to the data we've just been using. Install the package, load the package, and import the data using the code below.    
+
+```{r, eval=FALSE}
+
+install.packages("gapminder")
+
+library(gapminder)
+
+gapminder_data <- gapminder::gapminder
+
+```
+
+By looking at the data you can likely see that there's a lot more of it this time. That's due to there also being a year variable so that we can see changes over time. The code below just extracts the data for the most recent year in the data set, 2007. 
+
+```{r, eval=FALSE}
+
+gapminder_2007 <- gapminder_data %>%
+  filter(year == 2007)
+
+```
+
+1. Created histograms for life expectancy and GDP
+2. Created boxplots for life expectancy and GDP
+3. Create a simple scatter plot of life expectancy and GDP
+4. Add the continent and population size data to your scatter plot from 3
+5. Make sure each has an appropriate title and axis.
+
