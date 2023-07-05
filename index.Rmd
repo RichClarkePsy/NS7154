@@ -12,12 +12,23 @@ description: |
   The HTML output format for this example is bookdown::gitbook,
   set in the _output.yml file.
 # link-citations: yes
-# github-repo: RichClarkePsy/NS7154
+github-repo: RichClarkePsy/NS7154
+output: bookdown::bs4_book
+# webexercises::webexercises_default
+
 ---
 
-# Week 1
+```{R}
+# library(webexercises)
+# the following is from here https://psyteachr.github.io/webexercises/
+# add adds the webexercise output to the yaml.
+# the issue before was trying to get webexerices working at the same time as bookdown
+#add_to_bookdown(bookdown_dir = ".",
+                #include_dir = "www",
+                #script_dir = "scripts",
+                #output_format = "bs4_book")
+```
 
-## Introduction
+# Index
 
-to write
 
