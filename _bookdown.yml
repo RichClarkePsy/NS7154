@@ -1,7 +1,6 @@
-delete_merged_file: true
-before_chapter_script:
-- R/psyteachr_setup.R
-- R/webex.R
+delete_merged_file: yes
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: 'Chapter '
+before_chapter_script: scripts/webex.R
+output_dir: "docs"
