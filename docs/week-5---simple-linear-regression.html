@@ -104,7 +104,7 @@ How I converted this data from a PDF to CSV
 <p>The study sets out to test for relationships between noise level and the stress and immunity biomarkers while controlling for the demographic, lifestyle and sensitivity to noise variables.</p>
 <p>Today we'll just look at the simple relationships but we'll come back to this dataset again when we look at multiple regression.</p>
 <p>As always you'll need to download the data, set your working directory, load this weeks packages, and read in the data. We'll be using a new packages this week (<code>sjPlot</code>), so if this is the first time you are using this packages you'll need to install it with the <code>install.packages("sjPlot")</code> command.</p>
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://strengejacke.github.io/sjPlot/">sjPlot</a></span><span class="op">)</span></span>
 <span></span>
@@ -113,7 +113,7 @@ How I converted this data from a PDF to CSV
 <span><span class="co"># note you likely have the data saved under a different name to the name I have used here</span></span></code></pre></div>
 <p>Take a look at the dataset either visually using the <code><a href="https://tibble.tidyverse.org/reference/view.html">view()</a></code> function and/or through using the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> or <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> functions.</p>
 <p>There is a single value used throughout thhe dataset to indicate missing data. We need to change that value into an <code>NA</code>. Below is the code we used last week, replace the <code>?</code> with the appropriate value and and run the code to recode missing data as <code>NA</code></p>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">missing_values</span> <span class="op">&lt;-</span> <span class="op">?</span></span>
 <span></span>
 <span><span class="va">cleaned_data</span> <span class="op">&lt;-</span> <span class="va">raw_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -154,7 +154,7 @@ What is Logarithmic transformation?
 <button>
 Simple histogram code
 </button>
-<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Cortisol</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -171,7 +171,7 @@ Simple histogram code
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <p>We could just run our histogram code 7 times, changing out the variable name each time. However, that can often looks messy in our script so as a way to tidy things up we may want to run them all together. To do this, first we <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> out these key variables. Then we can use the <code>pivot_longer</code> function, followed by including a <code>facet_wrap</code> line within our ggplot code to create a single image with all of our plots.</p>
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">histogram_data</span> <span class="op">&lt;-</span> <span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Cortisol</span>, </span>
 <span>         <span class="va">NK_cells</span>, </span>
@@ -195,7 +195,7 @@ What is Pivoting?
 <div class="inline-figure"><img src="Images/long%20data.PNG" width="100%" style="display: block; margin: auto;"></div>
 </div>
 <p>If you take a look at the data after this pivoting you should see that all the scores are in one variable named <code>score</code>. Running our histogram code with a <code>facet_wrap</code> gives you all the histograms at once.</p>
-<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">histogram_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">variables</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">score</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -211,7 +211,7 @@ Answer
 <p>Anyway, we'll follow what the authors did and perform a log transformation on each of the biomarkers.</p>
 </div>
 <p>Now we can do the log transformation on the biomarkers and run the histograms again.</p>
-<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cleaned_data_log</span> <span class="op">&lt;-</span> <span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Cortisol_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">Cortisol</span><span class="op">)</span>,</span>
 <span>         NK_cells_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">NK_cells</span><span class="op">)</span>,</span>
@@ -227,7 +227,7 @@ Answer
 </h3>
 <p>One of our variables is going to give us some issues in the next section due to our log transformation. If you run a <code>summary</code> of the dataset, or just take a look at our new data object containing the log variables, you'll see that a few data points in the <code>NKT_cell_log</code> variable are listed as <code>-Inf</code>. This is due to us trying to take the log of <code>0</code>, which equals infinity.</p>
 <p>I'm not sure how Kim et al addressed this issue, however, we're going to address this by converting the few <code>-Inf</code> values to 0's. I've done this by adding an extra <code>mutate</code> function to our log transformation expression. In this line I use <code>ifelse</code> to say <em>if</em> the value in <code>NKT_cells_log</code> is infinite then replace with a <code>0</code>, <em>else</em> replace with the same value again.</p>
-<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cleaned_data_log</span> <span class="op">&lt;-</span> <span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Cortisol_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">Cortisol</span><span class="op">)</span>,</span>
 <span>         NK_cells_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">NK_cells</span><span class="op">)</span>,</span>
@@ -249,7 +249,7 @@ Answer
 </h2>
 <p>After all that data wrangling we are finally at the stage where we can start replicating the authors primary analysis.</p>
 <p>A single correlation can be run through the following code:</p>
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cleaned_data_log</span><span class="op">$</span><span class="va">Noise_Ldn</span>, y <span class="op">=</span> <span class="va">cleaned_data_log</span><span class="op">$</span><span class="va">IL12_log</span><span class="op">)</span></span></code></pre></div>
 <div class="webex-solution">
 <button>
@@ -259,7 +259,7 @@ Wait, what is a $ doing there?!
 <p>It's worth knowing about this type of notation, as at some point you'll likely run across blogs and tutorial videos that use such code.</p>
 </div>
 <p>After running that line of code you should see the following appear in your console:</p>
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Pearson's product-moment correlation</span></span>
 <span></span>
 <span><span class="co"># data:  cleaned_data_log$Noise_Ldn and cleaned_data_log$IL12_log</span></span>
@@ -281,7 +281,7 @@ Wait, what is a $ doing there?!
 <li><p>The second experssion assembles a correlation table using our chosen data. I've incorporated additional arguments in the code for further functionality. To view a comprehensive list of available arguments for this table, run <code><a href="https://strengejacke.github.io/sjPlot/reference/tab_corr.html">?tab_corr</a></code>. Note: The resulting table, generated in HTML format, will display in your viewer tab rather than the plot tab.</p></li>
 <li><p>The final expression visualises the data in a colour-coded grid. I find this format more intuitive for identifying high correlations in large datasets. Similarly, running ?sjp.corr give a full list of the available arguments for this type of plot.</p></li>
 </ol>
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://strengejacke.github.io/sjPlot/">sjPlot</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">corr_matrix_data</span> <span class="op">&lt;-</span> <span class="va">cleaned_data_log</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -314,7 +314,7 @@ Wait, what is a $ doing there?!
 <p><strong>Regression formula</strong>: The regression formula is the mathematical equation of the regression line, typically in the form y = mx + b. <code>m</code> denotes the slope (the effect of <code>x</code> on <code>y</code>), and <code>b</code> is the y-intercept (the <code>y</code> value when <code>x</code> is zero).</p>
 <p><strong>R-Squared value</strong>: R-squared value, ranging from 0 to 1, shows how well the regression line fits the data. A high R-squared means a significant portion of the variation in the dependent variable can be explained by the independent variable(s).</p>
 <p>The code below runs a linear regression, modelling the relationship between Cortisol and Noise Levels. To view the model we then have to run <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> on our newly created model. The results of the model will then be outputted into the console.</p>
-<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model_Cort_Ldn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Cortisol_log</span> <span class="op">~</span> <span class="va">Noise_Ldn</span>, data <span class="op">=</span> <span class="va">cleaned_data_log</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_Cort_Ldn</span><span class="op">)</span></span></code></pre></div>
@@ -330,7 +330,7 @@ Where is the p-value?
 </div>
 <p>For our figures we'll need to extract a few bits of information from our model. The first line of the code below takes just the r-squared value and stores the value in <code>r-squared</code>. The next line does the same with the coefficients of the mode (<code>m</code> and <code>b</code> in the equation of the line).</p>
 <p>The <code>equation</code> expression here takes the coefficients and turns them into a string that contains the equation of our line (y=0.0025*x + 2.4). The last line does the same but with the r-squared values.</p>
-<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">r_squared</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_Cort_Ldn</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span></span>
 <span><span class="va">coefficients</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">model_Cort_Ldn</span><span class="op">)</span></span>
 <span></span>
@@ -344,7 +344,7 @@ Where is the p-value?
 <span><span class="co"># \u00B2 is the code for making text superscript, i.e. turning the 2 into squared.</span></span>
 <span><span class="co"># This was something I had to ask the AI how to do. </span></span></code></pre></div>
 <p>Now we can create the plot. This is very similar to other plots you have created, however, this time I've used the <code>annotate</code> function to add the text labels. Have a play around with the code and see if you can figure out what each of the arguments within the code do.</p>
-<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cleaned_data_log</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Noise_Ldn</span>, y <span class="op">=</span> <span class="va">Cortisol_log</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
@@ -369,7 +369,7 @@ A weird detail about this study
 <p>Here's something wild about the study, that perhaps you noticed, Men were excluded from the analysis. The authors argued that due to Men tending <em>"to have more activity in environments outside of the residence target area"</em> and that this could <em>"influence [their] sensitivity to the environmental noise around the residence"</em>.</p>
 <p>This is a bit of a red flag to me. Especially seeing as blood samples were still collected from these individuals (67 in total).</p>
 <p>And to make things worse, this:</p>
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">raw_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Sex</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Sex</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>

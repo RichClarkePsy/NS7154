@@ -144,7 +144,7 @@ Extra details on pipes %&gt;%
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Life_exp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672"></div>
+<div class="inline-figure"><img src="Images/week%202%20plot%201.png" width="100%" style="display: block; margin: auto;"></div>
 <p>This histogram is fine for our quick exploration of the data, but we could also tidy the figure up to the point at which it would be perfectly fine to include it in a paper.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -159,7 +159,7 @@ Extra details on pipes %&gt;%
 <span>       caption <span class="op">=</span> <span class="st">"Year: 2015 | Data source: WHO"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672"></div>
+<div class="inline-figure"><img src="Images/week%202%20plot%202.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
 <div id="test-yourself-exercise-1" class="section level3" number="5.3.2">
 <h3>
@@ -199,7 +199,7 @@ None of this is magic btw
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">Continent</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672"></div>
+<div class="inline-figure"><img src="Images/week%202%20plot%203.png" width="100%" style="display: block; margin: auto;"></div>
 <div class="webex-solution">
 <button>
 Note about ~
@@ -217,7 +217,7 @@ Note about ~
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Life_exp</span>, y<span class="op">=</span><span class="va">Continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672"></div>
+<div class="inline-figure"><img src="Images/week%202%20plot%204.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Much better, instantly we can see how the distribution of life expectancy differs across continents. A few things spring to mind to make this figure more informative.
 1. Label the outliers (it'd be nice to know what countries they are).
 2. Add some colour.
@@ -253,7 +253,7 @@ To add these outlines to the figure I've added a layer of text above the box plo
 <span>       caption <span class="op">=</span> <span class="st">"Year: 2015 | Data source: WHO"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672"></div>
+<div class="inline-figure"><img src="Images/week%202%20plot%205.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Now that is a good looking figure!</p>
 <p>There's a lot going on to make these figures but luckily you don't need to keep it all in your head at one time. I often go back to old code or code from webbooks like this or <a href="https://psyteachr.github.io/">PsyTeachR</a> and adapt and change it for my needs.</p>
 <p>In fact lets adapt this code for BMI insterad of life expectancy.</p>
@@ -299,7 +299,7 @@ Solution
 <span>       caption <span class="op">=</span> <span class="st">"Year: 2015 | Data source: WHO"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672"></div>
+<div class="inline-figure"><img src="Images/week%202%20plot%206.png" width="100%" style="display: block; margin: auto;"></div>
 <p>And this is one way the box plot could look:</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_BMI</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -319,7 +319,7 @@ Solution
 <span>       caption <span class="op">=</span> <span class="st">"Year: 2015 | Data source: WHO"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672"></div>
+<div class="inline-figure"><img src="Images/week%202%20plot%207.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
 <p>What do you notice about the data from this visual check?</p>
 <p>Personally, I'm concerned about those low BMI data points, BMI should never really be that low. Perhaps this is a data recording issue. No way to know without looking at the individual level data. For further analysis we may want to filter out these data points, or at least check them against other data sources.</p>
@@ -335,7 +335,7 @@ Solution
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Schooling</span>, y <span class="op">=</span> <span class="va">Life_exp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672"></div>
+<div class="inline-figure"><img src="Images/week%202%20plot%208.png" width="100%" style="display: block; margin: auto;"></div>
 <p>That looks to be a very clear correlation to me. In the coming weeks we'll look at strength and statistical significance of such relationships, but for now, to tidy this up, we can add the regression line (by adding an extra geometry layer of <code>geom_smooth</code>), title, and label the axes.</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -346,7 +346,7 @@ Solution
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 2. A scatter plot of life expectancy by number of years of schooling"</span>,<span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Average number of years of schooling"</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Average life expectancy (in years)"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672"></div>
+<div class="inline-figure"><img src="Images/week%202%20plot%209.png" width="100%" style="display: block; margin: auto;"></div>
 <p>What happens when you change the order and put the geom_smooth before the geom_point function? <select class="webex-select"><option value="blank"></option>
 <option value="">Only the dots are visable</option>
 <option value="">Only the line is visable</option>
@@ -389,7 +389,7 @@ Solution
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 3. A scatter plot of life expectancy by number of years of schooling"</span>,</span>
 <span>       x <span class="op">=</span> <span class="st">"Average number of years of schooling"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Average life expectancy (in years)"</span><span class="op">)</span> <span class="co"># delete aes(group = 1) &amp; ,colour = "black" to see why I included them</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672"></div>
+<div class="inline-figure"><img src="Images/week%202%20plot%2010.png" width="100%" style="display: block; margin: auto;"></div>
 <p>The code below uses the <code>Population</code> variable to the data points. Now, the larger the population the larger the dot size.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -400,7 +400,7 @@ Solution
 <span>       x <span class="op">=</span> <span class="st">"Average number of years of schooling"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Average life expectancy (in years)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>size <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># delete this line to see why I included it </span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672"></div>
+<div class="inline-figure"><img src="Images/week%202%20plot%2011.png" width="100%" style="display: block; margin: auto;"></div>
 <p>The comments in the code also indicate parts where I had AI assistants. I couldn't remember how to make these changes off the top of my head. Googleing would have taken about 15 mins to find the right guide with the right code but my <a href="https://chat.openai.com/share/5c8c2f2e-31b8-49ac-bed1-b247198bb340">requests to ChatGPT</a> took less than a minute and also gave an explanation of how the extra code works. This is also a great example of how little the AI needs to work out what you're asking.</p>
 </div>
 </div>
