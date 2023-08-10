@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 7 Week 4 - Working with catagorical variables | NS7154 R Workbook</title>
+<meta name="author" content="Dr Richard Clarke">
+<meta name="description" content="This week, we'll take our first steps towards working on your assignment dataset by looking at a similar dataset from 2019. Download the files Week4_data_she19.csv and Codebook.csv from this...">
+<meta name="generator" content="bookdown 0.31 with bs4_book()">
+<meta property="og:title" content="Chapter 7 Week 4 - Working with catagorical variables | NS7154 R Workbook">
+<meta property="og:type" content="book">
+<meta property="og:description" content="This week, we'll take our first steps towards working on your assignment dataset by looking at a similar dataset from 2019. Download the files Week4_data_she19.csv and Codebook.csv from this...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 7 Week 4 - Working with catagorical variables | NS7154 R Workbook">
+<meta name="twitter:description" content="This week, we'll take our first steps towards working on your assignment dataset by looking at a similar dataset from 2019. Download the files Week4_data_she19.csv and Codebook.csv from this...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="www/webex.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">NS7154 R Workbook</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Welcome</a></li>
+<li><a class="" href="week-1---why-learn-r.html"><span class="header-section-number">2</span> Week 1 - Why learn R?</a></li>
+<li><a class="" href="week-1---getting-started.html"><span class="header-section-number">3</span> Week 1 - Getting started</a></li>
+<li><a class="" href="week-1---writing-and-running-your-first-code.html"><span class="header-section-number">4</span> Week 1 - Writing and running your first code</a></li>
+<li><a class="" href="week-2---basic-visualisation.html"><span class="header-section-number">5</span> Week 2 - Basic visualisation</a></li>
+<li><a class="" href="week-3---working-with-data-files.html"><span class="header-section-number">6</span> Week 3 - Working with data files</a></li>
+<li><a class="active" href="week-4---working-with-catagorical-variables.html"><span class="header-section-number">7</span> Week 4 - Working with catagorical variables</a></li>
+<li><a class="" href="week-5---simple-linear-regression.html"><span class="header-section-number">8</span> Week 5 - Simple Linear Regression</a></li>
+<li><a class="" href="week-6---catch-up-week.html"><span class="header-section-number">9</span> Week 6 - Catch up week</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-4---working-with-catagorical-variables" class="section level1" number="7">
+<h1>
+<span class="header-section-number">7</span> Week 4 - Working with catagorical variables<a class="anchor" aria-label="anchor" href="#week-4---working-with-catagorical-variables"><i class="fas fa-link"></i></a>
+</h1>
+<p>This week, we'll take our first steps towards working on your assignment dataset by looking at a similar dataset from 2019.</p>
+<p>Download the files <code>Week4_data_she19.csv</code> and <code>Codebook.csv</code> from this week's Moodle area. Save these in the same folder as a fresh R analysis script, then set this folder as your working directory. Then read the data and codebook into RStudio and take an initial look at both.</p>
+<p>With this dataset we will:</p>
+<ul>
+<li>Check for missing data.</li>
+<li>
+<code>Select()</code> and <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> the data into more manageable segments.</li>
+<li>Dichotomies continuous variables.</li>
+<li>Create summary statistics for use in a descriptive statistics table.</li>
+</ul>
+<p>This week you will need the following packages. Don't forget, if you've not used a package previously you'll need to run <code>install.package("packagename")</code> for each new package.</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span> <span class="co"># useful for scaling and formatting data</span></span></code></pre></div>
+<div class="webex-solution">
+<button>
+Reminder: Setting you working directory and reading data
+</button>
+<p>To set your working directory click <strong>Session</strong> <code>-&gt;</code> <strong>Set Working Directory</strong> <code>-&gt;</code> <strong>Choose Directory</strong> (and navigate to your folder) or <strong>To Source File Location</strong>.</p>
+<p>To load the data, first make sure you have loaded the <code>tidyverse</code> package. Then, read in the data:</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">raw_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"Week4_data_shes19.csv"</span><span class="op">)</span></span>
+<span><span class="va">Codebook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"Codebook.csv"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>Hopefully, you now see a dataset in your environment window comprising of 33 variables and an impressive 6881 observations (participants) - <em>manual recoding is certainly not going to be feasible with this volume of data!</em></p>
+<p>This dataset is a small selection of key variables from the <a href="https://www.gov.scot/collections/scottish-health-survey/">Scottish Health Survey</a> for 2019. Accompanying the main dataset is an auxiliary file - the codebook. If you execute <code>view(Codebook)</code> or <code>Codebook %&gt;% print(n=33)</code>, you'll find that this is a dataframe composed of two variables that provide insight into the meanings of each variable name. In some cases, they even clarify the exact question that was asked of the participants.</p>
+<p>What does the variable <code>Cigwend</code> represent? <select class="webex-select"><option value="blank"></option>
+<option value="">Time spent smoking cigarettes on weekend days</option>
+<option value="">Weekend goals to quit cigarettes</option>
+<option value="answer">Number cigarettes smoked on weekend days</option></select></p>
+<p>What is the exact variable name for the Index of Multiple Deprivation statistic used in this survey <input class="webex-solveme nospaces" size="4" data-answer='["SIMD"]'></p>
+<div id="missing-data" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> Missing data<a class="anchor" aria-label="anchor" href="#missing-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>Massive surveys are prone to missing data issues. For the majority of cases in this 2019 datasets (and your 2021 assignment dataset) the missing data will be due to different waves of a survey asking different questions or collecting different data.
+In this dataset, there are seven different ways in which missing data is labelled. The code below cleans this up and just labels all of these types of missing data as <code>NA</code>, which stands for <em>Not Applicable</em>. Add it to your script and run it now.</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">missing_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Unclassifiable"</span>, <span class="st">"Refused"</span>, <span class="st">"Don't know"</span>, </span>
+<span>                    <span class="st">"Schedule not obtained"</span>, <span class="st">"Schedule not applicable"</span>, <span class="st">"Not applicable"</span>, <span class="st">"Reading not obtained"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cleaned_data</span> <span class="op">&lt;-</span> <span class="va">raw_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_all</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/replace.html">replace</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">.</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">missing_values</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="webex-solution">
+<button>
+Click for an explanation of this code
+</button>
+<p>Simple explanation:</p>
+<p>The code generates an object named <code>missing_values</code> containing the different words used to identify missing data in the dataset. Then, it applies the <code>mutate_all</code> function to the raw data. This function replaces all occurrences of the values listed in the object <code>missing_values</code> to the entire dataframe with <code>NA</code>. It then assigns it to the object <code>cleaned_data</code>.</p>
+<p>Deeper explanation:</p>
+<p>The <code>~</code> symbol in the <code>~replace(., . %in% missing_values, NA)</code> piece of the R code is used to create a <em>lambda function</em>, an on-the-fly function meant for one-time use, where <code>.</code> acts as a placeholder for the data being processed. This lambda function is then applied to every column in the dataframe by mutate_all(), replacing any element found in <code>missing_values</code> with <code>NA</code>.</p>
+<p>Here's a simplified example:</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, b <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">df_squared</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_all</a></span><span class="op">(</span><span class="op">~</span> <span class="va">.</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<p>In this example, <code>~ .^2</code> is the lambda function. The <code>~</code> symbol tells R that what follows is a formula, and the <code>.</code> is a placeholder that represents the current column of data being processed.</p>
+</div>
+<p>Now, let's see what the damage is, how many missing values are we dealing with?</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">missing_data</span> <span class="op">&lt;-</span> <span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarise_all</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">33</span>, names_to <span class="op">=</span> <span class="st">"Variables"</span>, values_to <span class="op">=</span> <span class="st">"NAs"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">33</span><span class="op">)</span></span></code></pre></div>
+<div class="webex-solution">
+<button>
+Reminder: how to work out what code does
+</button>
+<p>Don't forget if you every come across code that you don't understand you can always use <code>?</code> to find out more about each function. For example here you could run each of the following:</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">summarise_all</span></span>
+<span><span class="op">?</span><span class="va">pivot_longer</span></span>
+<span><span class="op">?</span><span class="va">print</span></span></code></pre></div>
+<p>Or for a plain language explanation ask your AI of choice. <a href="https://chat.openai.com/share/b3fbcaca-eb94-4287-94e7-85bd1f57383a">Here is the explanation the ChatGPT gave me for this code</a>.</p>
+<p>Of course, Google is also an option. I'm just finding the AI is quicker these days.</p>
+</div>
+<p>How many missing values are there for the variable UniCredit? <input class="webex-solveme nospaces" size="3" data-answer='["129"]'></p>
+<p>What is the exact variable name for the variable with the most missing data? <input class="webex-solveme nospaces" size="6" data-answer='["HHFood"]'></p>
+<p>This second question probably lead to you looking through the data trying to work out which number is the highest. Sounds like an inefficient use of time to me. This is exactly the kind of thing we were trying to get away from with our move to R. Let's use code to make this task easier, scalable, and less prone to error.</p>
+<p>Seeing as we have this missing data in a data object, all we need to do now is <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> the dataset in descending order and our top variable when we view the data object will be the one with the most missing data.</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">missing_data</span> <span class="op">&lt;-</span> <span class="va">missing_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">NAs</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>To make life even easier we could graph it:</p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">missing_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">NAs</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">NAs</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">Variables</span>, <span class="va">NAs</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="preparing-data-for-analysis" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Preparing data for analysis<a class="anchor" aria-label="anchor" href="#preparing-data-for-analysis"><i class="fas fa-link"></i></a>
+</h2>
+<p>Next, let's take a closer look at those participants that have readings for Diastolic and Systolic blood pressure. To obtain this data, an in-person visit would likely have been required, so it's no surprise that there is a fair amount of missing data. However, even with all that missing data it still looks like we have over 1000 participants with readings, which is excellent. Just think of how many hours it would take us to collect that amount of data!</p>
+<p>To prepare our data for analysis, we need to reoganise the data a little using various functions, such as <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>.</p>
+<div id="filter-relevant-cases" class="section level3" number="7.2.1">
+<h3>
+<span class="header-section-number">7.2.1</span> Filter relevant cases<a class="anchor" aria-label="anchor" href="#filter-relevant-cases"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function will need to be used to select only the data where there is no missing data for both the <code>Systolic</code> and <code>Diastolic</code> variables.</p>
+<div class="webex-solution">
+<button>
+Filtering using logical operators
+</button>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function is really useful but there is some extra language (<strong>logical operators</strong>) that you'll need to learn (or just learn how to find and use) to use it to its full effect. Here is the full list with their definition:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>&gt;</code> (Greater Than): This operator returns <code>TRUE</code> if the value on its left is greater than the value on its right. For example, <code>filter(Age &gt; 18)</code> would keep only the rows where Age is greater than 18.</p></li>
+<li><p><code>&lt;</code> (Less Than): This operator returns <code>TRUE</code> if the value on its left is less than the value on its right. For example, <code>filter(Age &lt; 18)</code> would keep only the rows where Age is less than 18.</p></li>
+<li><p><code>&gt;=</code> (Greater Than or Equal To): This operator returns <code>TRUE</code> if the value on its left is greater than or equal to the value on its right. For example, filter<code>(Age &gt;= 18)</code> would keep only the rows where Age is 18 or older.</p></li>
+<li><p><code>&lt;=</code> (Less Than or Equal To): This operator returns <code>TRUE</code> if the value on its left is less than or equal to the value on its right. For example, <code>filter(Age &lt;= 18)</code> would keep only the rows where Age is 18 or younger.</p></li>
+<li><p><code>==</code> (Equal To): This operator returns <code>TRUE</code> if the value on its left is equal to the value on its right. For example, <code>filter(Age == 18)</code> would keep only the rows where Age is exactly 18. A common mistake here is to use just one equals sign. So common in fact that the error message often read "did you mean <code>==</code>?".</p></li>
+<li><p><code>&amp;</code> (AND): This operator returns <code>TRUE</code> if both its left and right operands are <code>TRUE</code>. For example, <code>filter(Age &gt; 18 &amp; Income &gt; 50000)</code> would keep only the rows where the age is greater than 18 AND the variable <code>Income</code> is greater than 50,000.</p></li>
+<li><p><code>|</code> (OR): This operator returns <code>TRUE</code> if either (or both) of its operands are <code>TRUE</code>. For example, <code>filter(Age &lt; 18 | Income &gt; 50000)</code> would keep rows where the age is less than 18 OR the income is greater than 50,000.</p></li>
+<li><p><code>!</code> (NOT): This operator negates the truth value of its operand. For example, filter<code>(!is.na(Age))</code> would keep only the rows where Age is not <code>NA</code>.</p></li>
+<li><p><code>!=</code> (Not Equal To): This operator returns <code>TRUE</code> if the value on its left is not equal to the value on its right. For example, <code>filter(Age != 18)</code> would keep all the rows where Age is not 18.</p></li>
+</ol>
+<p>You can also combine these operators. For example, <code>filter(Age &gt; 18 &amp; Age &lt; 65)</code> would keep the rows where Age is greater than 18 AND less than 65 (i.e., Age is between 18 and 65, not inclusive).</p>
+</div>
+<p>The following code filters only the rows where both (<code>&amp;</code>) <code>Systolic</code> and <code>Diastolic</code> does not include missing data (<code>!is.na</code>).</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">BP_data</span> <span class="op">&lt;-</span> <span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Systolic</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Diastolic</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="additional-tidying" class="section level3" number="7.2.2">
+<h3>
+<span class="header-section-number">7.2.2</span> Additional tidying<a class="anchor" aria-label="anchor" href="#additional-tidying"><i class="fas fa-link"></i></a>
+</h3>
+<p>If you run were to <code>str(cleaned_data)</code> you will see that each variable has either a <code>chr</code> or <code>num</code> next to them. This represents the variables <strong>data type</strong>, <code>chr</code> stands for <em>character data</em> (e.g. strings of text that can be numbers or characters) and <code>num</code> stands for <em>numeric data</em>(e.g. a string of numbers).</p>
+<p>When we imported the data, our <code>Systolic</code> and <code>Diastolic</code> data variables used numbers for the BP readings but also contained two types of text response <em>"Not applicable"</em> and <em>"Reading not obtained"</em>, both or which we recoded as <code>NA</code>. This left us with just the numerical data, however, seeing as text was present when we first read in the data these variables were initially assigned as character (<code>chr</code>) data.</p>
+<p>All this means is that when we want to use this data as numeric data we need to convert them into number (<code>num</code>) data. The code below uses <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to overwrite the <code>Systolic</code> and <code>Diastolic</code> variables with the same data treated, as the function implies, as numeric type data.</p>
+<p>Finally, it might be worth using the <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> function to take only the variables that we will use in our analysis. In this case we'll take the variables <code>Age</code>, <code>Sex</code>, <code>SIMD</code>, <code>UrbanRural</code>, <code>Systolic</code> and <code>Diastolic</code>. <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> also lets us organise the order of the variables depending on the order we list them.</p>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">BP_data</span> <span class="op">&lt;-</span> <span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Systolic</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Diastolic</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Systolic <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">Systolic</span><span class="op">)</span>,</span>
+<span>         Diastolic <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">Diastolic</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ID</span>, <span class="va">Age</span>, <span class="va">Sex</span>, <span class="va">SIMD</span>, <span class="va">UrbanRural</span>, <span class="va">Systolic</span>, <span class="va">Diastolic</span><span class="op">)</span></span></code></pre></div>
+<div class="webex-solution">
+<button>
+Note on tidy code
+</button>
+<p>When I've a potentially long line of code, as our select function could be, if we wanted many more variable I often use a line break to list them one after the other. One of the great features of RStudio is its ability to automatically handle text alignment. This capability not only enhances code readability but can also act as a helpful tool in error detection, as any discrepancies might result in unusual indentation.</p>
+<p>Both of the following expressions are functionally the same</p>
+<ul>
+<li>Tidy code that's easy to read:</li>
+</ul>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">BP_data</span> <span class="op">&lt;-</span> <span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Systolic</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Diastolic</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Systolic <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">Systolic</span><span class="op">)</span>,</span>
+<span>         Diastolic <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">Diastolic</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ID</span>, </span>
+<span>         <span class="va">Age</span>, </span>
+<span>         <span class="va">Sex</span>, </span>
+<span>         <span class="va">SIMD</span>, </span>
+<span>         <span class="va">UrbanRural</span>, </span>
+<span>         <span class="va">Systolic</span>, </span>
+<span>         <span class="va">Diastolic</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>Horrifying code, probably written by a psychopath:</li>
+</ul>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">BP_data</span> <span class="op">&lt;-</span> <span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Systolic</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Diastolic</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Systolic <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">Systolic</span><span class="op">)</span>, Diastolic <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">Diastolic</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ID</span>, <span class="va">Age</span>,<span class="va">Sex</span>,<span class="va">SIMD</span>,<span class="va">UrbanRural</span>,<span class="va">Systolic</span>,<span class="va">Diastolic</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="visual-representation-using-catagorical-data" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> Visual representation using catagorical data<a class="anchor" aria-label="anchor" href="#visual-representation-using-catagorical-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>Quite often with blood pressure data we want to use this data to work out if someone has a dangerously high blood pressure, the diagnoses of which is <em>Hypertension</em>. This cut off point is considered as over 140mmHg on Systolic or over 90mmHg on Diastolic measurements <a href="https://www.nhs.uk/conditions/blood-pressure-test/">NHS</a></p>
+<p>Below is a scatter plot of diastolic against systolic blood pressure from this data. The dotted purple line is the systolic cut off for high blood pressure and the dotted red line is the diastolic blood pressure cut off for high blood pressure. As such, we want to assign the label of hypertension to all data points above the purple line and to the right of the red line.</p>
+<div class="inline-figure"><img src="Images/BP_scatter.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="webex-solution">
+<button>
+Code for plot
+</button>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">BP_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Diastolic</span>, y <span class="op">=</span> <span class="va">Systolic</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">90</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">140</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span>, color <span class="op">=</span> <span class="st">"purple"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Scatter Plot of Systolic and Diastolic Blood Pressure"</span>,</span>
+<span>       x <span class="op">=</span> <span class="st">"Diastolic Blood Pressure"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Systolic Blood Pressure"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>The following code creates a new variable, using the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function. This variable is named <code>BP_cat</code> and uses an <code>if_else</code> function that says <em>if</em> <code>Systolic</code> is above 140 <em>or</em> (denoted by the <code>|</code>) <code>Diastolic</code> is above 90, is <code>TRUE</code>, then assign "Hypertension", <em>else</em> assign "Normal BP range".</p>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">BP_data_labelled</span> <span class="op">&lt;-</span> <span class="va">BP_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>BP_cat <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">Systolic</span> <span class="op">&gt;</span> <span class="fl">140</span> <span class="op">|</span> <span class="va">Diastolic</span> <span class="op">&gt;</span> <span class="fl">90</span>, </span>
+<span>                          <span class="st">"Hypertension"</span>, </span>
+<span>                          <span class="st">"Healthy BP range"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>The nice thing about this kind of problem is we can then check it on the scatter plot by assigning our new variable to the the colour aesthetic.</p>
+<div class="inline-figure"><img src="Images/Scatter%20plot%20bp%20categories.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="webex-solution">
+<button>
+Code for plot
+</button>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">BP_data_labelled</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Diastolic</span>, y <span class="op">=</span> <span class="va">Systolic</span>, colour <span class="op">=</span> <span class="va">BP_cat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Scatter Plot of Systolic and Diastolic Blood Pressure"</span>,</span>
+<span>       x <span class="op">=</span> <span class="st">"Diastolic Blood Pressure"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Systolic Blood Pressure"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html">scale_color_discrete</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"BP Categories"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>Hopefully, by looking at the graph you can see how problematic a hard cut like this can be in health statistics.</p>
+</div>
+<div id="discriptive-statistics-tables-for-catagorical-data" class="section level2" number="7.4">
+<h2>
+<span class="header-section-number">7.4</span> Discriptive statistics tables for catagorical data<a class="anchor" aria-label="anchor" href="#discriptive-statistics-tables-for-catagorical-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>One of the most common uses for categorical data is to segment your data for a frequency table.</p>
+<p>The following code groups the data by two variables of interest, in this case our newly created blood pressure categorical variable and our Sex variable</p>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">percentage_Sex_data2</span> <span class="op">&lt;-</span> <span class="va">BP_data_labelled</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Sex</span>, <span class="va">BP_cat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Percentage <span class="op">=</span> <span class="va">Count</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Count</span><span class="op">)</span>,</span>
+<span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Note: the percent function requires the "scales" package</span></span></code></pre></div>
+<p>We can then just adapt this code for another variable</p>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">percentage_UR_data</span> <span class="op">&lt;-</span> <span class="va">BP_data_labelled</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">UrbanRural</span>, <span class="va">BP_cat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Percentage <span class="op">=</span> <span class="va">Count</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Count</span><span class="op">)</span>,</span>
+<span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>For now, it might be easier for you to <code>view</code> the date object, copy the data and create your own APA-formatted table in Microsoft Word. However, if you're becoming like me and are obsessed with doing absolutely everything in R, with a bit of work, you can create tables ready for publication right from RStudio.</p>
+<div class="inline-figure"><img src="Images/Demographics%20table.PNG" width="50%" style="display: block; margin: auto;"></div>
+<div class="webex-solution">
+<button>
+Code for making this table
+</button>
+<p>This process takes a effort and might not be worth it for a single table. However, if you ever have to create monthly reports, this sort of automated workflow could save you significant time in the future.</p>
+<p>Also, there's likely a far easier way than I've done it here. If you find one, please do let me know!</p>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># this table was created using the "gt" package. Install it just as you would any other package.  </span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com/">gt</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># The following wrangles the data into the right formation for the table </span></span>
+<span></span>
+<span><span class="va">percentage_Sex_data</span> <span class="op">&lt;-</span> <span class="va">BP_data_labelled</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Sex</span>, <span class="va">BP_cat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Percentage <span class="op">=</span> <span class="va">Count</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Count</span><span class="op">)</span>,</span>
+<span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"BP_cat"</span>, values_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Count</span>, <span class="va">Percentage</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Stat_Healthy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">`Count_Healthy BP range`</span>, <span class="st">" ("</span>, <span class="va">`Percentage_Healthy BP range`</span>, <span class="st">")"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Stat_Hyper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">Count_Hypertension</span>, <span class="st">" ("</span>, <span class="va">Percentage_Hypertension</span>, <span class="st">")"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="va">Sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>variable_name <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="va">percentage_UR_data</span> <span class="op">&lt;-</span> <span class="va">BP_data_labelled</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">UrbanRural</span>, <span class="va">BP_cat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Percentage <span class="op">=</span> <span class="va">Count</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Count</span><span class="op">)</span>,</span>
+<span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"BP_cat"</span>, values_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Count</span>, <span class="va">Percentage</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Stat_Healthy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">`Count_Healthy BP range`</span>, <span class="st">" ("</span>, <span class="va">`Percentage_Healthy BP range`</span>, <span class="st">")"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Stat_Hyper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">Count_Hypertension</span>, <span class="st">" ("</span>, <span class="va">Percentage_Hypertension</span>, <span class="st">")"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="va">UrbanRural</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>variable_name <span class="op">=</span> <span class="st">"Location"</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="va">table1_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">percentage_Sex_data</span>, <span class="va">percentage_UR_data</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">variable_name</span>, <span class="va">variable</span>, <span class="va">Stat_Healthy</span>, <span class="va">Stat_Hyper</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Note: it is really important to get the group_by vaiable in the right order. See what happens when you flip them. </span></span>
+<span></span>
+<span><span class="co"># the following uses the gt package to create a table in APA style. </span></span>
+<span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="va">table1_data</span>, groupname_col <span class="op">=</span> <span class="st">"variable_name"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_header.html">tab_header</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"**Table 1**"</span><span class="op">)</span>,</span>
+<span>             subtitle <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"Demographic statistics by blood pressure catagories"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/opt_align_table_header.html">opt_align_table_header</a></span><span class="op">(</span>align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/cols_label.html">cols_label</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">" "</span>,</span>
+<span>    Stat_Healthy <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"**Healty BP Range &lt;br&gt; n(%)**"</span><span class="op">)</span>,</span>
+<span>    Stat_Hyper <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"**Hypertention &lt;br&gt; n(%)**"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html">tab_options</a></span><span class="op">(</span>table.border.top.color <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>              heading.title.font.size <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/px.html">px</a></span><span class="op">(</span><span class="fl">16</span><span class="op">)</span>,</span>
+<span>              column_labels.border.top.width <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>              column_labels.border.top.color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>              column_labels.border.bottom.width <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>              column_labels.border.bottom.color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>              table_body.border.bottom.color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>              table.border.bottom.color <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>              table.width <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/pct.html">pct</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span>,</span>
+<span>              table.background.color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/cols_align.html">cols_align</a></span><span class="op">(</span>align<span class="op">=</span><span class="st">"center"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_style.html">tab_style</a></span><span class="op">(</span>style <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://gt.rstudio.com/reference/cell_borders.html">cell_borders</a></span><span class="op">(</span>sides <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"top"</span>, <span class="st">"bottom"</span><span class="op">)</span>,</span>
+<span>                                      color <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>                                      weight <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/px.html">px</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                         <span class="fu"><a href="https://gt.rstudio.com/reference/cell_text.html">cell_text</a></span><span class="op">(</span>align<span class="op">=</span><span class="st">"center"</span><span class="op">)</span>,</span>
+<span>                         <span class="fu"><a href="https://gt.rstudio.com/reference/cell_fill.html">cell_fill</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span>, alpha <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>            locations <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/cells_body.html">cells_body</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                                   rows <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="test-yourself-exercises-1" class="section level2" number="7.5">
+<h2>
+<span class="header-section-number">7.5</span> Test yourself exercises:<a class="anchor" aria-label="anchor" href="#test-yourself-exercises-1"><i class="fas fa-link"></i></a>
+</h2>
+<div id="exercise-1-1" class="section level3" number="7.5.1">
+<h3>
+<span class="header-section-number">7.5.1</span> Exercise 1<a class="anchor" aria-label="anchor" href="#exercise-1-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Dichotomise the <code>age</code> variable using a median split.</p>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<p>Take the medium of the variable and assign those below or equal to the median as "Young" and those greater than the medium as "Old".</p>
+<p>There are likely a number of ways to find the medium of the data. I find the <code>summary</code> function to be the quickest.</p>
+<p>You'll then need to use <code>if_else</code> within a <code>mutate</code> function to create a new variable with the young and old labels. Look back at the code from earlier and adapt it accordingly.</p>
+</div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">BP_data_labelled</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Age</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">age_data_labelled</span> <span class="op">&lt;-</span> <span class="va">BP_data_labelled</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>age_cat <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">Age</span> <span class="op">&lt;=</span> <span class="fl">54</span>, <span class="st">"Young"</span>, <span class="st">"Old"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="exercise-2-1" class="section level3" number="7.5.2">
+<h3>
+<span class="header-section-number">7.5.2</span> Exercise 2<a class="anchor" aria-label="anchor" href="#exercise-2-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create a plot of Diastolic compared to Systolic with colour indicating either and "Old" or "Young" participant.</p>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<p>Look back at the code for the plot that I created for Hypertension and Health BP Range. Substitute your new variable (I named mine <code>age_cat</code>) for the variable I used to dichotomise BP.</p>
+</div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">age_data_labelled</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Diastolic</span>, y <span class="op">=</span> <span class="va">Systolic</span>, colour <span class="op">=</span> <span class="va">age_cat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Scatter Plot of Systolic and Diastolic Blood Pressure"</span>,</span>
+<span>       x <span class="op">=</span> <span class="st">"Diastolic Blood Pressure"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Systolic Blood Pressure"</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="exercise-3-1" class="section level3" number="7.5.3">
+<h3>
+<span class="header-section-number">7.5.3</span> Exercise 3<a class="anchor" aria-label="anchor" href="#exercise-3-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create the descriptive statistics for hypertension by your new dicotomised age variable.</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">percentage_age_data</span> <span class="op">&lt;-</span> <span class="va">age_data_labelled</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">age_cat</span>, <span class="va">BP_cat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Percentage <span class="op">=</span> <span class="va">Count</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Count</span><span class="op">)</span>,</span>
+<span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="exercise-4" class="section level3" number="7.5.4">
+<h3>
+<span class="header-section-number">7.5.4</span> Exercise 4<a class="anchor" aria-label="anchor" href="#exercise-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create multiple age ranges i.e. &lt;18, 18 - 30, 31 - 40, 41 - 50, 51 - 60, 60+ and rerun the descriptive statistics. For this you'll need to investigate how to use the <code>case_when</code> function.</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">BP_data_labelled2</span> <span class="op">&lt;-</span> <span class="va">BP_data_labelled</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>age_cat <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>  <span class="va">Age</span> <span class="op">&lt;</span> <span class="fl">18</span> <span class="op">~</span> <span class="st">"&lt;18"</span>,</span>
+<span>  <span class="va">Age</span> <span class="op">&gt;=</span> <span class="fl">18</span> <span class="op">&amp;</span> <span class="va">Age</span> <span class="op">&lt;=</span> <span class="fl">30</span> <span class="op">~</span> <span class="st">"18-30"</span>,</span>
+<span>  <span class="va">Age</span> <span class="op">&gt;</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">Age</span> <span class="op">&lt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"31-40"</span>,</span>
+<span>  <span class="va">Age</span> <span class="op">&gt;</span> <span class="fl">40</span> <span class="op">&amp;</span> <span class="va">Age</span> <span class="op">&lt;=</span> <span class="fl">50</span> <span class="op">~</span> <span class="st">"41-50"</span>,</span>
+<span>  <span class="va">Age</span> <span class="op">&gt;</span> <span class="fl">50</span> <span class="op">&amp;</span> <span class="va">Age</span> <span class="op">&lt;=</span> <span class="fl">60</span> <span class="op">~</span> <span class="st">"51-60"</span>,</span>
+<span>  <span class="va">Age</span> <span class="op">&gt;</span> <span class="fl">60</span> <span class="op">~</span> <span class="st">"60+"</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">percentage_age_data</span> <span class="op">&lt;-</span> <span class="va">BP_data_labelled2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">age_cat</span>, <span class="va">BP_cat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Percentage <span class="op">=</span> <span class="va">Count</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Count</span><span class="op">)</span>,</span>
+<span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="exercise-5" class="section level3" number="7.5.5">
+<h3>
+<span class="header-section-number">7.5.5</span> Exercise 5<a class="anchor" aria-label="anchor" href="#exercise-5"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create the count and percentages for the Scottish Index of Multiple Deprivation variable.</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">percentage_SIMD_data</span> <span class="op">&lt;-</span> <span class="va">BP_data_labelled2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">SIMD</span>, <span class="va">BP_cat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Percentage <span class="op">=</span> <span class="va">Count</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Count</span><span class="op">)</span>,</span>
+<span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="exercise-6-very-much-optional-just-for-fun" class="section level3" number="7.5.6">
+<h3>
+<span class="header-section-number">7.5.6</span> Exercise 6 (very much optional / just for fun)<a class="anchor" aria-label="anchor" href="#exercise-6-very-much-optional-just-for-fun"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create table that includes the frequency and percentage of health and hypertensive participants for <code>Sex</code>, <code>UrbanRural</code>, <code>Sge</code> <code>SIMD</code>.</p>
+<p>And if you find a quicker and easier way to do this please do let me know!</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># copied from earlier table code</span></span>
+<span><span class="va">percentage_Sex_data</span> <span class="op">&lt;-</span> <span class="va">BP_data_labelled2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Sex</span>, <span class="va">BP_cat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Percentage <span class="op">=</span> <span class="va">Count</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Count</span><span class="op">)</span>,</span>
+<span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"BP_cat"</span>, values_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Count</span>, <span class="va">Percentage</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Stat_Healthy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">`Count_Healthy BP range`</span>, <span class="st">" ("</span>, <span class="va">`Percentage_Healthy BP range`</span>, <span class="st">")"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Stat_Hyper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">Count_Hypertension</span>, <span class="st">" ("</span>, <span class="va">Percentage_Hypertension</span>, <span class="st">")"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="va">Sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>variable_name <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># copied from earlier table code  </span></span>
+<span><span class="va">percentage_UR_data</span> <span class="op">&lt;-</span> <span class="va">BP_data_labelled2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">UrbanRural</span>, <span class="va">BP_cat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Percentage <span class="op">=</span> <span class="va">Count</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Count</span><span class="op">)</span>,</span>
+<span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"BP_cat"</span>, values_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Count</span>, <span class="va">Percentage</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Stat_Healthy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">`Count_Healthy BP range`</span>, <span class="st">" ("</span>, <span class="va">`Percentage_Healthy BP range`</span>, <span class="st">")"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Stat_Hyper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">Count_Hypertension</span>, <span class="st">" ("</span>, <span class="va">Percentage_Hypertension</span>, <span class="st">")"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="va">UrbanRural</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>variable_name <span class="op">=</span> <span class="st">"Location"</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="co"># code adapted for age </span></span>
+<span></span>
+<span><span class="va">percentage_age_data</span> <span class="op">&lt;-</span> <span class="va">BP_data_labelled2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">age_cat</span>, <span class="va">BP_cat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Percentage <span class="op">=</span> <span class="va">Count</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Count</span><span class="op">)</span>,</span>
+<span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"BP_cat"</span>, values_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Count</span>, <span class="va">Percentage</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Stat_Healthy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">`Count_Healthy BP range`</span>, <span class="st">" ("</span>, <span class="va">`Percentage_Healthy BP range`</span>, <span class="st">")"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Stat_Hyper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">Count_Hypertension</span>, <span class="st">" ("</span>, <span class="va">Percentage_Hypertension</span>, <span class="st">")"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="va">age_cat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>variable_name <span class="op">=</span> <span class="st">"Age"</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co"># code adapted for SIMD</span></span>
+<span></span>
+<span><span class="va">percentage_SIMD_data</span> <span class="op">&lt;-</span> <span class="va">BP_data_labelled2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">SIMD</span>, <span class="va">BP_cat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Percentage <span class="op">=</span> <span class="va">Count</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Count</span><span class="op">)</span>,</span>
+<span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"BP_cat"</span>, values_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Count</span>, <span class="va">Percentage</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Stat_Healthy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">`Count_Healthy BP range`</span>, <span class="st">" ("</span>, <span class="va">`Percentage_Healthy BP range`</span>, <span class="st">")"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Stat_Hyper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">Count_Hypertension</span>, <span class="st">" ("</span>, <span class="va">Percentage_Hypertension</span>, <span class="st">")"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="va">SIMD</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>variable_name <span class="op">=</span> <span class="st">"Scottish Index of Multiple Deprivation"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">table2_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">percentage_Sex_data</span>, <span class="va">percentage_UR_data</span>, <span class="va">percentage_age_data</span>, <span class="va">percentage_SIMD_data</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">variable_name</span>, <span class="va">variable</span>, <span class="va">Stat_Healthy</span>, <span class="va">Stat_Hyper</span><span class="op">)</span></span></code></pre></div>
+<p>If you look at the table2_data data frame you'll see that the SIMD variables are out of order. That's annoying. the order we want is:</p>
+<ul>
+<li>"Most deprived" indicates the areas with the highest levels of deprivation.</li>
+<li>"2nd" second most deprived.</li>
+<li>"3rd" third most deprived.</li>
+<li>"4th" fourth most deprived.</li>
+<li>"Least deprived" indicates the areas with the lowest levels of deprivation.</li>
+</ul>
+<p>The following code, creates a new data object with the order I want the variables and then joins it to the SIMD object that contains the percentages, and then arranges it by the custom order. Typically, I would just rework my earlier code if I run into this kind of problem.</p>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">order_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Most deprived"</span>, <span class="st">"2nd"</span>, <span class="st">"3rd"</span>, <span class="st">"4th"</span>, <span class="st">"Least deprived"</span><span class="op">)</span>,</span>
+<span>  order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">percentage_SIMD_data</span> <span class="op">&lt;-</span> <span class="va">percentage_SIMD_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">order_df</span>, by <span class="op">=</span> <span class="st">"variable"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">order</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">table2_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">percentage_Sex_data</span>, <span class="va">percentage_UR_data</span>, <span class="va">percentage_age_data</span>, <span class="va">percentage_SIMD_data</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">variable_name</span>, <span class="va">variable</span>, <span class="va">Stat_Healthy</span>, <span class="va">Stat_Hyper</span><span class="op">)</span></span></code></pre></div>
+<p>The following code creates the APA style table using the <code>gt</code> package.The only thing I did here was to change the <code>table1_data</code> to <code>table2_data</code> and change the title to "Table 2". You may need to click Zoom to view the table in its full glory.</p>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="va">table2_data</span>, groupname_col <span class="op">=</span> <span class="st">"variable_name"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_header.html">tab_header</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"**Table 2**"</span><span class="op">)</span>,</span>
+<span>             subtitle <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"Demographic statistics by blood pressure catagories"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/opt_align_table_header.html">opt_align_table_header</a></span><span class="op">(</span>align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/cols_label.html">cols_label</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">" "</span>,</span>
+<span>    Stat_Healthy <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"**Healty BP Range &lt;br&gt; n(%)**"</span><span class="op">)</span>,</span>
+<span>    Stat_Hyper <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"**Hypertention &lt;br&gt; n(%)**"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html">tab_options</a></span><span class="op">(</span>table.border.top.color <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>              heading.title.font.size <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/px.html">px</a></span><span class="op">(</span><span class="fl">16</span><span class="op">)</span>,</span>
+<span>              column_labels.border.top.width <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>              column_labels.border.top.color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>              column_labels.border.bottom.width <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>              column_labels.border.bottom.color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>              table_body.border.bottom.color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>              table.border.bottom.color <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>              table.width <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/pct.html">pct</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span>,</span>
+<span>              table.background.color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/cols_align.html">cols_align</a></span><span class="op">(</span>align<span class="op">=</span><span class="st">"center"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_style.html">tab_style</a></span><span class="op">(</span>style <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://gt.rstudio.com/reference/cell_borders.html">cell_borders</a></span><span class="op">(</span>sides <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"top"</span>, <span class="st">"bottom"</span><span class="op">)</span>,</span>
+<span>                                      color <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>                                      weight <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/px.html">px</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                         <span class="fu"><a href="https://gt.rstudio.com/reference/cell_text.html">cell_text</a></span><span class="op">(</span>align<span class="op">=</span><span class="st">"center"</span><span class="op">)</span>,</span>
+<span>                         <span class="fu"><a href="https://gt.rstudio.com/reference/cell_fill.html">cell_fill</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span>, alpha <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>            locations <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/cells_body.html">cells_body</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                                   rows <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<hr>
+<hr>
+<p>This book is a work in progress. If you have any feedback or spot any mistakes please enter them into <a href="https://glos.onlinesurveys.ac.uk/r-codebook-feedback">this feedback survey</a> quoting the week your comment is referring to. Thank you! :-)</p>
+
+</div>
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+  
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+  
+  var cl = this.classList
+  
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+  
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+  
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+  
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+  }
+
+  update_total_correct();
+}
+
+</script><div class="chapter-nav">
+<div class="prev"><a href="week-3---working-with-data-files.html"><span class="header-section-number">6</span> Week 3 - Working with data files</a></div>
+<div class="next"><a href="week-5---simple-linear-regression.html"><span class="header-section-number">8</span> Week 5 - Simple Linear Regression</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-4---working-with-catagorical-variables"><span class="header-section-number">7</span> Week 4 - Working with catagorical variables</a></li>
+<li><a class="nav-link" href="#missing-data"><span class="header-section-number">7.1</span> Missing data</a></li>
+<li>
+<a class="nav-link" href="#preparing-data-for-analysis"><span class="header-section-number">7.2</span> Preparing data for analysis</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#filter-relevant-cases"><span class="header-section-number">7.2.1</span> Filter relevant cases</a></li>
+<li><a class="nav-link" href="#additional-tidying"><span class="header-section-number">7.2.2</span> Additional tidying</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#visual-representation-using-catagorical-data"><span class="header-section-number">7.3</span> Visual representation using catagorical data</a></li>
+<li><a class="nav-link" href="#discriptive-statistics-tables-for-catagorical-data"><span class="header-section-number">7.4</span> Discriptive statistics tables for catagorical data</a></li>
+<li>
+<a class="nav-link" href="#test-yourself-exercises-1"><span class="header-section-number">7.5</span> Test yourself exercises:</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exercise-1-1"><span class="header-section-number">7.5.1</span> Exercise 1</a></li>
+<li><a class="nav-link" href="#exercise-2-1"><span class="header-section-number">7.5.2</span> Exercise 2</a></li>
+<li><a class="nav-link" href="#exercise-3-1"><span class="header-section-number">7.5.3</span> Exercise 3</a></li>
+<li><a class="nav-link" href="#exercise-4"><span class="header-section-number">7.5.4</span> Exercise 4</a></li>
+<li><a class="nav-link" href="#exercise-5"><span class="header-section-number">7.5.5</span> Exercise 5</a></li>
+<li><a class="nav-link" href="#exercise-6-very-much-optional-just-for-fun"><span class="header-section-number">7.5.6</span> Exercise 6 (very much optional / just for fun)</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>NS7154 R Workbook</strong>" was written by Dr Richard Clarke. It was last built on 2023-08-10.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

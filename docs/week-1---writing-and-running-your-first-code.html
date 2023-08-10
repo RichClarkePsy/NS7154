@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 4 Week 1 - Writing and running your first code | NS7154 R Workbook</title>
+<meta name="author" content="Dr Richard Clarke">
+<meta name="description" content="Okay, lets get you coding!  4.1 R as an overpowered calculator Firstly, R is an excellent calculator. Take the following lines of code and try running them in the console or from your script...">
+<meta name="generator" content="bookdown 0.31 with bs4_book()">
+<meta property="og:title" content="Chapter 4 Week 1 - Writing and running your first code | NS7154 R Workbook">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Okay, lets get you coding!  4.1 R as an overpowered calculator Firstly, R is an excellent calculator. Take the following lines of code and try running them in the console or from your script...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4 Week 1 - Writing and running your first code | NS7154 R Workbook">
+<meta name="twitter:description" content="Okay, lets get you coding!  4.1 R as an overpowered calculator Firstly, R is an excellent calculator. Take the following lines of code and try running them in the console or from your script...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="www/webex.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">NS7154 R Workbook</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Welcome</a></li>
+<li><a class="" href="week-1---why-learn-r.html"><span class="header-section-number">2</span> Week 1 - Why learn R?</a></li>
+<li><a class="" href="week-1---getting-started.html"><span class="header-section-number">3</span> Week 1 - Getting started</a></li>
+<li><a class="active" href="week-1---writing-and-running-your-first-code.html"><span class="header-section-number">4</span> Week 1 - Writing and running your first code</a></li>
+<li><a class="" href="week-2---basic-visualisation.html"><span class="header-section-number">5</span> Week 2 - Basic visualisation</a></li>
+<li><a class="" href="week-3---working-with-data-files.html"><span class="header-section-number">6</span> Week 3 - Working with data files</a></li>
+<li><a class="" href="week-4---working-with-catagorical-variables.html"><span class="header-section-number">7</span> Week 4 - Working with catagorical variables</a></li>
+<li><a class="" href="week-5---simple-linear-regression.html"><span class="header-section-number">8</span> Week 5 - Simple Linear Regression</a></li>
+<li><a class="" href="week-6---catch-up-week.html"><span class="header-section-number">9</span> Week 6 - Catch up week</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-1---writing-and-running-your-first-code" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Week 1 - Writing and running your first code<a class="anchor" aria-label="anchor" href="#week-1---writing-and-running-your-first-code"><i class="fas fa-link"></i></a>
+</h1>
+<p>Okay, lets get you coding!</p>
+<div id="r-as-an-overpowered-calculator" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> R as an overpowered calculator<a class="anchor" aria-label="anchor" href="#r-as-an-overpowered-calculator"><i class="fas fa-link"></i></a>
+</h2>
+<p>Firstly, R is an excellent calculator. Take the following lines of code and try running them in the console or from your script window.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fl">1</span><span class="op">+</span><span class="fl">1</span></span>
+<span></span>
+<span><span class="fl">4</span><span class="op">*</span><span class="op">(</span><span class="fl">14</span><span class="op">-</span><span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fl">10</span><span class="op">^</span><span class="fl">2</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">144</span><span class="op">)</span></span></code></pre></div>
+<div class="webex-solution">
+<button>
+Reminder of how to run code
+</button>
+<p>To run code in the console (the bottom left window of RStudio) click on the bottom <code>&gt;</code> symbol, type or paste the code you would like to run, and then hit the <strong>Enter</strong> key.</p>
+<p>To run code from your script window:</p>
+<ol style="list-style-type: decimal">
+<li><p>Make sure you have a script window open, you can open a new script by clicking <strong>File</strong> <code>-&gt;</code> <strong>New File</strong> <code>-&gt;</code> <strong>R Script</strong>.</p></li>
+<li><p>Type or paste the code you want to run.</p></li>
+<li><p>Highlight your code and click <strong>Run</strong> or navigate to the line/chunk you would like to run and hit <strong>Ctrl+Enter</strong> (for a mac it's <strong>Command+Enter</strong>)</p></li>
+</ol>
+</div>
+<p>After running each line of code the output is reported in the console and should look something like this:</p>
+<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 40</code></pre>
+<pre><code>## [1] 100</code></pre>
+<pre><code>## [1] 12</code></pre>
+<div class="webex-solution">
+<button>
+What does the [1] mean?
+</button>
+<p>The [1] at the beginning of each output is a way of indexing where you are in a output. Take the following code for instance:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<p>Running this generates a set of 50 data points that are normally distributed with a mean of 5 and a standard deviation of 1. As it creates a long output that spans over multiple lines the number in the [] gives you an indication of how many data points are displayed on each line.</p>
+</div>
+<p>The final line of code that you ran used a <em>function</em>, in this case the <code>sqrt</code> function that is used in order to perform a square root calculation. When typing it into RStudio you may have noticed that after typing the first three letters a box popped up with the rest of the function and a short explanation of the function.</p>
+<div class="inline-figure"><img src="Images/Autocomplete.png" width="100%" style="display: block; margin: auto;"></div>
+<p>This is a super helpful feature of RStudio that you will end up using a lot. The <code>{base}</code> indicates that this function exists within the base version of R. Later we will be using functions that we've added with the <code>tidyverse</code> package. Its worth keeping an eye on these as a common error is trying to use a function from a package that has not been loaded.</p>
+<p>Another way to learn about a function is by running: <code><a href="https://rdrr.io/r/base/MathFun.html">?sqrt</a></code>. This loads a help file in the bottom right that explains more information about the function.</p>
+<p>Try running the following for functions from the <code>dplyr</code> package that is included in the <code>tidyverse</code> package:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">?</span><span class="va">mutate</span></span>
+<span><span class="op">?</span><span class="va">select</span></span>
+<span><span class="op">?</span><span class="va">arrange</span></span></code></pre></div>
+<div class="webex-solution">
+<button>
+Click here if you received an error message
+</button>
+<p>If you received an error message that reads somthing like this:</p>
+<p><em>No documentation for ‘mutate’ in specified packages and libraries:
+you could try ‘??mutate’</em></p>
+<p>Then this is likely due to you not having yet installed or loaded the tidyverse package. To install simple run <code>install.packages("tidyverse")</code> in your console or from your script. Read the previous chapter that covers packages for more detail on this.</p>
+</div>
+<p>These help files are likely to be confusing for you at the moment but they will make a lot more sense the further you go with your coding.</p>
+</div>
+<div id="this-is-a-smart-book" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> This is a "smart book"<a class="anchor" aria-label="anchor" href="#this-is-a-smart-book"><i class="fas fa-link"></i></a>
+</h2>
+<p>Did you see that blue boxes in the section above? I will be using these throughout this book to include additional explanation or hide solutions to exercises so you can first try to work out the code for yourself. Also in some places I will include questions that allow you to self-test your knowledge. For example:</p>
+<p>The square root of 36864 is <input class="webex-solveme nospaces" size="3" data-answer='["192"]'></p>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<p>Use the <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code> function</p>
+<p>The box will turn green when you input the correct number.</p>
+</div>
+<p>What code would you use to load the help file for the <code>rnorm</code> function? <input class="webex-solveme nospaces" size="6" data-answer='["?rnorm"]'></p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p><code><a href="https://rdrr.io/r/stats/Normal.html">?rnorm</a></code></p>
+</div>
+<p>Is using AI permitted on this module? <select class="webex-select"><option value="blank"></option>
+<option value="">Absolutely not, how dare you!</option>
+<option value="answer">Yes, in fact it's encouraged!</option></select></p>
+</div>
+<div id="meet-your-pesonal-r-tutor-chatgpt-or-alternitive" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> Meet your pesonal R tutor ChatGPT (or alternitive)<a class="anchor" aria-label="anchor" href="#meet-your-pesonal-r-tutor-chatgpt-or-alternitive"><i class="fas fa-link"></i></a>
+</h2>
+<p>Well this is as good a time as any to introduce you to my teaching assistant for this module, <a href="https://openai.com/chatgpt">ChatGPT</a> (or an equivalent alternative)</p>
+<p>Writing code has become vastly easier in the last year with the public release of various Large Language Models (LLMs) AIs. I won't go into depth with how LLMs work (mainly because I don't actually know) but in <em>very</em> basic terms a LLM is an artificial intelligence that has been "trained" on an unfathomablly large amount of language data from across the internet. As I've previously mentioned, many academic disciplines and businesses use R for data analyses and as such there are many guides and resources online explaining how to write code in R. Talking to an LLM is like talking to someone that has read, memorised, and "understands" all of these guides and is able to explain pretty much most of it in a very simple to understand way.</p>
+<p>Personally, I use a LLM called ChatGPT from OpenAI, you can <a href="https://openai.com/chatgpt">set up a free account</a> with just an email address. There is a paid version, but you shouldn't need that for what we'll be using it for this semester. Lately, I've been working with the AI to write apps for teaching undergraduate statistics (<a href="https://vr7ney-richard-m0clarke.shinyapps.io/Automatic_T_Test_Generator/">like this</a>) and I have to say it makes learning new aspects of coding far quicker and more enjoyable than hacking my way through Google or YouTube looking for a suitable explanations.</p>
+<p>However, it is by no means perfect. Its biggest limitation is currently that it is only trained on data up until 2021. Meaning that it can’t advise on any changes to R (or packages) since the end of its training. Also, if it doesn’t know the answer it will just make stuff up and confidently present it as fact (it’s a lot like me in that respect!). So, it's best to never trust it completely.</p>
+<p>As it's a chatbot I thought I'd be nice to let ChatGPT introduce themselves, <a href="https://chat.openai.com/share/fa25e1df-be2c-4bfa-a7eb-0439ca40e907">click this link</a> to see the transcript of our conversation and a demonstration of what working with an AI can do for your R learning.</p>
+<img src="Images/AI.PNG" width="50%" style="display: block; margin: auto;"><div align="center">
+<a href="https://chat.openai.com/share/fa25e1df-be2c-4bfa-a7eb-0439ca40e907">Click here for the full conversation</a>
+</div>
+<p><br>
+Seeing as we've only just entered this brave new world of Ai, for now, I would ask you to only use LLMs as an aid for your R coding rather than your written work (no doubt some of you have heard about it's hugely disruptive <a href="https://www.bbc.co.uk/news/uk-wales-65167321">ability to write essays</a>). And at this stage please only use it for my module, your other lecturers may have different preferences which I would like you to respect. If in doubt, ask.</p>
+</div>
+<div id="back-to-the-coding" class="section level2" number="4.4">
+<h2>
+<span class="header-section-number">4.4</span> Back to the coding<a class="anchor" aria-label="anchor" href="#back-to-the-coding"><i class="fas fa-link"></i></a>
+</h2>
+<p>If you're only using R as a basic calculator you're basically using a sledgehammer to crack a walnut. Obviously coding with R can do so much more. One really important aspect of R is assigning data to a object.</p>
+<div id="assigning-numbers-to-objects" class="section level3" number="4.4.1">
+<h3>
+<span class="header-section-number">4.4.1</span> Assigning numbers to objects<a class="anchor" aria-label="anchor" href="#assigning-numbers-to-objects"><i class="fas fa-link"></i></a>
+</h3>
+<p>Run the following code line by line. Each time you run a line take a look in the environment tab in the top right window of RStudio.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
+<span></span>
+<span><span class="va">c</span> <span class="op">&lt;-</span> <span class="va">a</span><span class="op">+</span><span class="va">b</span></span>
+<span></span>
+<span><span class="va">a</span><span class="op">+</span><span class="va">b</span><span class="op">+</span><span class="va">c</span></span></code></pre></div>
+<p>The first two lines use the <code>&lt;-</code> notation (which is made up of the less than <code>&lt;</code> and dash <code>-</code>symbols) to assign a number to a letter. The third line adds the value of <code>a</code> to the value of <code>b</code> and creates a new object of <code>c</code> containing the value of the sum of <code>a+b</code>. The fourth line add each of the three created objects together, if you look in the console you'll see the output of the sum.</p>
+<pre><code>## [1] 30</code></pre>
+Here's another example, this time based on this classic question popularised in <a href="https://www.goodreads.com/book/show/11468377-thinking-fast-and-slow">Daniel Kahneman's work on system 1 and system 2</a>. A question where your initial gut reaction is reliably likely to give you the wrong answer, but we can use code to help us work it out.<br><br><div align="center">
+<strong><em>Question: A bat a ball cost £1.10, The bat costs £1.00 more than the ball</em></strong>.
+</div>
+<div align="center">
+<strong><em>How much does the ball cost?</em></strong>
+</div>
+<p><br>
+You're first instinct is likely to say that the ball costs £0.10 but the answer is actually £0.05. And we can check this with what we've just learnt about assigning values to objects. See if you can adapt the code below appropriately to test this. Reassigning a value to a object overrides the previous value, or you can click the little broom icon in the environment window to remove all previous objects.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># change out the question mark until you get the correct answer of 1.1</span></span>
+<span></span>
+<span><span class="va">Ball</span> <span class="op">&lt;-</span> <span class="op">?</span></span>
+<span></span>
+<span><span class="va">Bat</span> <span class="op">&lt;-</span> <span class="va">Ball</span> <span class="op">+</span> <span class="fl">1.00</span></span>
+<span></span>
+<span><span class="va">Bat</span> <span class="op">+</span> <span class="va">Ball</span> </span></code></pre></div>
+<div class="webex-solution">
+<button>
+Click if you're intrested in the algebre
+</button>
+<p>Don't worry this question still hurts my brain, even after teaching it for years!</p>
+<p>Bat + Ball = 1.10</p>
+<p>Bat = 1.00 + Ball</p>
+<p>1.00 + 2*Ball = 1.10</p>
+<p>Ball = (1.10 - 1.00)/2</p>
+<p>Ball = 0.1 / 2</p>
+<p>Ball = 0.05</p>
+</div>
+</div>
+<div id="assigning-multiple-data-point-to-an-object" class="section level3" number="4.4.2">
+<h3>
+<span class="header-section-number">4.4.2</span> Assigning multiple data point to an object<a class="anchor" aria-label="anchor" href="#assigning-multiple-data-point-to-an-object"><i class="fas fa-link"></i></a>
+</h3>
+<p>An object can hold more than just a single value. In the following code a range of numerical data is being created, and is assigned to the object <code>age</code>. The <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> is a function that <em>concatenates</em> (fancy word for <em>links</em>) values together and again the <code>&lt;-</code> stores this to a single object, in this case <code>age</code>.</p>
+<p>After assigning this data to <code>age</code> if your run <code>age</code> (either in the console or from script) then you the list will appear as output in your console.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">23</span>, <span class="fl">57</span>, <span class="fl">42</span>, <span class="fl">12</span>, <span class="fl">8</span>, <span class="fl">92</span>, <span class="fl">35</span>, <span class="fl">86</span>, <span class="fl">26</span>, <span class="fl">65</span><span class="op">)</span></span></code></pre></div>
+<p>Sometimes the data we want is just a list of consecutive numbers. The following lines of code are equivalent however one is substantially quicker than the other, especially at scale.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ID_number</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ID_number</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span></code></pre></div>
+<p>We can also assign words/letters (known as string data) to an object.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Kayleigh"</span>, <span class="st">"Lisa"</span>, <span class="st">"Beatrice"</span>, <span class="st">"Jessie"</span>, <span class="st">"Hugo"</span>, <span class="st">"Justin"</span>, <span class="st">"Mohammed"</span>, <span class="st">"Shawn"</span>, <span class="st">"Hasan"</span>, <span class="st">"Kelly"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">gender</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Female"</span>, <span class="st">"Female"</span>, <span class="st">"Female"</span>, <span class="st">"Female"</span>, <span class="st">"Male"</span>, <span class="st">"Male"</span>, <span class="st">"Male"</span>, <span class="st">"Male"</span>, <span class="st">"Male"</span>, <span class="st">"Non-binary"</span><span class="op">)</span></span></code></pre></div>
+<p>Some of you might see where we're going with this, and yes we can combine these objects into a dataset and assign it to yet another object.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">ID_number</span>, <span class="va">age</span>, <span class="va">names</span>, <span class="va">gender</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://tibble.tidyverse.org/reference/view.html">view</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
+<p>From this you can see that we've created a new type of object in our environment window, a Data object. It tells us how many observations there are (in this case, rows of data) and how many variables there are (in this case, columns of data). We can now view this data by clicking on it or by using the <code><a href="https://tibble.tidyverse.org/reference/view.html">view()</a></code> command.</p>
+</div>
+</div>
+<div id="test-yourself-exercises" class="section level2" number="4.5">
+<h2>
+<span class="header-section-number">4.5</span> Test yourself exercises<a class="anchor" aria-label="anchor" href="#test-yourself-exercises"><i class="fas fa-link"></i></a>
+</h2>
+<div id="exercise-1" class="section level3" number="4.5.1">
+<h3>
+<span class="header-section-number">4.5.1</span> Exercise 1<a class="anchor" aria-label="anchor" href="#exercise-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Create a dataframe that contains the data from the following table:</p>
+<div class="inline-figure"><img src="Images/table%20of%20data.PNG" width="25%" style="display: block; margin: auto;"></div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>This is not the only way to do this, if you've achieved the same results a different way. Great, well done!</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Age</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">18</span>, <span class="fl">19</span>, <span class="fl">22</span>, <span class="fl">24</span>, <span class="fl">24</span>, <span class="fl">25</span>, <span class="fl">29</span>, <span class="fl">35</span>, <span class="fl">42</span>, <span class="fl">52</span>, <span class="fl">68</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ID</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span></span>
+<span></span>
+<span><span class="va">Gender</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Female"</span>, <span class="st">"Female"</span>, <span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Male"</span>,<span class="st">"Female"</span>,<span class="st">"Non-binary"</span>, <span class="st">"Male"</span>, <span class="st">"Male"</span>, <span class="st">"Male"</span>, <span class="st">"Female"</span>,<span class="st">"Non-binary"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Score</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">89</span>, <span class="fl">92</span>, <span class="fl">62</span>, <span class="fl">100</span>, <span class="fl">75</span>, <span class="fl">78</span>, <span class="fl">89</span>, <span class="fl">100</span>, <span class="fl">86</span>, <span class="fl">68</span>, <span class="fl">85</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">testscore</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">ID</span>, <span class="va">Age</span>, <span class="va">Gender</span>, <span class="va">Score</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="exercise-2" class="section level3" number="4.5.2">
+<h3>
+<span class="header-section-number">4.5.2</span> Exercise 2<a class="anchor" aria-label="anchor" href="#exercise-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Next use the <code>rnorm</code> function to generate a variable called <code>IQ</code> that includes a data point for each participant in our dataset (e.g. whatever our <code>N</code> equals). Mean should equal 100 and you can choose a realistic standard deviation.</p>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<p>R is case sensitive so double check that you've the same capatalisation as your objects throughout.</p>
+<p>Don't forget you can use the ?rnorm command to open the help file for the rnorm function. This will show you how to use it.</p>
+</div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>Again, this is not the only way to do this, if you've achieved the same results a different way. Great, well done!</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">IQ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">100</span>, <span class="fl">15</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">testscore</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">ID</span>, <span class="va">Age</span>, <span class="va">Gender</span>, <span class="va">Score</span>, <span class="va">IQ</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="exercise-3" class="section level3" number="4.5.3">
+<h3>
+<span class="header-section-number">4.5.3</span> Exercise 3<a class="anchor" aria-label="anchor" href="#exercise-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>A cup of tea and a biscuit together cost £1.50. The cup of tea costs £1.30 more than the biscuit. How much does the biscuit cost?</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>Tea + Biscuit = 1.50
+Tea = 1.30 + Biscuit</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Biscuit</span> <span class="op">&lt;-</span> <span class="fl">0.1</span></span>
+<span></span>
+<span><span class="va">Tea</span> <span class="op">&lt;-</span> <span class="va">Biscuit</span> <span class="op">+</span> <span class="fl">1.30</span></span>
+<span></span>
+<span><span class="va">Tea</span> <span class="op">+</span> <span class="va">Biscuit</span> </span></code></pre></div>
+<p>Again, don't worry, this is meant to be a counterintuitive question.</p>
+</div>
+<hr>
+<hr>
+<p>This book is a work in progress. If you have any feedback or spot any mistakes please enter them into <a href="https://glos.onlinesurveys.ac.uk/r-codebook-feedback">this feedback survey</a> quoting the week your comment is referring to. Thank you! :-)</p>
+
+</div>
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+  
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+  
+  var cl = this.classList
+  
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+  
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+  
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+  
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+  }
+
+  update_total_correct();
+}
+
+</script><div class="chapter-nav">
+<div class="prev"><a href="week-1---getting-started.html"><span class="header-section-number">3</span> Week 1 - Getting started</a></div>
+<div class="next"><a href="week-2---basic-visualisation.html"><span class="header-section-number">5</span> Week 2 - Basic visualisation</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-1---writing-and-running-your-first-code"><span class="header-section-number">4</span> Week 1 - Writing and running your first code</a></li>
+<li><a class="nav-link" href="#r-as-an-overpowered-calculator"><span class="header-section-number">4.1</span> R as an overpowered calculator</a></li>
+<li><a class="nav-link" href="#this-is-a-smart-book"><span class="header-section-number">4.2</span> This is a "smart book"</a></li>
+<li><a class="nav-link" href="#meet-your-pesonal-r-tutor-chatgpt-or-alternitive"><span class="header-section-number">4.3</span> Meet your pesonal R tutor ChatGPT (or alternitive)</a></li>
+<li>
+<a class="nav-link" href="#back-to-the-coding"><span class="header-section-number">4.4</span> Back to the coding</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#assigning-numbers-to-objects"><span class="header-section-number">4.4.1</span> Assigning numbers to objects</a></li>
+<li><a class="nav-link" href="#assigning-multiple-data-point-to-an-object"><span class="header-section-number">4.4.2</span> Assigning multiple data point to an object</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#test-yourself-exercises"><span class="header-section-number">4.5</span> Test yourself exercises</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exercise-1"><span class="header-section-number">4.5.1</span> Exercise 1</a></li>
+<li><a class="nav-link" href="#exercise-2"><span class="header-section-number">4.5.2</span> Exercise 2</a></li>
+<li><a class="nav-link" href="#exercise-3"><span class="header-section-number">4.5.3</span> Exercise 3</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>NS7154 R Workbook</strong>" was written by Dr Richard Clarke. It was last built on 2023-08-10.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

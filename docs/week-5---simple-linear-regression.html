@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 8 Week 5 - Simple Linear Regression | NS7154 R Workbook</title>
+<meta name="author" content="Dr Richard Clarke">
+<meta name="description" content="This week we'll be looking at the data behind a paper titled Effects of self-reported sensitivity and road-traffic noise levels on the immune system by Kim et al (2017). If I'm being honest, the...">
+<meta name="generator" content="bookdown 0.31 with bs4_book()">
+<meta property="og:title" content="Chapter 8 Week 5 - Simple Linear Regression | NS7154 R Workbook">
+<meta property="og:type" content="book">
+<meta property="og:description" content="This week we'll be looking at the data behind a paper titled Effects of self-reported sensitivity and road-traffic noise levels on the immune system by Kim et al (2017). If I'm being honest, the...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 8 Week 5 - Simple Linear Regression | NS7154 R Workbook">
+<meta name="twitter:description" content="This week we'll be looking at the data behind a paper titled Effects of self-reported sensitivity and road-traffic noise levels on the immune system by Kim et al (2017). If I'm being honest, the...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="www/webex.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">NS7154 R Workbook</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Welcome</a></li>
+<li><a class="" href="week-1---why-learn-r.html"><span class="header-section-number">2</span> Week 1 - Why learn R?</a></li>
+<li><a class="" href="week-1---getting-started.html"><span class="header-section-number">3</span> Week 1 - Getting started</a></li>
+<li><a class="" href="week-1---writing-and-running-your-first-code.html"><span class="header-section-number">4</span> Week 1 - Writing and running your first code</a></li>
+<li><a class="" href="week-2---basic-visualisation.html"><span class="header-section-number">5</span> Week 2 - Basic visualisation</a></li>
+<li><a class="" href="week-3---working-with-data-files.html"><span class="header-section-number">6</span> Week 3 - Working with data files</a></li>
+<li><a class="" href="week-4---working-with-catagorical-variables.html"><span class="header-section-number">7</span> Week 4 - Working with catagorical variables</a></li>
+<li><a class="active" href="week-5---simple-linear-regression.html"><span class="header-section-number">8</span> Week 5 - Simple Linear Regression</a></li>
+<li><a class="" href="week-6---catch-up-week.html"><span class="header-section-number">9</span> Week 6 - Catch up week</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-5---simple-linear-regression" class="section level1" number="8">
+<h1>
+<span class="header-section-number">8</span> Week 5 - Simple Linear Regression<a class="anchor" aria-label="anchor" href="#week-5---simple-linear-regression"><i class="fas fa-link"></i></a>
+</h1>
+<p>This week we'll be looking at the data behind a paper titled <strong><em>Effects of self-reported sensitivity and road-traffic noise levels on the immune system</em></strong> by Kim et al (2017). If I'm being honest, the findings of the paper are slightly underwhelming, but none-the-less their shared data allows us to apply some of our existing R skills and learn some new functions that will be directly applicable to your assignment.</p>
+<p>The paper is open access and available in full here: <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0187084">Kim et al (2017)</a>. Familiarise yourself with the details of the study and then we'll take a look at replicating some of the basic correlational findings.</p>
+<div class="inline-figure"><img src="Images/week%205%20paper.png" width="100%" style="display: block; margin: auto;"></div>
+<p>The authors shared their data, but did the authors share their data in an easy to use format? No of course not, they shared it as a PDF. Luckily for you, I have converted their PDF data file into a CSV file that you can find on this weeks Moodle page.</p>
+<div class="webex-solution">
+<button>
+How I converted this data from a PDF to CSV
+</button>
+<p>Thankfully the data was fairly tidy on the PDF, so it didn't take too much effort to convert it, but I did involve me having to mess around on excel, which is never fun. If you would like to repeat the process yourself, here are the steps:</p>
+<ol style="list-style-type: decimal">
+<li>In Excel go to the Data tab <strong>Get Data</strong> <code>-&gt;</code> <strong>From File</strong> <code>-&gt;</code> <strong>From PDF</strong>.</li>
+<li>Select the downloaded PDF file and click Import.</li>
+<li>Then in the navigation window select <strong>Select multiple items</strong>, then tick either the three pages or the three tables.</li>
+<li>Then click on the drop arrow next to Load and click <strong>Load to</strong>.</li>
+<li>On the next window select <strong>Table</strong> then <strong>ok</strong>.</li>
+<li>This will give you three tabs of data. Then it's a matter of combining these data. I did this manually through copy and pasting but no doubt there's a smarter way of doing this.</li>
+</ol>
+<p>I'm explaining this here partly so that know how to do this if you every come across similar data in the future, but mainly this is just so I have a note of this for when I inevitable forget how to do this next time. <em>In fact, most of this book is just notes to help future me remember how to code.</em></p>
+</div>
+<div id="effects-of-noise-sensitivity-and-road-traffic-noise-on-the-immune-system." class="section level2" number="8.1">
+<h2>
+<span class="header-section-number">8.1</span> Effects of noise sensitivity and road traffic noise on the immune system.<a class="anchor" aria-label="anchor" href="#effects-of-noise-sensitivity-and-road-traffic-noise-on-the-immune-system."><i class="fas fa-link"></i></a>
+</h2>
+<p>The research conducted by Kim and colleagues in 2017 set out to explore the effects of road traffic noise exposure and self-reported noise sensitivity on human health. This study falls under the domain of psychoneuroimmunology - a scientific field that investigates the interplay between psychological processes, the nervous system, and the immune system.</p>
+<p>The researchers specifically looked at levels of biomarkers related to stress and immune system activity as a potential mechanism of this impact.</p>
+<p>In the context of this study, several key health markers were investigated:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Cortisol levels</strong>: Cortisol is a hormone that the body produces when under stress (see last weeks lecture for more on this topic).</p></li>
+<li><p><strong>Natural Killer (NK)</strong> and <strong>Natural Killer T (NKT)</strong> cell populations: These cells are key components of the immune system. NK cells play a significant role in the immune response to cells that are cancerous or infected by viruses. NKT cells, a subset of T cells with properties similar to NK cells, are involved in modulating immune responses.</p></li>
+<li><p><strong>NK cell activity</strong>: This was assessed by measuring levels of interleukin-12 (<strong>IL-12</strong>) and interferon-gamma (<strong>INF-γ</strong>), both of which are cytokines. IL-12 is a signaling molecule in the immune system that gets produced when the body encounters an intracellular pathogen. It enhances the ability of NK cells and cytotoxic T cells to kill these pathogens. INF-γ is another cytokine that has crucial roles in immune responses, particularly against viral infections and cancer.</p></li>
+</ol>
+<p>The researcher obtained data on these markers through immunological assays performed on the extracted blood sample for each participant. Each participant also gave the following data through a self-report survey:</p>
+<ol style="list-style-type: decimal">
+<li><p>Demographic factors: <strong>Age</strong>, <strong>Education level</strong>, and <strong>income</strong></p></li>
+<li><p>Lifestyle factors: <strong>Smoking status</strong>, <strong>Alcohol status</strong>, and <strong>Exercise status</strong></p></li>
+<li><p><strong>Sensitivity to Noise</strong>: as assessed on a 11-point visual analogue scale.</p></li>
+</ol>
+<p>Residential noise levels (<strong>Noise_Ldn</strong>) were calculated by the participant locating their address on pre-existing noise map of their local area and taking the corresponding noise level in decibels.</p>
+<p>The study sets out to test for relationships between noise level and the stress and immunity biomarkers while controlling for the demographic, lifestyle and sensitivity to noise variables.</p>
+<p>Today we'll just look at the simple relationships but we'll come back to this dataset again when we look at multiple regression.</p>
+<p>As always you'll need to download the data, set your working directory, load this weeks packages, and read in the data. We'll be using a new packages this week (<code>sjPlot</code>), so if this is the first time you are using this packages you'll need to install it with the <code>install.packages("sjPlot")</code> command.</p>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://strengejacke.github.io/sjPlot/">sjPlot</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">raw_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"Kim et al data.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># note you likely have the data saved under a different name to the name I have used here</span></span></code></pre></div>
+<p>Take a look at the dataset either visually using the <code><a href="https://tibble.tidyverse.org/reference/view.html">view()</a></code> function and/or through using the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> or <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> functions.</p>
+<p>There is a single value used throughout thhe dataset to indicate missing data. We need to change that value into an <code>NA</code>. Below is the code we used last week, replace the <code>?</code> with the appropriate value and and run the code to recode missing data as <code>NA</code></p>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">missing_values</span> <span class="op">&lt;-</span> <span class="op">?</span></span>
+<span></span>
+<span><span class="va">cleaned_data</span> <span class="op">&lt;-</span> <span class="va">raw_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_all</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/replace.html">replace</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">.</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">missing_values</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="webex-solution">
+<button>
+Answer
+</button>
+<p>The authors use the number <code>999</code> to indicate missing data.</p>
+</div>
+<p>Other than the missing data this dataset looks clean to me.</p>
+<div id="replicating-kim-et-al-2017-correlational-analyses" class="section level3" number="8.1.1">
+<h3>
+<span class="header-section-number">8.1.1</span> Replicating Kim et al 2017 correlational analyses<a class="anchor" aria-label="anchor" href="#replicating-kim-et-al-2017-correlational-analyses"><i class="fas fa-link"></i></a>
+</h3>
+<p>For now, we'll only look to replicate the findings in Figure 2 (see top of page), Table 2, and the in-text reporting (see below).</p>
+<div class="inline-figure"><img src="Images/Kim%20et%20al%20correlation%20table.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/Kim%20et%20al%20correlation%20results%20text.PNG" width="100%" style="display: block; margin: auto;"></div>
+<p>As you may recall from your undergraduate research methods classes, in frequentist statistical analysis, we often aim to use parametric tests when the statistical assumptions underlying these tests are met, as these tests can be more sensitive to effects if their assumptions hold. However, if these assumptions are not met, non-parametric alternatives may be more appropriate. <em>Note: we will recap the topic of parametric assumptions in full in NS5171</em></p>
+<p>When it comes to correlation analyses, the parametric test we commonly use is the Pearson correlation, and a commonly used non-parametric alternative is the Spearman's Rank correlation</p>
+<p>This study appears to have performed their analysis using a pearson correlation (we'll come back to the multiple regression in a couple of weeks time) and to satisfy the normality assumption they used a logarithmic transformation.</p>
+<div class="inline-figure"><img src="Images/Kim%20et%20al%20analysis.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="webex-solution">
+<button>
+What is Logarithmic transformation?
+</button>
+<p>One common method for dealing with non-normal data is to apply a transformation to the data, such as a logarithmic (log) transformation. This can make the data more normally distributed, or at least more symmetric, which can help meet statistical assumptions.</p>
+<p>A common variable that often gets a log transformation is income due to it's highly skewed nature.</p>
+<p>Most people earn a fairly similar moderate income while a few people earn far greater amounts than the bulk of individuals. Graphing this data (see below) you'll see that such a distribution skews to the right. Another way to present the same data is to make the scale logarithmic. The first figure below shows the same data as the second just with a logarithmic scale, where the difference between each point in the scale increases in an exponential manner. This change make the data appear more normally distributed.</p>
+<div class="inline-figure"><img src="Images/hist%20log%201.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/hist%20log%202.png" width="100%" style="display: block; margin: auto;"></div>
+<p>We can achieve a similar outcome by performing a logarithmic transformation to the data. Below I have graphed <em>the log</em> of income for the same data. Notice how the histogram now corresponds to the above figure with the log scale. By doing such a transformation the variable not only looks normal but is statistically more normally distributed.</p>
+<div class="inline-figure"><img src="Images/hist%20log%203.png" width="100%" style="display: block; margin: auto;"></div>
+</div>
+<p>Even though this is what what the authors choose to do, its still worth us having a visually inception of the raw data and then seeing how it looks after the transformation.</p>
+<p>To do this we can run a histogram for each of the variables of intrest. In our case all of the biomarkers (which they transformed) and noise and noise sensitivity variables (which they did not transform). You should already know (or be able to work out) how to run a simple histogram by now, so try it for yourself before using my code.</p>
+<div class="webex-solution">
+<button>
+Simple histogram code
+</button>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Cortisol</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># or this if you want to tidy it up:</span></span>
+<span></span>
+<span><span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Cortisol</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"darkgreen"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Histogram of Cortisol Levels"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Cortisol Levels"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Frequency"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>We could just run our histogram code 7 times, changing out the variable name each time. However, that can often looks messy in our script so as a way to tidy things up we may want to run them all together. To do this, first we <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> out these key variables. Then we can use the <code>pivot_longer</code> function, followed by including a <code>facet_wrap</code> line within our ggplot code to create a single image with all of our plots.</p>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">histogram_data</span> <span class="op">&lt;-</span> <span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Cortisol</span>, </span>
+<span>         <span class="va">NK_cells</span>, </span>
+<span>         <span class="va">NKT_cells</span>, </span>
+<span>         <span class="va">IL12</span>, </span>
+<span>         <span class="va">INFgamma</span>, </span>
+<span>         <span class="va">Noise_Ldn</span>, </span>
+<span>         <span class="va">Noise_sensitivity</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, names_to <span class="op">=</span> <span class="st">"variables"</span>, values_to <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span></span></code></pre></div>
+<div class="webex-solution">
+<button>
+What is Pivoting?
+</button>
+<p>Pivoting data refers to reshaping your dataset, where you transition from a 'wide' format to a 'long' format, or vice versa.</p>
+<p>In a 'wide' format, each row corresponds to a single observation, and each variable has its own column. As such, our current dataset can be said to be in a 'wide' format.</p>
+<p>In a 'long' format, each row still represents a single observation, but the variables you're examining are compiled into one column. Additional columns provide distinct information for each observation. For example, you might have one row for each measurement taken, with one column specifying the type of measurement and another giving the measurement value itself.</p>
+<p>This makes more sense when you look at the data. Here's an example of:</p>
+<p>A data set in wide format:</p>
+<div class="inline-figure"><img src="Images/Wide%20data.PNG" width="100%" style="display: block; margin: auto;"></div>
+<p>And here is an example of the same data set in long format (after pivoting)</p>
+<div class="inline-figure"><img src="Images/long%20data.PNG" width="100%" style="display: block; margin: auto;"></div>
+</div>
+<p>If you take a look at the data after this pivoting you should see that all the scores are in one variable named <code>score</code>. Running our histogram code with a <code>facet_wrap</code> gives you all the histograms at once.</p>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">histogram_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">variables</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">score</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"darkgreen"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">variables</span>, scale <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="Images/facet%20wrap%20hists.PNG" width="100%" style="display: block; margin: auto;"></div>
+<p>What do you think? Which of these variables are skewed?</p>
+<div class="webex-solution">
+<button>
+Answer
+</button>
+<p>I'm going to go with two being highly skewed (INFgammer &amp; NKT_cells) and one being close to skewed (IL12). However, without checking statistically (which I'll show you how to check later in the course) it hard to know for sure.</p>
+<p>Anyway, we'll follow what the authors did and perform a log transformation on each of the biomarkers.</p>
+</div>
+<p>Now we can do the log transformation on the biomarkers and run the histograms again.</p>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cleaned_data_log</span> <span class="op">&lt;-</span> <span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Cortisol_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">Cortisol</span><span class="op">)</span>,</span>
+<span>         NK_cells_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">NK_cells</span><span class="op">)</span>,</span>
+<span>         NKT_cells_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">NKT_cells</span><span class="op">)</span>,</span>
+<span>         IL12_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">IL12</span><span class="op">)</span>,</span>
+<span>         INFgamma_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">INFgamma</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Adapt the <code>piviot</code> and <code>facet_wrap</code> code from above and rerun the histograms with this log transformed data. You should end up with a range of histograms that look something like this:</p>
+<div class="inline-figure"><img src="Images/facet%20wrap%20log%20hists.PNG" width="100%" style="display: block; margin: auto;"></div>
+</div>
+<div id="one-more-annoying-thing-before-we-can-actually-analyse-the-data" class="section level3" number="8.1.2">
+<h3>
+<span class="header-section-number">8.1.2</span> One more annoying thing before we can actually analyse the data<a class="anchor" aria-label="anchor" href="#one-more-annoying-thing-before-we-can-actually-analyse-the-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>One of our variables is going to give us some issues in the next section due to our log transformation. If you run a <code>summary</code> of the dataset, or just take a look at our new data object containing the log variables, you'll see that a few data points in the <code>NKT_cell_log</code> variable are listed as <code>-Inf</code>. This is due to us trying to take the log of <code>0</code>, which equals infinity.</p>
+<p>I'm not sure how Kim et al addressed this issue, however, we're going to address this by converting the few <code>-Inf</code> values to 0's. I've done this by adding an extra <code>mutate</code> function to our log transformation expression. In this line I use <code>ifelse</code> to say <em>if</em> the value in <code>NKT_cells_log</code> is infinite then replace with a <code>0</code>, <em>else</em> replace with the same value again.</p>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cleaned_data_log</span> <span class="op">&lt;-</span> <span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Cortisol_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">Cortisol</span><span class="op">)</span>,</span>
+<span>         NK_cells_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">NK_cells</span><span class="op">)</span>,</span>
+<span>         NKT_cells_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">NKT_cells</span><span class="op">)</span>,</span>
+<span>         IL12_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">IL12</span><span class="op">)</span>,</span>
+<span>         INFgamma_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">INFgamma</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>NKT_cells_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html">is.infinite</a></span><span class="op">(</span><span class="va">NKT_cells_log</span><span class="op">)</span>, <span class="fl">0</span>, <span class="va">NKT_cells_log</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># take a look just to check</span></span>
+<span></span>
+<span><span class="va">cleaned_data_log</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">NKT_cells_log</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="correlation-matrix" class="section level2" number="8.2">
+<h2>
+<span class="header-section-number">8.2</span> Correlation matrix<a class="anchor" aria-label="anchor" href="#correlation-matrix"><i class="fas fa-link"></i></a>
+</h2>
+<p>After all that data wrangling we are finally at the stage where we can start replicating the authors primary analysis.</p>
+<p>A single correlation can be run through the following code:</p>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cleaned_data_log</span><span class="op">$</span><span class="va">Noise_Ldn</span>, y <span class="op">=</span> <span class="va">cleaned_data_log</span><span class="op">$</span><span class="va">IL12_log</span><span class="op">)</span></span></code></pre></div>
+<div class="webex-solution">
+<button>
+Wait, what is a $ doing there?!
+</button>
+<p>This is an example of some "base R" coding (i.e. the R functionality that does not involve the <code>tidyverse</code> package). Annoyingly the cor.test function is not compatable with our pipes (<code>%&gt;%</code>) from <code>tidyverse</code> (or even the base R pipes <code>|&gt;</code>) so we've had to do this the old fashioned way. All <code>cleaned_data_log$Noise_Ldn</code> means is: "Take the <code>Noise_Ldn</code> variable from et <code>cleaned_data_log</code> data object.</p>
+<p>It's worth knowing about this type of notation, as at some point you'll likely run across blogs and tutorial videos that use such code.</p>
+</div>
+<p>After running that line of code you should see the following appear in your console:</p>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Pearson's product-moment correlation</span></span>
+<span></span>
+<span><span class="co"># data:  cleaned_data_log$Noise_Ldn and cleaned_data_log$IL12_log</span></span>
+<span><span class="co"># t = 3.1267, df = 170, p-value = 0.00208</span></span>
+<span><span class="co"># alternative hypothesis: true correlation is not equal to 0</span></span>
+<span><span class="co"># 95 percent confidence interval:</span></span>
+<span><span class="co">#  0.08658474 0.36992397</span></span>
+<span><span class="co"># sample estimates:</span></span>
+<span><span class="co">#       cor </span></span>
+<span><span class="co"># 0.2331978 </span></span></code></pre></div>
+<p>The important information for us to extract from the output is the <code>p-value</code> and the <code>cor</code> value, which indicates <em>r</em>, our correlation coefficient for the pearsons correlation. In this case we have a r value of 0.233 and a p-value of 0.002. In APA style we would report this finding as the following: <em>There was a significant positive correlation between Noise level and IL-12 levels, r(170) = .233, p &lt; .01</em></p>
+<p>Therefore, have we sucessfully replicated this finding? <select class="webex-select"><option value="blank"></option>
+<option value="answer">Yes</option>
+<option value="">No</option></select></p>
+<p>We could run all the correlations present in Table 2 separately, and then build our own table.</p>
+<p>This is a valid method for such analysis. However, considering we have 7 variables, the combinations quickly increase. Doing so would require 21 distinct lines of code and the subsequent task of extracting all the outcomes. To streamline this process, we can use the <code>sjPlot</code> package to generate a correlation matrix.</p>
+<ol style="list-style-type: decimal">
+<li><p>The first expresion in the code below (after loading in the package) creates a new data object containing only the relevant data for the matrix.</p></li>
+<li><p>The second experssion assembles a correlation table using our chosen data. I've incorporated additional arguments in the code for further functionality. To view a comprehensive list of available arguments for this table, run <code><a href="https://strengejacke.github.io/sjPlot/reference/tab_corr.html">?tab_corr</a></code>. Note: The resulting table, generated in HTML format, will display in your viewer tab rather than the plot tab.</p></li>
+<li><p>The final expression visualises the data in a colour-coded grid. I find this format more intuitive for identifying high correlations in large datasets. Similarly, running ?sjp.corr give a full list of the available arguments for this type of plot.</p></li>
+</ol>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://strengejacke.github.io/sjPlot/">sjPlot</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">corr_matrix_data</span> <span class="op">&lt;-</span> <span class="va">cleaned_data_log</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Noise_Ldn</span>, <span class="va">Noise_sensitivity</span>, <span class="va">Cortisol_log</span>, <span class="va">NK_cells_log</span>, <span class="va">NKT_cells_log</span>, <span class="va">IL12_log</span>, <span class="va">INFgamma_log</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/tab_corr.html">tab_corr</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">corr_matrix_data</span>,</span>
+<span>         triangle <span class="op">=</span> <span class="st">"lower"</span>,</span>
+<span>         corr.method <span class="op">=</span> <span class="st">"pearson"</span>,</span>
+<span>         show.p <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>         title <span class="op">=</span> <span class="st">"Table 2. Correlation among noise levels, noise sensitivity and immune response."</span>,</span>
+<span>         var.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ldn"</span>, <span class="st">"Noise sensitivity"</span>, <span class="st">"Cortisol"</span>, <span class="st">"NK Cells"</span>, <span class="st">"NKT cells"</span>, <span class="st">"IL-12"</span>, <span class="st">"INFgamma"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/sjp.corr.html">sjp.corr</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">corr_matrix_data</span>,</span>
+<span>         corr.method <span class="op">=</span> <span class="st">"pearson"</span>,</span>
+<span>         show.legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>         sort.corr <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>         title <span class="op">=</span> <span class="st">"Figure 1. Correlation plot of variables"</span>,</span>
+<span>         axis.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ldn"</span>, <span class="st">"Noise sensitivity"</span>, <span class="st">"Cortisol"</span>, <span class="st">"NK Cells"</span>, <span class="st">"NKT cells"</span>, <span class="st">"IL-12"</span>, <span class="st">"INFgamma"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="Images/corr%20table.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/corr%20plot.PNG" width="100%" style="display: block; margin: auto;"></div>
+<p>Were we successful in replicating the correlational findings from Kim et al (2017)?</p>
+<p>Yes, it seems we were. The primary significant findings are largely in line with the original study, though there are minor variances in the correlation coefficients. From what I can tell, these disparities appear to be influenced by the <code>Noise Sensitivity</code> and <code>NKT cells</code> variables. The variations in the <code>NKT cells</code> variable are understandable given that this was the variable with the <code>-inf</code> values. It's possible that the original authors addressed this differently than we did. As for the <code>Noise Sensitivity</code> variable, I'm somewhat stumped. The values are closely aligned but not identical. If you figure out why, please do get in touch and let me know what I missed here.</p>
+</div>
+<div id="simple-regression-plots." class="section level2" number="8.3">
+<h2>
+<span class="header-section-number">8.3</span> Simple Regression Plots.<a class="anchor" aria-label="anchor" href="#simple-regression-plots."><i class="fas fa-link"></i></a>
+</h2>
+<p>Lastly, we can now replicate the plots in Figure 2. These plots involve a simple scatter plot with the addition of a regression line, regression formula, and the R-Squared value. I will go into more detail about each of these aspects in NS7151, however, here is a quick overview of these concepts.</p>
+<p><strong>Regression line</strong>: Adding a regression line helps capture the trend in data. The line represents a 'best fit' through the scatter points, indicating the overall relationship between the variables.</p>
+<p><strong>Regression formula</strong>: The regression formula is the mathematical equation of the regression line, typically in the form y = mx + b. <code>m</code> denotes the slope (the effect of <code>x</code> on <code>y</code>), and <code>b</code> is the y-intercept (the <code>y</code> value when <code>x</code> is zero).</p>
+<p><strong>R-Squared value</strong>: R-squared value, ranging from 0 to 1, shows how well the regression line fits the data. A high R-squared means a significant portion of the variation in the dependent variable can be explained by the independent variable(s).</p>
+<p>The code below runs a linear regression, modelling the relationship between Cortisol and Noise Levels. To view the model we then have to run <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> on our newly created model. The results of the model will then be outputted into the console.</p>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model_Cort_Ldn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Cortisol_log</span> <span class="op">~</span> <span class="va">Noise_Ldn</span>, data <span class="op">=</span> <span class="va">cleaned_data_log</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_Cort_Ldn</span><span class="op">)</span></span></code></pre></div>
+<p>From this we can see that we have an R-Squared that matches the plot A from figure 2 and it also tells us that this relationship is not significant (p=0.399).</p>
+<div class="webex-solution">
+<button>
+Where is the p-value?
+</button>
+<p>Pr(&gt;|t|) in the output stands for "p-value of the t-statistic".</p>
+<p>The t-statistic measures the size of the difference relative to the variation in your sample data. A larger absolute value generally means it's more likely there is a meaningful difference.</p>
+<p>The p-value (Pr(&gt;|t|)) is the probability that you would observe such a large absolute t-value if the null hypothesis (i.e., there's no effect or relationship) were true. Smaller p-values suggest that the null hypothesis is less likely, so the effect or relationship you observed is more likely to be real and not due to random chance.</p>
+<p>In this case we're looking at the p-value of the <code>Noise_Ldn</code> predictor in the model. This is greater than 0.05 (the threshold we often choose in psychology for statistical significance). Therefore, this relationship is not significant (as was also found in our correlation matrix).</p>
+</div>
+<p>For our figures we'll need to extract a few bits of information from our model. The first line of the code below takes just the r-squared value and stores the value in <code>r-squared</code>. The next line does the same with the coefficients of the mode (<code>m</code> and <code>b</code> in the equation of the line).</p>
+<p>The <code>equation</code> expression here takes the coefficients and turns them into a string that contains the equation of our line (y=0.0025*x + 2.4). The last line does the same but with the r-squared values.</p>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r_squared</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_Cort_Ldn</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span></span>
+<span><span class="va">coefficients</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">model_Cort_Ldn</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">equation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"y = "</span>,</span>
+<span>                   <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, digits <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,</span>
+<span>                   <span class="st">" * x + "</span>,</span>
+<span>                   <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">r_squared</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"R\u00B2 = "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_Cort_Ldn</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># \u00B2 is the code for making text superscript, i.e. turning the 2 into squared.</span></span>
+<span><span class="co"># This was something I had to ask the AI how to do. </span></span></code></pre></div>
+<p>Now we can create the plot. This is very similar to other plots you have created, however, this time I've used the <code>annotate</code> function to add the text labels. Have a play around with the code and see if you can figure out what each of the arguments within the code do.</p>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cleaned_data_log</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Noise_Ldn</span>, y <span class="op">=</span> <span class="va">Cortisol_log</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"red"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">3.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Noise Level"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Cortisol"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Figure 2A: A plot to show the relationship between Noise and Cortisol levels"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">88</span>, y <span class="op">=</span> <span class="fl">2.8</span>, label <span class="op">=</span> <span class="va">equation</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">95</span>, y <span class="op">=</span> <span class="fl">3.5</span>, label <span class="op">=</span> <span class="va">r_squared</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="test-yourself-exercise-3" class="section level2" number="8.4">
+<h2>
+<span class="header-section-number">8.4</span> Test yourself exercise<a class="anchor" aria-label="anchor" href="#test-yourself-exercise-3"><i class="fas fa-link"></i></a>
+</h2>
+<p>Create the plots for each of the significant findings in Figure 2. Try and get them to resemble the original as closely as you can.</p>
+<div class="webex-solution">
+<button>
+A weird detail about this study
+</button>
+<p>Here's something wild about the study, that perhaps you noticed, Men were excluded from the analysis. The authors argued that due to Men tending <em>"to have more activity in environments outside of the residence target area"</em> and that this could <em>"influence [their] sensitivity to the environmental noise around the residence"</em>.</p>
+<p>This is a bit of a red flag to me. Especially seeing as blood samples were still collected from these individuals (67 in total).</p>
+<p>And to make things worse, this:</p>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">raw_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Sex</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Sex</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>I have to move on and do some real work now, but if anyone has the time, please do rerun the analysis with these two participants filtered out. I'd be intresting to see if it makes a difference.</p>
+</div>
+<hr>
+<hr>
+<p>This book is a work in progress. If you have any feedback or spot any mistakes please enter them into <a href="https://glos.onlinesurveys.ac.uk/r-codebook-feedback">this feedback survey</a> quoting the week your comment is referring to. Thank you! :-)</p>
+
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+  
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+  
+  var cl = this.classList
+  
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+  
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+  
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+  
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+  }
+
+  update_total_correct();
+}
+
+</script><div class="chapter-nav">
+<div class="prev"><a href="week-4---working-with-catagorical-variables.html"><span class="header-section-number">7</span> Week 4 - Working with catagorical variables</a></div>
+<div class="next"><a href="week-6---catch-up-week.html"><span class="header-section-number">9</span> Week 6 - Catch up week</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-5---simple-linear-regression"><span class="header-section-number">8</span> Week 5 - Simple Linear Regression</a></li>
+<li>
+<a class="nav-link" href="#effects-of-noise-sensitivity-and-road-traffic-noise-on-the-immune-system."><span class="header-section-number">8.1</span> Effects of noise sensitivity and road traffic noise on the immune system.</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#replicating-kim-et-al-2017-correlational-analyses"><span class="header-section-number">8.1.1</span> Replicating Kim et al 2017 correlational analyses</a></li>
+<li><a class="nav-link" href="#one-more-annoying-thing-before-we-can-actually-analyse-the-data"><span class="header-section-number">8.1.2</span> One more annoying thing before we can actually analyse the data</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#correlation-matrix"><span class="header-section-number">8.2</span> Correlation matrix</a></li>
+<li><a class="nav-link" href="#simple-regression-plots."><span class="header-section-number">8.3</span> Simple Regression Plots.</a></li>
+<li><a class="nav-link" href="#test-yourself-exercise-3"><span class="header-section-number">8.4</span> Test yourself exercise</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>NS7154 R Workbook</strong>" was written by Dr Richard Clarke. It was last built on 2023-08-10.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

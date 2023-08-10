@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 5 Week 2 - Basic visualisation | Week 3 - Working with data files</title>
+<title>Chapter 5 Week 2 - Basic visualisation | NS7154 R Workbook</title>
 <meta name="author" content="Dr Richard Clarke">
-<meta name="description" content="5.1 Introduction In this chapter, I want to introduce you to the data visualisation package ggplot2 (which is contained within the tidyverse). ggplot is an incredibly versatile way of creating...">
+<meta name="description" content="5.1 Introduction This week, I want to introduce you to the data visualisation package ggplot2 (which is contained within the tidyverse). ggplot is an incredibly versatile way of creating graphs...">
 <meta name="generator" content="bookdown 0.31 with bs4_book()">
-<meta property="og:title" content="Chapter 5 Week 2 - Basic visualisation | Week 3 - Working with data files">
+<meta property="og:title" content="Chapter 5 Week 2 - Basic visualisation | NS7154 R Workbook">
 <meta property="og:type" content="book">
-<meta property="og:description" content="5.1 Introduction In this chapter, I want to introduce you to the data visualisation package ggplot2 (which is contained within the tidyverse). ggplot is an incredibly versatile way of creating...">
+<meta property="og:description" content="5.1 Introduction This week, I want to introduce you to the data visualisation package ggplot2 (which is contained within the tidyverse). ggplot is an incredibly versatile way of creating graphs...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 5 Week 2 - Basic visualisation | Week 3 - Working with data files">
-<meta name="twitter:description" content="5.1 Introduction In this chapter, I want to introduce you to the data visualisation package ggplot2 (which is contained within the tidyverse). ggplot is an incredibly versatile way of creating...">
+<meta name="twitter:title" content="Chapter 5 Week 2 - Basic visualisation | NS7154 R Workbook">
+<meta name="twitter:description" content="5.1 Introduction This week, I want to introduce you to the data visualisation package ggplot2 (which is contained within the tidyverse). ggplot is an incredibly versatile way of creating graphs...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -31,7 +31,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Week 3 - Working with data files</a>
+        <a href="index.html" title="">NS7154 R Workbook</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -43,12 +43,15 @@
 
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html"><span class="header-section-number">1</span> Index</a></li>
-<li><a class="" href="welcome.html"><span class="header-section-number">2</span> Welcome</a></li>
-<li><a class="" href="getting-started.html"><span class="header-section-number">3</span> Getting started</a></li>
-<li><a class="" href="writing-and-running-your-first-code.html"><span class="header-section-number">4</span> Writing and running your first code</a></li>
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Welcome</a></li>
+<li><a class="" href="week-1---why-learn-r.html"><span class="header-section-number">2</span> Week 1 - Why learn R?</a></li>
+<li><a class="" href="week-1---getting-started.html"><span class="header-section-number">3</span> Week 1 - Getting started</a></li>
+<li><a class="" href="week-1---writing-and-running-your-first-code.html"><span class="header-section-number">4</span> Week 1 - Writing and running your first code</a></li>
 <li><a class="active" href="week-2---basic-visualisation.html"><span class="header-section-number">5</span> Week 2 - Basic visualisation</a></li>
 <li><a class="" href="week-3---working-with-data-files.html"><span class="header-section-number">6</span> Week 3 - Working with data files</a></li>
+<li><a class="" href="week-4---working-with-catagorical-variables.html"><span class="header-section-number">7</span> Week 4 - Working with catagorical variables</a></li>
+<li><a class="" href="week-5---simple-linear-regression.html"><span class="header-section-number">8</span> Week 5 - Simple Linear Regression</a></li>
+<li><a class="" href="week-6---catch-up-week.html"><span class="header-section-number">9</span> Week 6 - Catch up week</a></li>
 </ul>
 
         <div class="book-extra">
@@ -64,49 +67,49 @@
 <h2>
 <span class="header-section-number">5.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction"><i class="fas fa-link"></i></a>
 </h2>
-<p>In this chapter, I want to introduce you to the data visualisation package <code>ggplot2</code> (which is contained within the <code>tidyverse</code>). <code>ggplot</code> is an incredibly versatile way of creating graphs and has become the standard throughout academic publishing and data journalism.</p>
+<p>This week, I want to introduce you to the data visualisation package <code>ggplot2</code> (which is contained within the <code>tidyverse</code>). <code>ggplot</code> is an incredibly versatile way of creating graphs and has become the standard throughout academic publishing and data journalism.</p>
 <div class="webex-solution">
 <button>
 The proliferation of ggplot
 </button>
 <p>Here is a <a href="https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535">link</a> to a post from the BBC talking about how they recently moved to using <code>ggplot</code> for all their data visualisations</p>
-<p>Soon you'll be spotting figures everywhere and start saying to yourself "I bet I could recreate that with ggplot", and then get sad when you find out they didn't share the data :-(</p>
+<p>Soon, you'll be spotting figures everywhere and start saying to yourself <em>"I bet I could recreate that with ggplot"</em>, and then get sad when you find out they didn't share the data :-(</p>
 </div>
-<p>For the following examples and exercises, we'll be using a 2015 country-level summary of World Health Organisation data related to life expectancy (<a href="https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who">source</a>). In the next chapter, I will show you how to upload your own data files but for now I've given you the code that imports the dataset directly from my GitHub (the web hosting system that I use for this book).</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Run this code to get the data for this chapter</span></span>
+<p>For the following examples and exercises, we'll be using a 2015 country-level summary of World Health Organisation data related to life expectancy (<a href="https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who">source</a>). Next week, I will show you how to read in your own data files but for now I've given you the code that imports the dataset directly from my GitHub (the web hosting system that I use for this book).</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Run this code to get the data for this week</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">who_rawdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/RichClarkePsy/Datasets/main/Life%20expectancy%20dataset.csv"</span><span class="op">)</span> </span></code></pre></div>
-<p>For this chapter you will need to following packages:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<p>This week you will need to following packages:</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># contains the ggplot2 package</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span> <span class="co"># used for add text labels to data points</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span> <span class="co"># used later to add text labels to data points</span></span></code></pre></div>
 <div class="webex-solution">
 <button>
 Reminder about packages
 </button>
 <p>Remember if you are using any of these packages for the first time you will need to run <code>install.packages("packagename")</code>. It is often best to run this in the console just so you're not re-installing the package each time you run your code.</p>
 <p>Note the quotation marks around the package name. R is quite sensitive to this sort of precision and, as such, attention to detail ends up solving most of the errors you get. Either that or just ask ChatGPT to do it for you. Both completely legitimate ways to code!</p>
-<p>If you've worked your way through the previous chapters, then you'll already have <code>tidyverse</code> installed but you'll likely need to install <code>ggrepel</code>.</p>
+<p>If you've worked your way through the content from last week, then you'll already have <code>tidyverse</code> installed but you'll likely need to install <code>ggrepel</code>.</p>
 </div>
-<div id="getting-stuck-and-overwhelmed" class="section level3" number="5.1.1">
+<div id="feeling-overwhelmed" class="section level3" number="5.1.1">
 <h3>
-<span class="header-section-number">5.1.1</span> Getting stuck and overwhelmed?<a class="anchor" aria-label="anchor" href="#getting-stuck-and-overwhelmed"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.1.1</span> Feeling overwhelmed?<a class="anchor" aria-label="anchor" href="#feeling-overwhelmed"><i class="fas fa-link"></i></a>
 </h3>
-<p>Throughout this week there is going to be chucks of code where you have little to no clue what is going on. That's ok! One of the best ways to learn R is to just play around with pre-existing, change parts and see what happens. If you run into errors that you don't understand, or code you want explained, just copy and past it into a ChatGPT conversation and it will explain it to you (I've included an example of this later). You can even ask follow up questions or ask it to adapt the code to your specifications. Though it does help to know at least a little about what your code is doing, especially later on in the course when we move on to analysis.</p>
+<p>Throughout this week there is going to be chucks of code where you have little to no clue what is going on. That's ok! One of the best ways to learn R is to just play around with pre-existing code, change parts and see what happens. If you run into errors that you don't understand, or code you want explained, just copy and past it into a ChatGPT conversation and it will explain it to you (I've included an example of this later). You can even ask follow up questions or ask it to adapt the code to your specifications. Though it does help to know at least a little about what your code is doing, especially later on in the course when we move on to analysis.</p>
 </div>
 </div>
 <div id="getting-an-overview-of-your-data" class="section level2" number="5.2">
 <h2>
 <span class="header-section-number">5.2</span> Getting an overview of your data<a class="anchor" aria-label="anchor" href="#getting-an-overview-of-your-data"><i class="fas fa-link"></i></a>
 </h2>
-<p>By this point you should have your packages loaded and have a data file in the top right <em>Environment</em> window named <code>who_rawdata</code>. Just by looking at the data in this window we can see two aspects of the dataset; the number of observations and the number of variables. Observations in this case are the individual countries and variables are going to be the various health and social data.</p>
-<p>Click on the dataset or run <code>view(who_rawdata)</code> to take a look at the data. When you do a new tab will appear with a view similar to this:</p>
+<p>By this point you should have your packages loaded and have a data object in the top right <em>Environment</em> window named <code>who_rawdata</code>. Just by looking at the data object in the environment window we can see two aspects of the dataset; the number of observations and the number of variables. Observations in this case are the individual countries and variables are the various health and social data variables.
+Click on the dataset or run <code>view(who_rawdata)</code> to take a look at the data. When you do a new tab will appear with a view similar to this:</p>
 <div class="inline-figure"><img src="Images/Data%20view.PNG" width="100%" style="display: block; margin: auto;"></div>
-<p>Viewing your data like this is good for a quick look at the data, however, in health we are often using datasets with many hundreds of variables and thousands of observations. So we won't be looing at the data directly as much as we might when using SPSS. Instead we want to get into the habit of exploring the dataset through code.</p>
-<p>The following gives you some basics information about the dataset:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<p>Viewing your data like this is good for a quick look at the data, however, in health we are often using datasets with many hundreds of variables and thousands of observations. So we won't be looking at the data directly as much as we might when using SPSS. Instead we want to get into the habit of exploring the dataset through code.</p>
+<p>The following gives you some basics information about the dataset in the console. <em>You may want to increase the size of the console window and scroll up and down to see the full information</em>.</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">who_rawdata</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">who_rawdata</span><span class="op">)</span></span>
@@ -114,7 +117,7 @@ Reminder about packages
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">who_rawdata</span><span class="op">)</span></span></code></pre></div>
 <p>From viewing the output of the above code...</p>
 <p>What is the variable name for life expectancy? <input class="webex-solveme nospaces" size="8" data-answer='["Life_exp"]'></p>
-<p>Name a variable that has string/character data <input class="webex-solveme nospaces" size="9" data-answer='["Country","Continent"]'></p>
+<p>Name a variable that has letters and numbers as data. This is known as character (chr) data <input class="webex-solveme nospaces" size="9" data-answer='["Country","Continent"]'></p>
 <p>What is the average number of years of schooling across all countries? <input class="webex-solveme nospaces" size="5" data-answer='["12.93"]'></p>
 </div>
 <div id="visualising-global-life-expectancy" class="section level2" number="5.3">
@@ -132,18 +135,18 @@ Reminder about packages
 Extra details on pipes %&gt;%
 </button>
 <p>A pipe is basically a way of saying "and then" in code it helps tidy things up so that we're not creating object after object. So in this case we're saying: take the data <em>and then</em> use that data with the following ggplot expression.</p>
-<p>This can all be done on one line but its a lot neater to hit enter after each pipe and start the next expression on the next line. It also indents for ease of navigation. This is part of the grammar of coding that your'll get use to in time.
-PsyTeachR has <a href="https://psyteachr.github.io/data-skills-v1/pipes.html">a great chapter on pipes</a> that explains the concept in depth. For now you can just adapt the code I have given you.</p>
+<p>This can all be done in a single line of code, however, its a lot neater to hit enter after each pipe and start the next expression on the next line. It also indents for ease of navigation. This is part of the grammar of coding that you'll get use to in time.</p>
 <p>You'll see the code for pipes like this <code>%&gt;%</code> through this module but this <code>|&gt;</code> also does the same job. <a href="https://www.r-bloggers.com/2021/05/the-new-r-pipe/">The difference is far too nerdy for any of us to care about</a>, but just know that they both do basically the same thing.</p>
+<p>For most of this book you can just adapt the code I have given you, and you'll get more used to the notation like this in time.</p>
 </div>
-<p>Each ggplot visulisation is made up of layers. You start by mapping an aesthetic (<code>aes</code>), which involves the organisation of what data goes on what axis and how data is segmented within the visualisation. Then you layer on (using a <code>+</code> sign) a geometry to combine the data with a desired visual format. The following example places life expectancy on the x-axis and uses the histogram geometry.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<p>Each ggplot visulisation is made up of layers. You start by mapping an aesthetic (<code>aes</code>), which involves the organisation of which data goes on which axis and how data is segmented within the visualisation. Then you layer on (using a <code>+</code> sign) a geometry to combine the data with a desired visual format. The following example takes our data, <em>then</em> places life expectancy on the x-axis, and uses the histogram geometry.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Life_exp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672"></div>
-<p>This is fine for our quick exploration of the data but we could also tidy this up to the point at which it would be perfectly fine to include it in a paper.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672"></div>
+<p>This histogram is fine for our quick exploration of the data, but we could also tidy the figure up to the point at which it would be perfectly fine to include it in a paper.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Life_exp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, </span>
@@ -156,19 +159,19 @@ PsyTeachR has <a href="https://psyteachr.github.io/data-skills-v1/pipes.html">a 
 <span>       caption <span class="op">=</span> <span class="st">"Year: 2015 | Data source: WHO"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672"></div>
 </div>
-<div id="exercise-1" class="section level3" number="5.3.2">
+<div id="test-yourself-exercise-1" class="section level3" number="5.3.2">
 <h3>
-<span class="header-section-number">5.3.2</span> Exercise 1<a class="anchor" aria-label="anchor" href="#exercise-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.2</span> Test yourself exercise 1<a class="anchor" aria-label="anchor" href="#test-yourself-exercise-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Take the above code and adapt it to work out what each of the <em>arguments</em> (e.g. "binwidth" or "subtitle") control. Colours can be in words or in hex codes. Here's a useful website where you can get hex codes <a href="https://htmlcolorcodes.com/">www.htmlcolorcodes.com</a>.</p>
 <div class="webex-solution">
 <button>
-Note: None of this is magic btw
+None of this is magic btw
 </button>
-<p>At some point or other I've <em>Googled</em> how to do pretty much every element here.</p>
-<p>Try searching for the following and see if you can find similar looking code:</p>
+<p>I don't keep all of this in my head at all times. At some point or other I've <em>Googled</em> how to do pretty much every element here.</p>
+<p>Try searching online for the following and see if you can find similar looking code:</p>
 <ul>
 <li>"Change the colour of histogram bars in ggplot"</li>
 <li>"Add a caption to a ggplot figure"</li>
@@ -181,8 +184,8 @@ Note: None of this is magic btw
 <h3>
 <span class="header-section-number">5.3.3</span> Facet wrap<a class="anchor" aria-label="anchor" href="#facet-wrap"><i class="fas fa-link"></i></a>
 </h3>
-<p>This is a good starting visualisation, but say we want to understand the distribution for each region. To do this all we need to do is add the last line of the code below a create a nicely formatted version of the six histograms together.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<p>This is a good starting visualisation, but say we want to understand the distribution for each region. To do this all we need to do is add the last line of the code below to create a nicely formatted version of the six histograms together.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Life_exp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, </span>
@@ -196,34 +199,32 @@ Note: None of this is magic btw
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">Continent</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672"></div>
 <div class="webex-solution">
 <button>
 Note about ~
 </button>
-<p>The <code>~</code> is often used in R to denote a relationship. You'll often see it in regression analysis but in this case it's telling <code>ggplot</code> to facet (i.e. seperate) the graph by Continent</p>
+<p>The <code>~</code> is often used in R to denote a relationship. You'll often see it in regression analysis but in this case it's telling <code>ggplot</code> to facet (i.e. seperate) the graph by the variable <code>Continent</code>.</p>
 </div>
 </div>
 <div id="boxplots" class="section level3" number="5.3.4">
 <h3>
 <span class="header-section-number">5.3.4</span> Boxplots<a class="anchor" aria-label="anchor" href="#boxplots"><i class="fas fa-link"></i></a>
 </h3>
-<p>The histograms definitely has value (for instance we can now see the difference in life expectancy between Europe and Africa very clearly), but a better way to visualise the same data might be to change from a histogram to a boxplot.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<p>The histograms definitely have value (for instance we can now see the difference in life expectancy between Europe and Africa very clearly), but a better way to visualise the same data might be to change from a histogram to a boxplot.</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Life_exp</span>, y<span class="op">=</span><span class="va">Continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672"></div>
-<p>Much better, instantly we can see how the distribution of life expectancy differs across continents. A few things spring to mind to make this figure more informative.</p>
-<ol style="list-style-type: decimal">
-<li>Label the outliers (it'd be nice to know what countries they are)</li>
-<li>Add some colour</li>
-<li>Add title etc</li>
-</ol>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672"></div>
+<p>Much better, instantly we can see how the distribution of life expectancy differs across continents. A few things spring to mind to make this figure more informative.
+1. Label the outliers (it'd be nice to know what countries they are).
+2. Add some colour.
+3. Add title and label the axis.</p>
 <p>The first point is genuinely quite hard to solve and involves the two lines of code below.</p>
 <p>The first line creates a new function that can be used to identify outliers in a variable. Then, in the next line, I uses the function to make a new variables where ever time the function finds an outlier in <code>Life_exp</code> it assigns the text from the <code>Country</code> variable.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">findoutlier</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">.25</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1.5</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">|</span> <span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">.75</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1.5</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">}</span>   </span>
@@ -231,10 +232,10 @@ Note about ~
 <span><span class="va">who_with_outliers</span> <span class="op">&lt;-</span> <span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Continent</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>outlier_LE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu">findoutlier</span><span class="op">(</span><span class="va">Life_exp</span><span class="op">)</span>, <span class="va">Country</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
-<p>Also, because I've made a change to the data (in this case added a new variable) I've assigned it (with this <code>&lt;-</code>) to a new object name as I always try to keep the raw data in the same form as it was read in. Just in case I need to use it again later. Notice that you should have a new dataframe object in the environment window after running this.</p>
-<p>To add these outlines to the figure I've added a layer of text above the box plot layer.</p>
-<p>For the other two points I've selected a pre-existing colour pallet and mapped it to our <code>Continent</code> variable and I've added labels with the labs function.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<p>Also, because I've made a change to the data (in this case added a new variable) I've assigned it to a new object name, as I always try to keep the raw data in the same form as it was read in. Just in case I need to use it again later. Notice that you should have a new dataframe object in the environment window after running this.<br>
+To add these outlines to the figure I've added a layer of text above the box plot layer.</p>
+<p>For points two and three I've selected a pre-existing colour pallet and mapped it to our <code>Continent</code> variable and I've added labels with the labs function.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_with_outliers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Life_exp</span>, y<span class="op">=</span><span class="va">Continent</span>, fill <span class="op">=</span> <span class="va">Continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.5</span>,</span>
@@ -252,25 +253,40 @@ Note about ~
 <span>       caption <span class="op">=</span> <span class="st">"Year: 2015 | Data source: WHO"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672"></div>
 <p>Now that is a good looking figure!</p>
 <p>There's a lot going on to make these figures but luckily you don't need to keep it all in your head at one time. I often go back to old code or code from webbooks like this or <a href="https://psyteachr.github.io/">PsyTeachR</a> and adapt and change it for my needs.</p>
-<p>In fact lets adapt this code for BMI insterad of life expectancy</p>
+<p>In fact lets adapt this code for BMI insterad of life expectancy.</p>
 </div>
-<div id="exercise-2" class="section level3" number="5.3.5">
+<div id="test-yourself-exercise-2" class="section level3" number="5.3.5">
 <h3>
-<span class="header-section-number">5.3.5</span> Exercise 2<a class="anchor" aria-label="anchor" href="#exercise-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.5</span> Test yourself exercise 2<a class="anchor" aria-label="anchor" href="#test-yourself-exercise-2"><i class="fas fa-link"></i></a>
 </h3>
 <p>Adapt the code above to make a histogram and boxplot for the <code>BMI</code> variable instead of life expectancy.</p>
 <p>Note: Here is the code for calculating the outliers for BMI, as this requires adding in the extra line <code>drop_na(BMI)</code>. This tells R to remove any missing data in the variable <code>BMI</code>. Note the change in dataset name as well.</p>
-<p><code>hide(hint)</code></p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">findoutlier</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">.25</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1.5</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">|</span> <span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">.75</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1.5</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">who_BMI</span> <span class="op">&lt;-</span> <span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">BMI</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Continent</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>outlier_BMI <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu">findoutlier</span><span class="op">(</span><span class="va">BMI</span><span class="op">)</span>, <span class="va">Country</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
+<div class="webex-solution">
+<button>
+Hint
+</button>
 <p>After running the code above you'll need to start with the data_BMI file rather than the rawdata.</p>
 <p>Look to see all the parts of the code that say <code>Life_exp</code> and change these out for <code>BMI</code></p>
 <p>Make sure you remember to change the title and axis lables.</p>
-<p><code>unhide()</code></p>
-<p><code>hide(Solution)</code></p>
-<p>This is one way the histogram coul look:</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+</div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>This is one way the histogram could look:</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_BMI</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">BMI</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, </span>
@@ -283,9 +299,9 @@ Note about ~
 <span>       caption <span class="op">=</span> <span class="st">"Year: 2015 | Data source: WHO"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672"></div>
 <p>And this is one way the box plot could look:</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_BMI</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">BMI</span>, y<span class="op">=</span><span class="va">Continent</span>, fill <span class="op">=</span> <span class="va">Continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.5</span>,</span>
@@ -303,27 +319,25 @@ Note about ~
 <span>       caption <span class="op">=</span> <span class="st">"Year: 2015 | Data source: WHO"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## Warning: ggrepel: 3 unlabeled data points (too many overlaps). Consider
-## increasing max.overlaps</code></pre>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-45-1.png" width="672"></div>
-<p><code>unhide()</code></p>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672"></div>
+</div>
 <p>What do you notice about the data from this visual check?</p>
-<p>Personally, I'm concerned about those low BMI data points, BMI should never really be that low. Perhaps this is a data recording issue. No way to know without the raw data to go into. For further analysis we may want to filter out these data points, or at least check them against other data sources.</p>
+<p>Personally, I'm concerned about those low BMI data points, BMI should never really be that low. Perhaps this is a data recording issue. No way to know without looking at the individual level data. For further analysis we may want to filter out these data points, or at least check them against other data sources.</p>
 </div>
 </div>
 <div id="correlation-between-variables" class="section level2" number="5.4">
 <h2>
 <span class="header-section-number">5.4</span> Correlation between variables<a class="anchor" aria-label="anchor" href="#correlation-between-variables"><i class="fas fa-link"></i></a>
 </h2>
-<p>Next lets take a look at how good <code>ggplot</code> is for making scatter plots. The following code plots number of years of schooling (on the x-axis) against life expectancy (on the y=axis) for each of our 183 countries.</p>
-<p>Again, this takes the dataset <em>pipes</em> it into ggplot. The aestectic is years of schooling on the x axis and life expectancy on the y axis. The geometry layer is using <code>geom_point</code> (rather <code>geom_boxplot</code> or <code>geom_histogram</code>) which creates a scatter plot.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<p>Next, let's take a look at how good <code>ggplot</code> is at making scatter plots. The following code plots number of years of schooling (on the x-axis) against life expectancy (on the y=axis) for each of our 183 countries.</p>
+<p>Again, this takes the dataset and <em>pipes</em> it into ggplot. The aestectic is years of schooling on the x axis and life expectancy on the y axis. The geometry layer is using <code>geom_point</code> (rather <code>geom_boxplot</code> or <code>geom_histogram</code>) which creates a scatter plot.</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Schooling</span>, y <span class="op">=</span> <span class="va">Life_exp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672"></div>
-<p>A very clear correlation. In the comming chapters we'll look at how strong this correlation is, but for now, to tidy this up, we can add the regression line (by adding an extra geometry layer of <code>geom_smooth</code>) and titles.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672"></div>
+<p>That looks to be a very clear correlation to me. In the coming weeks we'll look at strength and statistical significance of such relationships, but for now, to tidy this up, we can add the regression line (by adding an extra geometry layer of <code>geom_smooth</code>), title, and label the axes.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Schooling</span>, y <span class="op">=</span> <span class="va">Life_exp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -332,24 +346,25 @@ Note about ~
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 2. A scatter plot of life expectancy by number of years of schooling"</span>,<span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Average number of years of schooling"</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Average life expectancy (in years)"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672"></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672"></div>
 <p>What happens when you change the order and put the geom_smooth before the geom_point function? <select class="webex-select"><option value="blank"></option>
 <option value="">Only the dots are visable</option>
 <option value="">Only the line is visable</option>
 <option value="answer">The dots now appear ontop of the line</option>
 <option value="">Everything brakes!</option></select></p>
-<p>There are usually multiple different ways to achieve what you with using ggplot. Can you delete the bottom two lines of code and find a way to label the x and y axis within the labs function?</p>
+<p>There are usually multiple different ways to achieve what you want to achieve with ggplot.</p>
+<p>If you delete the bottom two lines of code, can you find a way to label the x and y axes within the labs function?</p>
 <div class="webex-solution">
 <button>
 Hint
 </button>
-<p>Check the code from earlier
-<code>unhide()</code></p>
+<p>Check the code from earlier</p>
+</div>
 <div class="webex-solution">
 <button>
 Solution
 </button>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Schooling</span>, y <span class="op">=</span> <span class="va">Life_exp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -358,16 +373,14 @@ Solution
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 2. A scatter plot of life expectancy by number of years of schooling"</span>,</span>
 <span>       x <span class="op">=</span> <span class="st">"Average number of years of schooling"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Average life expectancy (in years)"</span><span class="op">)</span> </span></code></pre></div>
-<pre><code>## Warning: Removed 10 rows containing non-finite values (stat_smooth).</code></pre>
-<pre><code>## Warning: Removed 10 rows containing missing values (geom_point).</code></pre>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672"></div>
 </div>
 <div id="adding-to-the-aestetic" class="section level3" number="5.4.1">
 <h3>
 <span class="header-section-number">5.4.1</span> Adding to the aestetic<a class="anchor" aria-label="anchor" href="#adding-to-the-aestetic"><i class="fas fa-link"></i></a>
 </h3>
-<p>We have a bit more freedom in what we can do with the aestetic for our scatter plot. We can map colour to our data points using the <code>Continent</code> variable in our dataset.</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<p>There is one extra thing we can do with the aestetics part of our for our scatter plot and that's assign colour or size to our data points.</p>
+<p>The code below uses the <code>Continent</code> variable to assign colour.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Schooling</span>, y <span class="op">=</span> <span class="va">Life_exp</span>, colour <span class="op">=</span> <span class="va">Continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -376,9 +389,9 @@ Solution
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 3. A scatter plot of life expectancy by number of years of schooling"</span>,</span>
 <span>       x <span class="op">=</span> <span class="st">"Average number of years of schooling"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Average life expectancy (in years)"</span><span class="op">)</span> <span class="co"># delete aes(group = 1) &amp; ,colour = "black" to see why I included them</span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672"></div>
-<p>We can even map the size of the points to the <code>Population</code> variable so that the larger the population the larger the dot.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672"></div>
+<p>The code below uses the <code>Population</code> variable to the data points. Now, the larger the population the larger the dot size.</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Schooling</span>, y <span class="op">=</span> <span class="va">Life_exp</span>, colour <span class="op">=</span> <span class="va">Continent</span>, size <span class="op">=</span> <span class="va">Population</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -387,33 +400,39 @@ Solution
 <span>       x <span class="op">=</span> <span class="st">"Average number of years of schooling"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Average life expectancy (in years)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>size <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># delete this line to see why I included it </span></span></code></pre></div>
-<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672"></div>
-<p>The comments in the code also indicate parts where I had AI assistants. I couldn't remember how to make these changes off the top of my head. Googleing would have taken about 15 mins to find the right guide with the right code but my <a href="https://chat.openai.com/share/5c8c2f2e-31b8-49ac-bed1-b247198bb340">requests to ChatGPT</a> took less than a minute and also gave an explanation of how the extra code works.</p>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672"></div>
+<p>The comments in the code also indicate parts where I had AI assistants. I couldn't remember how to make these changes off the top of my head. Googleing would have taken about 15 mins to find the right guide with the right code but my <a href="https://chat.openai.com/share/5c8c2f2e-31b8-49ac-bed1-b247198bb340">requests to ChatGPT</a> took less than a minute and also gave an explanation of how the extra code works. This is also a great example of how little the AI needs to work out what you're asking.</p>
 </div>
 </div>
-<div id="exercise-3---applying-what-you-have-learnt" class="section level2" number="5.5">
+<div id="test-yourself-exersise-3" class="section level2" number="5.5">
 <h2>
-<span class="header-section-number">5.5</span> Exercise 3 - Applying what you have learnt<a class="anchor" aria-label="anchor" href="#exercise-3---applying-what-you-have-learnt"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5</span> Test yourself exersise 3<a class="anchor" aria-label="anchor" href="#test-yourself-exersise-3"><i class="fas fa-link"></i></a>
 </h2>
-<p><a href="https://www.gapminder.org/">The Gapminder organisation</a> is one of my non-profits. Their mission is to promote a fact-based worldview that everyone can understand. Never have I seen data about demography and global helath issues communicated in such an engaging way. For instance,<a href="https://www.youtube.com/watch?v=Z8t4k0Q8e8Y">here is the best 5 minutes of data communication I've ever seen</a>. Sadly we lost Hans Rosling in 2017 but his <a href="https://twitter.com/OlaRosling">son</a> and <a href="https://twitter.com/AnnaGapminder">daughter-in-law</a> continue to do amazing work and are worth following.</p>
-<p>Gapminder also has a R package that contains data similar to the data we've just been using. Install the package, load the package, and import the data using the code below.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<p><a href="https://www.gapminder.org/">The Gapminder organisation</a> is one of my all time favorite non-profits. Their mission is to promote a fact-based worldview that everyone can understand. Never have I seen data about demography and global helath issues communicated in such an engaging way. For instance, <a href="https://www.youtube.com/watch?v=Z8t4k0Q8e8Y">here is the best 5 minutes of data communication I've ever seen</a>. Sadly, we lost the amazing Hans Rosling in 2017 but his <a href="https://twitter.com/OlaRosling">son</a> and <a href="https://twitter.com/AnnaGapminder">daughter-in-law</a> continue to do incredible work in this area and are worth following.</p>
+<p>Gapminder have created an R package that contains data similar to the data we've just been using. Install the package, load the package, and import the data using the code below.</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"gapminder"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">gapminder_data</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span></span></code></pre></div>
-<p>By looking at the data you can likely see that there's a lot more of it this time. That's due to there also being a year variable so that we can see changes over time. The code below just extracts the data for the most recent year in the data set, 2007.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<p>By looking at the data you can likely see that there's a lot more of it this time. That's due to there also being a year variable. The code below just extracts the data for the most recent year in the dataset, 2007.</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gapminder_2007</span> <span class="op">&lt;-</span> <span class="va">gapminder_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span></span></code></pre></div>
+<p>Now play with this data! Try to adapt the code from this week and see what you can produce. Here is a list of things you could try:</p>
 <ol style="list-style-type: decimal">
-<li>Created histograms for life expectancy and GDP</li>
-<li>Created boxplots for life expectancy and GDP</li>
-<li>Create a simple scatter plot of life expectancy and GDP</li>
-<li>Add the continent and population size data to your scatter plot from 3</li>
-<li>Make sure each has an appropriate title and axis.</li>
+<li>Created histograms for life expectancy and GDP.</li>
+<li>Created boxplots for life expectancy and GDP.</li>
+<li>Create a simple scatter plot of life expectancy and GDP.</li>
+<li>Add the continent and population size data to your scatter plot from 3.</li>
+<li>Make sure each has an appropriate title and axis labels.</li>
 </ol>
+<p>Good luck, and feel free to share what you create on our module teams area.</p>
+<hr>
+<hr>
+<p>This book is a work in progress. If you have any feedback or spot any mistakes please enter them into <a href="https://glos.onlinesurveys.ac.uk/r-codebook-feedback">this feedback survey</a> quoting the week your comment is referring to. Thank you! :-)</p>
+
 </div>
 </div>
 <script>
@@ -586,33 +605,30 @@ window.onload = function() {
   update_total_correct();
 }
 
-</script>
-
-</div>
-<div class="chapter-nav">
-<div class="prev"><a href="writing-and-running-your-first-code.html"><span class="header-section-number">4</span> Writing and running your first code</a></div>
+</script><div class="chapter-nav">
+<div class="prev"><a href="week-1---writing-and-running-your-first-code.html"><span class="header-section-number">4</span> Week 1 - Writing and running your first code</a></div>
 <div class="next"><a href="week-3---working-with-data-files.html"><span class="header-section-number">6</span> Week 3 - Working with data files</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#week-2---basic-visualisation"><span class="header-section-number">5</span> Week 2 - Basic visualisation</a></li>
 <li>
-<a class="nav-link" href="#introduction"><span class="header-section-number">5.1</span> Introduction</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#getting-stuck-and-overwhelmed"><span class="header-section-number">5.1.1</span> Getting stuck and overwhelmed?</a></li></ul>
+<a class="nav-link" href="#introduction"><span class="header-section-number">5.1</span> Introduction</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#feeling-overwhelmed"><span class="header-section-number">5.1.1</span> Feeling overwhelmed?</a></li></ul>
 </li>
 <li><a class="nav-link" href="#getting-an-overview-of-your-data"><span class="header-section-number">5.2</span> Getting an overview of your data</a></li>
 <li>
 <a class="nav-link" href="#visualising-global-life-expectancy"><span class="header-section-number">5.3</span> Visualising global life expectancy</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#histograms"><span class="header-section-number">5.3.1</span> Histograms</a></li>
-<li><a class="nav-link" href="#exercise-1"><span class="header-section-number">5.3.2</span> Exercise 1</a></li>
+<li><a class="nav-link" href="#test-yourself-exercise-1"><span class="header-section-number">5.3.2</span> Test yourself exercise 1</a></li>
 <li><a class="nav-link" href="#facet-wrap"><span class="header-section-number">5.3.3</span> Facet wrap</a></li>
 <li><a class="nav-link" href="#boxplots"><span class="header-section-number">5.3.4</span> Boxplots</a></li>
-<li><a class="nav-link" href="#exercise-2"><span class="header-section-number">5.3.5</span> Exercise 2</a></li>
+<li><a class="nav-link" href="#test-yourself-exercise-2"><span class="header-section-number">5.3.5</span> Test yourself exercise 2</a></li>
 </ul>
 </li>
 <li>
 <a class="nav-link" href="#correlation-between-variables"><span class="header-section-number">5.4</span> Correlation between variables</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#adding-to-the-aestetic"><span class="header-section-number">5.4.1</span> Adding to the aestetic</a></li></ul>
 </li>
-<li><a class="nav-link" href="#exercise-3---applying-what-you-have-learnt"><span class="header-section-number">5.5</span> Exercise 3 - Applying what you have learnt</a></li>
+<li><a class="nav-link" href="#test-yourself-exersise-3"><span class="header-section-number">5.5</span> Test yourself exersise 3</a></li>
 </ul>
 
       <div class="book-extra">
@@ -622,12 +638,14 @@ window.onload = function() {
 </div>
     </nav>
 </div>
+
+</div>
 </div> <!-- .container -->
 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Week 3 - Working with data files</strong>" was written by Dr Richard Clarke. It was last built on 2023-07-05.</p>
+    <p>"<strong>NS7154 R Workbook</strong>" was written by Dr Richard Clarke. It was last built on 2023-08-10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -636,6 +654,5 @@ window.onload = function() {
 
 </div></div>
 </footer>
-</div>
 </body>
 </html>
