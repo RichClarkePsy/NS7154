@@ -79,7 +79,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span> <span class="co"># useful for scaling and formatting data</span></span></code></pre></div>
 <div class="webex-solution">
 <button>
-Reminder: Setting you working directory and reading data
+Reminder: Setting your working directory and reading data
 </button>
 <p>To set your working directory click <strong>Session</strong> <code>-&gt;</code> <strong>Set Working Directory</strong> <code>-&gt;</code> <strong>Choose Directory</strong> (and navigate to your folder) or <strong>To Source File Location</strong>.</p>
 <p>To load the data, first make sure you have loaded the <code>tidyverse</code> package. Then, read in the data:</p>
@@ -173,13 +173,12 @@ Filtering using logical operators
 <li><p><code>&lt;</code> (Less Than): This operator returns <code>TRUE</code> if the value on its left is less than the value on its right. For example, <code>filter(Age &lt; 18)</code> would keep only the rows where Age is less than 18.</p></li>
 <li><p><code>&gt;=</code> (Greater Than or Equal To): This operator returns <code>TRUE</code> if the value on its left is greater than or equal to the value on its right. For example, filter<code>(Age &gt;= 18)</code> would keep only the rows where Age is 18 or older.</p></li>
 <li><p><code>&lt;=</code> (Less Than or Equal To): This operator returns <code>TRUE</code> if the value on its left is less than or equal to the value on its right. For example, <code>filter(Age &lt;= 18)</code> would keep only the rows where Age is 18 or younger.</p></li>
-<li><p><code>==</code> (Equal To): This operator returns <code>TRUE</code> if the value on its left is equal to the value on its right. For example, <code>filter(Age == 18)</code> would keep only the rows where Age is exactly 18. A common mistake here is to use just one equals sign. So common in fact that the error message often read "did you mean <code>==</code>?".</p></li>
+<li><p><code>==</code> (Equal To): This operator returns <code>TRUE</code> if the value on its left is equal to the value on its right. For example, <code>filter(Age == 18)</code> would keep only the rows where Age is exactly 18. A common mistake here is to use just one equals sign. So common in fact that their is a tailored error message that read "did you mean <code>==</code>?" when used incorrectly.</p></li>
 <li><p><code>&amp;</code> (AND): This operator returns <code>TRUE</code> if both its left and right operands are <code>TRUE</code>. For example, <code>filter(Age &gt; 18 &amp; Income &gt; 50000)</code> would keep only the rows where the age is greater than 18 AND the variable <code>Income</code> is greater than 50,000.</p></li>
 <li><p><code>|</code> (OR): This operator returns <code>TRUE</code> if either (or both) of its operands are <code>TRUE</code>. For example, <code>filter(Age &lt; 18 | Income &gt; 50000)</code> would keep rows where the age is less than 18 OR the income is greater than 50,000.</p></li>
 <li><p><code>!</code> (NOT): This operator negates the truth value of its operand. For example, filter<code>(!is.na(Age))</code> would keep only the rows where Age is not <code>NA</code>.</p></li>
 <li><p><code>!=</code> (Not Equal To): This operator returns <code>TRUE</code> if the value on its left is not equal to the value on its right. For example, <code>filter(Age != 18)</code> would keep all the rows where Age is not 18.</p></li>
 </ol>
-<p>You can also combine these operators. For example, <code>filter(Age &gt; 18 &amp; Age &lt; 65)</code> would keep the rows where Age is greater than 18 AND less than 65 (i.e., Age is between 18 and 65, not inclusive).</p>
 </div>
 <p>The following code filters only the rows where both (<code>&amp;</code>) <code>Systolic</code> and <code>Diastolic</code> does not include missing data (<code>!is.na</code>).</p>
 <div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
@@ -190,8 +189,8 @@ Filtering using logical operators
 <h3>
 <span class="header-section-number">7.2.2</span> Additional tidying<a class="anchor" aria-label="anchor" href="#additional-tidying"><i class="fas fa-link"></i></a>
 </h3>
-<p>If you run were to <code>str(cleaned_data)</code> you will see that each variable has either a <code>chr</code> or <code>num</code> next to them. This represents the variables <strong>data type</strong>, <code>chr</code> stands for <em>character data</em> (e.g. strings of text that can be numbers or characters) and <code>num</code> stands for <em>numeric data</em>(e.g. a string of numbers).</p>
-<p>When we imported the data, our <code>Systolic</code> and <code>Diastolic</code> data variables used numbers for the BP readings but also contained two types of text response <em>"Not applicable"</em> and <em>"Reading not obtained"</em>, both or which we recoded as <code>NA</code>. This left us with just the numerical data, however, seeing as text was present when we first read in the data these variables were initially assigned as character (<code>chr</code>) data.</p>
+<p>If you were to run <code>str(cleaned_data)</code> you will see that each variable has either a <code>chr</code> or <code>num</code> next to them. This represents the variables <strong>data type</strong>, <code>chr</code> stands for <em>character data</em> (e.g. strings of text that can be numbers or characters) and <code>num</code> stands for <em>numeric data</em>(e.g. a string of numbers).</p>
+<p>When we imported the data, our <code>Systolic</code> and <code>Diastolic</code> data variables used numbers for the BP readings but also contained two types of text response <em>"Not applicable"</em> and <em>"Reading not obtained"</em>, both of which we recoded as <code>NA</code>. This left us with just the numerical data, however, seeing as text was present when we first read in the data for these variables were initially assigned as character (<code>chr</code>) data.</p>
 <p>All this means is that when we want to use this data as numeric data we need to convert them into number (<code>num</code>) data. The code below uses <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to overwrite the <code>Systolic</code> and <code>Diastolic</code> variables with the same data treated, as the function implies, as numeric type data.</p>
 <p>Finally, it might be worth using the <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> function to take only the variables that we will use in our analysis. In this case we'll take the variables <code>Age</code>, <code>Sex</code>, <code>SIMD</code>, <code>UrbanRural</code>, <code>Systolic</code> and <code>Diastolic</code>. <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> also lets us organise the order of the variables depending on the order we list them.</p>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
@@ -204,7 +203,7 @@ Filtering using logical operators
 <button>
 Note on tidy code
 </button>
-<p>When I've a potentially long line of code, as our select function could be, if we wanted many more variable I often use a line break to list them one after the other. One of the great features of RStudio is its ability to automatically handle text alignment. This capability not only enhances code readability but can also act as a helpful tool in error detection, as any discrepancies might result in unusual indentation.</p>
+<p>When I've a potentially long line of code, as our select function could be, if we wanted many more variables I often use a line break to list them one after the other. One of the great features of RStudio is its ability to automatically handle text alignment. This capability not only enhances code readability but can also act as a helpful tool in error detection, as any discrepancies might result in unusual indentation.</p>
 <p>Both of the following expressions are functionally the same</p>
 <ul>
 <li>Tidy code that's easy to read:</li>
@@ -256,7 +255,7 @@ Code for plot
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>BP_cat <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">Systolic</span> <span class="op">&gt;</span> <span class="fl">140</span> <span class="op">|</span> <span class="va">Diastolic</span> <span class="op">&gt;</span> <span class="fl">90</span>, </span>
 <span>                          <span class="st">"Hypertension"</span>, </span>
 <span>                          <span class="st">"Healthy BP range"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>The nice thing about this kind of problem is we can then check it on the scatter plot by assigning our new variable to the the colour aesthetic.</p>
+<p>The nice thing about this kind of problem is we can then check it on the scatter plot by assigning our new variable to the colour aesthetic.</p>
 <div class="inline-figure"><img src="Images/Scatter%20plot%20bp%20categories.png" width="100%" style="display: block; margin: auto;"></div>
 <div class="webex-solution">
 <button>
@@ -300,7 +299,7 @@ Code for plot
 <button>
 Code for making this table
 </button>
-<p>This process takes a effort and might not be worth it for a single table. However, if you ever have to create monthly reports, this sort of automated workflow could save you significant time in the future.</p>
+<p>This process takes effort and might not be worth it for a single table. However, if you ever have to create monthly reports, this sort of automated workflow could save you significant time in the future.</p>
 <p>Also, there's likely a far easier way than I've done it here. If you find one, please do let me know!</p>
 <div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># this table was created using the "gt" package. Install it just as you would any other package.  </span></span>
@@ -398,7 +397,7 @@ Solution
 <h3>
 <span class="header-section-number">7.5.2</span> Exercise 2<a class="anchor" aria-label="anchor" href="#exercise-2-1"><i class="fas fa-link"></i></a>
 </h3>
-<p>Create a plot of Diastolic compared to Systolic with colour indicating either and "Old" or "Young" participant.</p>
+<p>Create a plot of Diastolic compared to Systolic with colour indicating either a "Old" or "Young" participant.</p>
 <div class="webex-solution">
 <button>
 Hint
@@ -483,7 +482,7 @@ Solution
 <h3>
 <span class="header-section-number">7.5.6</span> Exercise 6 (very much optional / just for fun)<a class="anchor" aria-label="anchor" href="#exercise-6-very-much-optional-just-for-fun"><i class="fas fa-link"></i></a>
 </h3>
-<p>Create table that includes the frequency and percentage of health and hypertensive participants for <code>Sex</code>, <code>UrbanRural</code>, <code>Sge</code> <code>SIMD</code>.</p>
+<p>Create a table that includes the frequency and percentage of health and hypertensive participants for <code>Sex</code>, <code>UrbanRural</code>, <code>Age</code> <code>SIMD</code>.</p>
 <p>And if you find a quicker and easier way to do this please do let me know!</p>
 <div class="webex-solution">
 <button>
@@ -543,13 +542,13 @@ Solution
 <span></span>
 <span><span class="va">table2_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">percentage_Sex_data</span>, <span class="va">percentage_UR_data</span>, <span class="va">percentage_age_data</span>, <span class="va">percentage_SIMD_data</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">variable_name</span>, <span class="va">variable</span>, <span class="va">Stat_Healthy</span>, <span class="va">Stat_Hyper</span><span class="op">)</span></span></code></pre></div>
-<p>If you look at the table2_data data frame you'll see that the SIMD variables are out of order. That's annoying. the order we want is:</p>
+<p>If you look at the table2_data data frame you'll see that the SIMD variables are out of order. That's annoying. The order we want is:</p>
 <ul>
-<li>"Most deprived" indicates the areas with the highest levels of deprivation.</li>
+<li>"Most deprived" (the areas with the highest levels of deprivation).</li>
 <li>"2nd" second most deprived.</li>
 <li>"3rd" third most deprived.</li>
 <li>"4th" fourth most deprived.</li>
-<li>"Least deprived" indicates the areas with the lowest levels of deprivation.</li>
+<li>"Least deprived" (the areas with the lowest levels of deprivation).</li>
 </ul>
 <p>The following code, creates a new data object with the order I want the variables and then joins it to the SIMD object that contains the percentages, and then arranges it by the custom order. Typically, I would just rework my earlier code if I run into this kind of problem.</p>
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
@@ -809,7 +808,7 @@ window.onload = function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>NS7154 R Workbook</strong>" was written by Dr Richard Clarke. It was last built on 2023-08-10.</p>
+    <p>"<strong>NS7154 R Workbook</strong>" was written by Dr Richard Clarke. It was last built on 2023-08-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

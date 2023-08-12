@@ -67,9 +67,9 @@
 <h2>
 <span class="header-section-number">6.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-1"><i class="fas fa-link"></i></a>
 </h2>
-<p>Our aim this week is to reproduce the figure below from <a href="https://doi.org/10.3390/genes12081276">Bravo-Gutierrez et al (2021)</a>. The figure shows the percentage of methylation for two genes, AHRR (fig. 2a) and PRSS23 (fig. 2b), as compared across smokers and non-smokers. The genetics aspect might be confusing (at least to us psychologists) but the statistics are very basics (a Mann-Whitney U test). The authors found a significant difference across methylation on the AHRR gene between smokers and non-smokers (p=0.003), with significantly lower levels of methylation for the smokers (indicating the suggested hypomethylation effect of smoking on the AHRR gene), but no significant difference in methylation across the PRSS23 gene (p=0.276).</p>
+<p>Our aim this week is to reproduce the figure below from <a href="https://doi.org/10.3390/genes12081276">Bravo-Gutierrez et al (2021)</a>. The figure shows the percentage of methylation for two genes, AHRR (fig. 2a) and PRSS23 (fig. 2b), as compared across smokers and non-smokers. The genetics aspect might be confusing (at least to us psychologists) but the statistics are very basic (a Mann-Whitney U test). The authors found a significant difference across methylation on the AHRR gene between smokers and non-smokers (p=0.003), with significantly lower levels of methylation for the smokers (indicating the suggested hypomethylation effect of smoking on the AHRR gene), but no significant difference in methylation across the PRSS23 gene (p=0.276).</p>
 <div class="inline-figure"><img src="Images/Bravo-Gutierrez%202021%20-%20Figure%202.png" width="100%" style="display: block; margin: auto;"></div>
-<p>The authors of the paper have made the data from the study open access (as all good scientists should!), but not their code. Let's replicate the analysis and see if we can find the same findings and create the same image.</p>
+<p>The authors of the paper have made the data from the study open access (as all good scientists should!), but not their code. Let's replicate the analyse and see if we can find the same findings and create the same image.</p>
 <p>Download the data from the supplemental materials at the bottom of <a href="https://doi.org/10.3390/genes12081276">the paper</a> or from this weeks section in the NS7154 Moodle area.</p>
 <p>For this week your will need the following packages. If needed, check previous weeks for how to install and load packages.</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
@@ -136,10 +136,10 @@ Why use read_csv rather than read.csv
 <p>What is a CSV file? <select class="webex-select"><option value="blank"></option>
 <option value="">A file specially made for use in R</option>
 <option value="answer">A general use text file storing tabular data, separated by commas</option>
-<option value="">A file for storing supplementary figure for a paper</option></select></p>
+<option value="">A file for storing supplementary figures for a paper</option></select></p>
 <p>If you were to run the above code, what would you then type to <code>view</code> this data file in a window? <input class="webex-solveme nospaces" size="14" data-answer='["View(raw_data)","view(raw_data)"]'></p>
 <p>Can you read an SPSS file into R? <select class="webex-select"><option value="blank"></option>
-<option value="">That program is dead to us now. Never speak those letter again!</option>
+<option value="">That program is dead to us now. Never speak those letters again!</option>
 <option value="answer">Yes, check out the Haven package for more on this topic</option></select></p>
 </div>
 </div>
@@ -159,18 +159,18 @@ The Wickham Six:</p>
 <li>
 <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> - A function used to reorder rows in a dataset based on the values in one or several columns.</li>
 <li>
-<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> - A function used to generate summay statistics of different columns in your dataset.</li>
+<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> - A function used to generate summary statistics of different columns in your dataset.</li>
 <li>
 <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> - A function, often used with <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, to group the data by certain criteria before generating summary statistics.</li>
 </ul>
 <p>These functions are powerful and provide the building blocks for data wrangling in R. By chaining these functions together using the pipes (<code>%&gt;%</code>), we can perform complex data manipulations in a clean, readable, and efficient manner.</p>
-<p>This week we'll be using <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, and we'll be using them a lot throughout this module so you may want to note them down on a sticky note and attach them to the screen. That's what I did when I was first learning.</p>
+<p>This week we'll be using <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, and we'll be using them a lot throughout this module so you may want to note them down on a sticky note and attach them to your screen. That's what I did when I was first learning.</p>
 <div id="selecting-variables-for-our-analysis" class="section level3" number="6.3.1">
 <h3>
 <span class="header-section-number">6.3.1</span> "Selecting" variables for our analysis<a class="anchor" aria-label="anchor" href="#selecting-variables-for-our-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p>Looking back at the figure and its description in the paper we only actually need three variables from our dataset to create the boxplots. So, the first thing we'll do is tidy up the dataset by pulling out those variables and putting them in a new object called <code>fig2_data</code>.</p>
-<p>The code below uses the <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> function, take the variables <code>Sample_ID</code>, <code>%5mc-AHRR</code> &amp; <code>%5mc-PRSS23</code> from our raw data and assigns them a new object called <code>fig2_data</code>.</p>
+<p>The code below uses the <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> function, takes the variables <code>Sample_ID</code>, <code>%5mc-AHRR</code> &amp; <code>%5mc-PRSS23</code> from our raw data and assigns them a new object called <code>fig2_data</code>.</p>
 <p>Variable names can be a bit fiddly at times. Typically they should start with a letter and be free of spaces. Often, when importing from other sources, this rule is not adhered to. To cope with this R assigns such variable flanked by back-ticks as can be seen with our <code>%5mc-AHRR</code> and <code>%5mc-PRSS23</code> in the code below.</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fig2_data</span> <span class="op">&lt;-</span> <span class="va">raw_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -215,14 +215,14 @@ Overwriting data
 <span>                                     <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_starts.html">str_starts</a></span><span class="op">(</span><span class="va">Sample_ID</span>, <span class="st">"S"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Smoker"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>AHRR <span class="op">=</span> <span class="va">`%5mc-AHRR`</span>,</span>
 <span>         PRSS23 <span class="op">=</span> <span class="va">`%5mc-PRSS23`</span><span class="op">)</span></span></code></pre></div>
-<p>If you were to <code>view(fig2_data)</code> now you will see a new variables has been created with our smoker/non-smoker information and the variable names are easier to handle.</p>
+<p>If you were to <code>view(fig2_data)</code> now you will see a new variable has been created with our smoker/non-smoker information and the variable names are easier to handle.</p>
 </div>
 <div id="grouping-and-summarising-the-data" class="section level3" number="6.3.3">
 <h3>
 <span class="header-section-number">6.3.3</span> "Grouping" and "Summarising" the data<a class="anchor" aria-label="anchor" href="#grouping-and-summarising-the-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>The code below takes the <code>fig2_data</code> object, groups it by our new condition variable, then uses the <code>summarise</code> function (not to be confused with the <code>summary</code> function) to give us the number of participants and the mean, median, and standard deviation of just the AHRR variable split by smokers and non-smokers.</p>
-<p>There is also some missing data so I've added <code>na.rm = TRUE</code> to each of the arguments. We'll come back to how to deal with missing data again in a later weeks.</p>
+<p>There is also some missing data so I've added <code>na.rm = TRUE</code> to each of the arguments. We'll come back to how to deal with missing data again in later weeks.</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fig2_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">quasi_condition</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -310,13 +310,13 @@ Solution
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="Images/week%203%20plot%204.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Yes, I too am annoyed about the missing p-value when you adjust the y-axis.</p>
-<p>I think they calculated their p-values separately and then added them as a text geom. that would explain the slightly different p-value roundings.</p>
+<p>I think they calculated their p-values separately and then added them as a text geom. That would explain the slightly different p-value roundings.</p>
 </div>
 <p>Next tidy up the figure by
 1. Adding a title.
 2. Removing the label <code>quasi_conditions</code>.
 3. Changing the colour scheme.
-4. Changing the amount of jutter.</p>
+4. Changing the amount of jitter.</p>
 <div class="webex-solution">
 <button>
 Hint
@@ -557,7 +557,7 @@ window.onload = function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>NS7154 R Workbook</strong>" was written by Dr Richard Clarke. It was last built on 2023-08-10.</p>
+    <p>"<strong>NS7154 R Workbook</strong>" was written by Dr Richard Clarke. It was last built on 2023-08-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

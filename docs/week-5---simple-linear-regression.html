@@ -71,7 +71,7 @@
 <button>
 How I converted this data from a PDF to CSV
 </button>
-<p>Thankfully the data was fairly tidy on the PDF, so it didn't take too much effort to convert it, but I did involve me having to mess around on excel, which is never fun. If you would like to repeat the process yourself, here are the steps:</p>
+<p>Thankfully the data was fairly tidy on the PDF, so it didn't take too much effort to convert it, but it did involve me having to mess around on excel, which is never fun. If you would like to repeat the process yourself, here are the steps:</p>
 <ol style="list-style-type: decimal">
 <li>In Excel go to the Data tab <strong>Get Data</strong> <code>-&gt;</code> <strong>From File</strong> <code>-&gt;</code> <strong>From PDF</strong>.</li>
 <li>Select the downloaded PDF file and click Import.</li>
@@ -80,7 +80,7 @@ How I converted this data from a PDF to CSV
 <li>On the next window select <strong>Table</strong> then <strong>ok</strong>.</li>
 <li>This will give you three tabs of data. Then it's a matter of combining these data. I did this manually through copy and pasting but no doubt there's a smarter way of doing this.</li>
 </ol>
-<p>I'm explaining this here partly so that know how to do this if you every come across similar data in the future, but mainly this is just so I have a note of this for when I inevitable forget how to do this next time. <em>In fact, most of this book is just notes to help future me remember how to code.</em></p>
+<p>I'm explaining this here partly so that you know how to do this if you every come across similar data in the future, but mainly this is just so I have a note of this for when I inevitably forget how to do this next time. <em>In fact, most of this book is just notes to help "future me" remember how to code.</em></p>
 </div>
 <div id="effects-of-noise-sensitivity-and-road-traffic-noise-on-the-immune-system." class="section level2" number="8.1">
 <h2>
@@ -92,7 +92,7 @@ How I converted this data from a PDF to CSV
 <ol style="list-style-type: decimal">
 <li><p><strong>Cortisol levels</strong>: Cortisol is a hormone that the body produces when under stress (see last weeks lecture for more on this topic).</p></li>
 <li><p><strong>Natural Killer (NK)</strong> and <strong>Natural Killer T (NKT)</strong> cell populations: These cells are key components of the immune system. NK cells play a significant role in the immune response to cells that are cancerous or infected by viruses. NKT cells, a subset of T cells with properties similar to NK cells, are involved in modulating immune responses.</p></li>
-<li><p><strong>NK cell activity</strong>: This was assessed by measuring levels of interleukin-12 (<strong>IL-12</strong>) and interferon-gamma (<strong>INF-γ</strong>), both of which are cytokines. IL-12 is a signaling molecule in the immune system that gets produced when the body encounters an intracellular pathogen. It enhances the ability of NK cells and cytotoxic T cells to kill these pathogens. INF-γ is another cytokine that has crucial roles in immune responses, particularly against viral infections and cancer.</p></li>
+<li><p><strong>NK cell activity</strong>: This was assessed by measuring levels of interleukin-12 (<strong>IL-12</strong>) and interferon-gamma (<strong>INF-γ</strong>), both of which are cytokines. IL-12 is a signaling molecule in the immune system that gets produced when the body encounters an intracellular pathogen. It enhances the ability of NK cells and cytotoxic T cells to kill these pathogens. INF-γ is another cytokine that has a crucial role in immune responses, particularly against viral infections and cancer.</p></li>
 </ol>
 <p>The researcher obtained data on these markers through immunological assays performed on the extracted blood sample for each participant. Each participant also gave the following data through a self-report survey:</p>
 <ol style="list-style-type: decimal">
@@ -100,10 +100,10 @@ How I converted this data from a PDF to CSV
 <li><p>Lifestyle factors: <strong>Smoking status</strong>, <strong>Alcohol status</strong>, and <strong>Exercise status</strong></p></li>
 <li><p><strong>Sensitivity to Noise</strong>: as assessed on a 11-point visual analogue scale.</p></li>
 </ol>
-<p>Residential noise levels (<strong>Noise_Ldn</strong>) were calculated by the participant locating their address on pre-existing noise map of their local area and taking the corresponding noise level in decibels.</p>
+<p>Residential noise levels (<strong>Noise_Ldn</strong>) were calculated by the participant locating their address on a pre-existing noise map of their local area and taking the corresponding noise level in decibels.</p>
 <p>The study sets out to test for relationships between noise level and the stress and immunity biomarkers while controlling for the demographic, lifestyle and sensitivity to noise variables.</p>
 <p>Today we'll just look at the simple relationships but we'll come back to this dataset again when we look at multiple regression.</p>
-<p>As always you'll need to download the data, set your working directory, load this weeks packages, and read in the data. We'll be using a new packages this week (<code>sjPlot</code>), so if this is the first time you are using this packages you'll need to install it with the <code>install.packages("sjPlot")</code> command.</p>
+<p>As always you'll need to download the data, set your working directory, load this weeks packages, and read in the data. We'll be using a new package this week (<code>sjPlot</code>), so if this is the first time you are using this package you'll need to install it with the <code>install.packages("sjPlot")</code> command.</p>
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://strengejacke.github.io/sjPlot/">sjPlot</a></span><span class="op">)</span></span>
@@ -112,7 +112,7 @@ How I converted this data from a PDF to CSV
 <span></span>
 <span><span class="co"># note you likely have the data saved under a different name to the name I have used here</span></span></code></pre></div>
 <p>Take a look at the dataset either visually using the <code><a href="https://tibble.tidyverse.org/reference/view.html">view()</a></code> function and/or through using the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> or <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> functions.</p>
-<p>There is a single value used throughout thhe dataset to indicate missing data. We need to change that value into an <code>NA</code>. Below is the code we used last week, replace the <code>?</code> with the appropriate value and and run the code to recode missing data as <code>NA</code></p>
+<p>There is a single value used throughout the dataset to indicate missing data. We need to change that value into an <code>NA</code>. Below is the code we used last week, replace the <code>?</code> with the appropriate value and and run the code to recode missing data as <code>NA</code></p>
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">missing_values</span> <span class="op">&lt;-</span> <span class="op">?</span></span>
 <span></span>
@@ -142,14 +142,14 @@ What is Logarithmic transformation?
 </button>
 <p>One common method for dealing with non-normal data is to apply a transformation to the data, such as a logarithmic (log) transformation. This can make the data more normally distributed, or at least more symmetric, which can help meet statistical assumptions.</p>
 <p>A common variable that often gets a log transformation is income due to it's highly skewed nature.</p>
-<p>Most people earn a fairly similar moderate income while a few people earn far greater amounts than the bulk of individuals. Graphing this data (see below) you'll see that such a distribution skews to the right. Another way to present the same data is to make the scale logarithmic. The first figure below shows the same data as the second just with a logarithmic scale, where the difference between each point in the scale increases in an exponential manner. This change make the data appear more normally distributed.</p>
+<p>Most people earn a fairly similar moderate income while a few people earn far greater amounts than the bulk of individuals. Graphing this data (see below) you'll see that such a distribution skews to the right. Another way to present the same data is to make the scale logarithmic. The first figure below shows the same data as the second just with a logarithmic scale, where the difference between each point in the scale increases in an exponential manner. This change makes the data appear more normally distributed.</p>
 <div class="inline-figure"><img src="Images/hist%20log%201.png" width="100%" style="display: block; margin: auto;"></div>
 <div class="inline-figure"><img src="Images/hist%20log%202.png" width="100%" style="display: block; margin: auto;"></div>
 <p>We can achieve a similar outcome by performing a logarithmic transformation to the data. Below I have graphed <em>the log</em> of income for the same data. Notice how the histogram now corresponds to the above figure with the log scale. By doing such a transformation the variable not only looks normal but is statistically more normally distributed.</p>
 <div class="inline-figure"><img src="Images/hist%20log%203.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
-<p>Even though this is what what the authors choose to do, its still worth us having a visually inception of the raw data and then seeing how it looks after the transformation.</p>
-<p>To do this we can run a histogram for each of the variables of intrest. In our case all of the biomarkers (which they transformed) and noise and noise sensitivity variables (which they did not transform). You should already know (or be able to work out) how to run a simple histogram by now, so try it for yourself before using my code.</p>
+<p>Even though this is what the authors choose to do, its still worth us having a visually inception of the raw data and then seeing how it looks after the transformation.</p>
+<p>To do this we can run a histogram for each of the variables of interest. In our case all of the biomarkers (which they transformed) and noise and noise sensitivity variables (which they did not transform). You should already know (or be able to work out) how to run a simple histogram by now, so try it for yourself before using my code.</p>
 <div class="webex-solution">
 <button>
 Simple histogram code
@@ -170,7 +170,7 @@ Simple histogram code
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<p>We could just run our histogram code 7 times, changing out the variable name each time. However, that can often looks messy in our script so as a way to tidy things up we may want to run them all together. To do this, first we <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> out these key variables. Then we can use the <code>pivot_longer</code> function, followed by including a <code>facet_wrap</code> line within our ggplot code to create a single image with all of our plots.</p>
+<p>We could just run our histogram code 7 times, changing out the variable name each time. However, that can often look messy in our script, so as a way to tidy things up we may want to run them all together. To do this, first we <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> out these key variables. Then we can use the <code>pivot_longer</code> function, followed by including a <code>facet_wrap</code> line within our ggplot code to create a single image with all of our plots.</p>
 <div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">histogram_data</span> <span class="op">&lt;-</span> <span class="va">cleaned_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Cortisol</span>, </span>
@@ -189,9 +189,9 @@ What is Pivoting?
 <p>In a 'wide' format, each row corresponds to a single observation, and each variable has its own column. As such, our current dataset can be said to be in a 'wide' format.</p>
 <p>In a 'long' format, each row still represents a single observation, but the variables you're examining are compiled into one column. Additional columns provide distinct information for each observation. For example, you might have one row for each measurement taken, with one column specifying the type of measurement and another giving the measurement value itself.</p>
 <p>This makes more sense when you look at the data. Here's an example of:</p>
-<p>A data set in wide format:</p>
+<p>A dataset in wide format:</p>
 <div class="inline-figure"><img src="Images/Wide%20data.PNG" width="100%" style="display: block; margin: auto;"></div>
-<p>And here is an example of the same data set in long format (after pivoting)</p>
+<p>And here is an example of the same dataset in long format (after pivoting)</p>
 <div class="inline-figure"><img src="Images/long%20data.PNG" width="100%" style="display: block; margin: auto;"></div>
 </div>
 <p>If you take a look at the data after this pivoting you should see that all the scores are in one variable named <code>score</code>. Running our histogram code with a <code>facet_wrap</code> gives you all the histograms at once.</p>
@@ -207,7 +207,7 @@ What is Pivoting?
 <button>
 Answer
 </button>
-<p>I'm going to go with two being highly skewed (INFgammer &amp; NKT_cells) and one being close to skewed (IL12). However, without checking statistically (which I'll show you how to check later in the course) it hard to know for sure.</p>
+<p>I'm going to go with two being highly skewed (INFgammer &amp; NKT_cells) and one being close to skewed (IL12). However, without checking statistically (which I'll show you how to check later in the course) its hard to know for sure.</p>
 <p>Anyway, we'll follow what the authors did and perform a log transformation on each of the biomarkers.</p>
 </div>
 <p>Now we can do the log transformation on the biomarkers and run the histograms again.</p>
@@ -255,7 +255,7 @@ Answer
 <button>
 Wait, what is a $ doing there?!
 </button>
-<p>This is an example of some "base R" coding (i.e. the R functionality that does not involve the <code>tidyverse</code> package). Annoyingly the cor.test function is not compatable with our pipes (<code>%&gt;%</code>) from <code>tidyverse</code> (or even the base R pipes <code>|&gt;</code>) so we've had to do this the old fashioned way. All <code>cleaned_data_log$Noise_Ldn</code> means is: "Take the <code>Noise_Ldn</code> variable from et <code>cleaned_data_log</code> data object.</p>
+<p>This is an example of some "base R" coding (i.e. the R functionality that does not involve the <code>tidyverse</code> package). Frustratingly, the cor.test function is not compatible with our pipes (<code>%&gt;%</code>) from <code>tidyverse</code> (or even the base R pipes <code>|&gt;</code>) so we've had to do this the old fashioned way. All <code>cleaned_data_log$Noise_Ldn</code> means is: "Take the <code>Noise_Ldn</code> variable from et <code>cleaned_data_log</code> data object".</p>
 <p>It's worth knowing about this type of notation, as at some point you'll likely run across blogs and tutorial videos that use such code.</p>
 </div>
 <p>After running that line of code you should see the following appear in your console:</p>
@@ -279,7 +279,7 @@ Wait, what is a $ doing there?!
 <ol style="list-style-type: decimal">
 <li><p>The first expresion in the code below (after loading in the package) creates a new data object containing only the relevant data for the matrix.</p></li>
 <li><p>The second experssion assembles a correlation table using our chosen data. I've incorporated additional arguments in the code for further functionality. To view a comprehensive list of available arguments for this table, run <code><a href="https://strengejacke.github.io/sjPlot/reference/tab_corr.html">?tab_corr</a></code>. Note: The resulting table, generated in HTML format, will display in your viewer tab rather than the plot tab.</p></li>
-<li><p>The final expression visualises the data in a colour-coded grid. I find this format more intuitive for identifying high correlations in large datasets. Similarly, running ?sjp.corr give a full list of the available arguments for this type of plot.</p></li>
+<li><p>The final expression visualises the data in a colour-coded grid. I find this format more intuitive for identifying high correlations in large datasets. Similarly, running ?sjp.corr gives a full list of the available arguments for this type of plot.</p></li>
 </ol>
 <div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://strengejacke.github.io/sjPlot/">sjPlot</a></span><span class="op">)</span></span>
@@ -328,7 +328,7 @@ Where is the p-value?
 <p>The p-value (Pr(&gt;|t|)) is the probability that you would observe such a large absolute t-value if the null hypothesis (i.e., there's no effect or relationship) were true. Smaller p-values suggest that the null hypothesis is less likely, so the effect or relationship you observed is more likely to be real and not due to random chance.</p>
 <p>In this case we're looking at the p-value of the <code>Noise_Ldn</code> predictor in the model. This is greater than 0.05 (the threshold we often choose in psychology for statistical significance). Therefore, this relationship is not significant (as was also found in our correlation matrix).</p>
 </div>
-<p>For our figures we'll need to extract a few bits of information from our model. The first line of the code below takes just the r-squared value and stores the value in <code>r-squared</code>. The next line does the same with the coefficients of the mode (<code>m</code> and <code>b</code> in the equation of the line).</p>
+<p>For our figures we'll need to extract a few bits of information from our model. The first line of the code below takes just the r-squared value and stores the value in <code>r-squared</code>. The next line does the same with the coefficients of the model (<code>m</code> and <code>b</code> in the equation of the line).</p>
 <p>The <code>equation</code> expression here takes the coefficients and turns them into a string that contains the equation of our line (y=0.0025*x + 2.4). The last line does the same but with the r-squared values.</p>
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">r_squared</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_Cort_Ldn</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span></span>
@@ -341,8 +341,7 @@ Where is the p-value?
 <span></span>
 <span><span class="va">r_squared</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"R\u00B2 = "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_Cort_Ldn</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># \u00B2 is the code for making text superscript, i.e. turning the 2 into squared.</span></span>
-<span><span class="co"># This was something I had to ask the AI how to do. </span></span></code></pre></div>
+<span><span class="co"># \u00B2 is the code for making text superscript, i.e. turning the 2 into squared.</span></span></code></pre></div>
 <p>Now we can create the plot. This is very similar to other plots you have created, however, this time I've used the <code>annotate</code> function to add the text labels. Have a play around with the code and see if you can figure out what each of the arguments within the code do.</p>
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cleaned_data_log</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -374,7 +373,7 @@ A weird detail about this study
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Sex</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Sex</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>I have to move on and do some real work now, but if anyone has the time, please do rerun the analysis with these two participants filtered out. I'd be intresting to see if it makes a difference.</p>
+<p>I have to move on now, but if anyone has the time, please do rerun the analysis with these two participants filtered out. I'd be interesting to see if it makes a difference.</p>
 </div>
 <hr>
 <hr>
@@ -584,7 +583,7 @@ window.onload = function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>NS7154 R Workbook</strong>" was written by Dr Richard Clarke. It was last built on 2023-08-10.</p>
+    <p>"<strong>NS7154 R Workbook</strong>" was written by Dr Richard Clarke. It was last built on 2023-08-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
