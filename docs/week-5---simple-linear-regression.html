@@ -4,19 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 8 Week 5 - Simple Linear Regression | NS7154 R Workbook</title>
-<meta name="author" content="Dr Richard Clarke">
+<title>Chapter 8 Week 5 - Simple Linear Regression | NS7154 R Handbook</title>
+<meta name="author" content="Richard Clarke">
 <meta name="description" content="This week we'll be looking at the data behind a paper titled Effects of self-reported sensitivity and road-traffic noise levels on the immune system by Kim et al (2017). If I'm being honest, the...">
-<meta name="generator" content="bookdown 0.31 with bs4_book()">
-<meta property="og:title" content="Chapter 8 Week 5 - Simple Linear Regression | NS7154 R Workbook">
+<meta name="generator" content="bookdown 0.35 with bs4_book()">
+<meta property="og:title" content="Chapter 8 Week 5 - Simple Linear Regression | NS7154 R Handbook">
 <meta property="og:type" content="book">
 <meta property="og:description" content="This week we'll be looking at the data behind a paper titled Effects of self-reported sensitivity and road-traffic noise levels on the immune system by Kim et al (2017). If I'm being honest, the...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 8 Week 5 - Simple Linear Regression | NS7154 R Workbook">
+<meta name="twitter:title" content="Chapter 8 Week 5 - Simple Linear Regression | NS7154 R Handbook">
 <meta name="twitter:description" content="This week we'll be looking at the data behind a paper titled Effects of self-reported sensitivity and road-traffic noise levels on the immune system by Kim et al (2017). If I'm being honest, the...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -31,7 +31,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">NS7154 R Workbook</a>
+        <a href="index.html" title="">NS7154 R Handbook</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -52,6 +52,7 @@
 <li><a class="" href="week-4---working-with-catagorical-variables.html"><span class="header-section-number">7</span> Week 4 - Working with catagorical variables</a></li>
 <li><a class="active" href="week-5---simple-linear-regression.html"><span class="header-section-number">8</span> Week 5 - Simple Linear Regression</a></li>
 <li><a class="" href="week-6---catch-up-week.html"><span class="header-section-number">9</span> Week 6 - Catch up week</a></li>
+<li><a class="" href="week-7---multiple-regression.html"><span class="header-section-number">10</span> Week 7 - Multiple Regression</a></li>
 </ul>
 
         <div class="book-extra">
@@ -65,7 +66,7 @@
 </h1>
 <p>This week we'll be looking at the data behind a paper titled <strong><em>Effects of self-reported sensitivity and road-traffic noise levels on the immune system</em></strong> by Kim et al (2017). If I'm being honest, the findings of the paper are slightly underwhelming, but none-the-less their shared data allows us to apply some of our existing R skills and learn some new functions that will be directly applicable to your assignment.</p>
 <p>The paper is open access and available in full here: <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0187084">Kim et al (2017)</a>. Familiarise yourself with the details of the study and then we'll take a look at replicating some of the basic correlational findings.</p>
-<div class="inline-figure"><img src="Images/week%205%20paper.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/Week%205%20paper.png" width="100%" style="display: block; margin: auto;"></div>
 <p>The authors shared their data, but did the authors share their data in an easy to use format? No of course not, they shared it as a PDF. Luckily for you, I have converted their PDF data file into a CSV file that you can find on this weeks Moodle page.</p>
 <div class="webex-solution">
 <button>
@@ -130,12 +131,12 @@ Answer
 <span class="header-section-number">8.1.1</span> Replicating Kim et al 2017 correlational analyses<a class="anchor" aria-label="anchor" href="#replicating-kim-et-al-2017-correlational-analyses"><i class="fas fa-link"></i></a>
 </h3>
 <p>For now, we'll only look to replicate the findings in Figure 2 (see top of page), Table 2, and the in-text reporting (see below).</p>
-<div class="inline-figure"><img src="Images/Kim%20et%20al%20correlation%20table.PNG" width="100%" style="display: block; margin: auto;"></div>
-<div class="inline-figure"><img src="Images/Kim%20et%20al%20correlation%20results%20text.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/Kim%20et%20al%20correlation%20table.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/Kim%20et%20al%20correlation%20results%20text.png" width="100%" style="display: block; margin: auto;"></div>
 <p>As you may recall from your undergraduate research methods classes, in frequentist statistical analysis, we often aim to use parametric tests when the statistical assumptions underlying these tests are met, as these tests can be more sensitive to effects if their assumptions hold. However, if these assumptions are not met, non-parametric alternatives may be more appropriate. <em>Note: we will recap the topic of parametric assumptions in full in NS5171</em></p>
 <p>When it comes to correlation analyses, the parametric test we commonly use is the Pearson correlation, and a commonly used non-parametric alternative is the Spearman's Rank correlation</p>
 <p>This study appears to have performed their analysis using a pearson correlation (we'll come back to the multiple regression in a couple of weeks time) and to satisfy the normality assumption they used a logarithmic transformation.</p>
-<div class="inline-figure"><img src="Images/Kim%20et%20al%20analysis.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/Kim%20et%20al%20analysis.png" width="100%" style="display: block; margin: auto;"></div>
 <div class="webex-solution">
 <button>
 What is Logarithmic transformation?
@@ -190,9 +191,9 @@ What is Pivoting?
 <p>In a 'long' format, each row still represents a single observation, but the variables you're examining are compiled into one column. Additional columns provide distinct information for each observation. For example, you might have one row for each measurement taken, with one column specifying the type of measurement and another giving the measurement value itself.</p>
 <p>This makes more sense when you look at the data. Here's an example of:</p>
 <p>A dataset in wide format:</p>
-<div class="inline-figure"><img src="Images/Wide%20data.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/wide%20data.png" width="100%" style="display: block; margin: auto;"></div>
 <p>And here is an example of the same dataset in long format (after pivoting)</p>
-<div class="inline-figure"><img src="Images/long%20data.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/long%20data.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
 <p>If you take a look at the data after this pivoting you should see that all the scores are in one variable named <code>score</code>. Running our histogram code with a <code>facet_wrap</code> gives you all the histograms at once.</p>
 <div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
@@ -201,7 +202,7 @@ What is Pivoting?
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">score</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"darkgreen"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">variables</span>, scale <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="Images/facet%20wrap%20hists.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/facet%20wrap%20hists.png" width="100%" style="display: block; margin: auto;"></div>
 <p>What do you think? Which of these variables are skewed?</p>
 <div class="webex-solution">
 <button>
@@ -219,7 +220,7 @@ Answer
 <span>         IL12_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">IL12</span><span class="op">)</span>,</span>
 <span>         INFgamma_log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">INFgamma</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Adapt the <code>piviot</code> and <code>facet_wrap</code> code from above and rerun the histograms with this log transformed data. You should end up with a range of histograms that look something like this:</p>
-<div class="inline-figure"><img src="Images/facet%20wrap%20log%20hists.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/facet%20wrap%20log%20hists.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
 <div id="one-more-annoying-thing-before-we-can-actually-analyse-the-data" class="section level3" number="8.1.2">
 <h3>
@@ -300,8 +301,8 @@ Wait, what is a $ doing there?!
 <span>         sort.corr <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>         title <span class="op">=</span> <span class="st">"Figure 1. Correlation plot of variables"</span>,</span>
 <span>         axis.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ldn"</span>, <span class="st">"Noise sensitivity"</span>, <span class="st">"Cortisol"</span>, <span class="st">"NK Cells"</span>, <span class="st">"NKT cells"</span>, <span class="st">"IL-12"</span>, <span class="st">"INFgamma"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="Images/corr%20table.PNG" width="100%" style="display: block; margin: auto;"></div>
-<div class="inline-figure"><img src="Images/corr%20plot.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/corr%20table.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/corr%20plot.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Were we successful in replicating the correlational findings from Kim et al (2017)?</p>
 <p>Yes, it seems we were. The primary significant findings are largely in line with the original study, though there are minor variances in the correlation coefficients. From what I can tell, these disparities appear to be influenced by the <code>Noise Sensitivity</code> and <code>NKT cells</code> variables. The variations in the <code>NKT cells</code> variable are understandable given that this was the variable with the <code>-inf</code> values. It's possible that the original authors addressed this differently than we did. As for the <code>Noise Sensitivity</code> variable, I'm somewhat stumped. The values are closely aligned but not identical. If you figure out why, please do get in touch and let me know what I missed here.</p>
 </div>
@@ -583,7 +584,7 @@ window.onload = function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>NS7154 R Workbook</strong>" was written by Dr Richard Clarke. It was last built on 2023-08-12.</p>
+    <p>"<strong>NS7154 R Handbook</strong>" was written by Richard Clarke. It was last built on 11/08/2023.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -591,6 +592,34 @@ window.onload = function() {
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

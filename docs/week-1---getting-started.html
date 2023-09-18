@@ -4,19 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 3 Week 1 - Getting started | NS7154 R Workbook</title>
-<meta name="author" content="Dr Richard Clarke">
+<title>Chapter 3 Week 1 - Getting started | NS7154 R Handbook</title>
+<meta name="author" content="Richard Clarke">
 <meta name="description" content="3.1 Installing R and RStudio R is a programming language that you’ll be learning to write code in, while RStudio is what is known as an Integrated Development Environment (IDE) which makes working...">
-<meta name="generator" content="bookdown 0.31 with bs4_book()">
-<meta property="og:title" content="Chapter 3 Week 1 - Getting started | NS7154 R Workbook">
+<meta name="generator" content="bookdown 0.35 with bs4_book()">
+<meta property="og:title" content="Chapter 3 Week 1 - Getting started | NS7154 R Handbook">
 <meta property="og:type" content="book">
 <meta property="og:description" content="3.1 Installing R and RStudio R is a programming language that you’ll be learning to write code in, while RStudio is what is known as an Integrated Development Environment (IDE) which makes working...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 3 Week 1 - Getting started | NS7154 R Workbook">
+<meta name="twitter:title" content="Chapter 3 Week 1 - Getting started | NS7154 R Handbook">
 <meta name="twitter:description" content="3.1 Installing R and RStudio R is a programming language that you’ll be learning to write code in, while RStudio is what is known as an Integrated Development Environment (IDE) which makes working...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -31,7 +31,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">NS7154 R Workbook</a>
+        <a href="index.html" title="">NS7154 R Handbook</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -52,6 +52,7 @@
 <li><a class="" href="week-4---working-with-catagorical-variables.html"><span class="header-section-number">7</span> Week 4 - Working with catagorical variables</a></li>
 <li><a class="" href="week-5---simple-linear-regression.html"><span class="header-section-number">8</span> Week 5 - Simple Linear Regression</a></li>
 <li><a class="" href="week-6---catch-up-week.html"><span class="header-section-number">9</span> Week 6 - Catch up week</a></li>
+<li><a class="" href="week-7---multiple-regression.html"><span class="header-section-number">10</span> Week 7 - Multiple Regression</a></li>
 </ul>
 
         <div class="book-extra">
@@ -70,7 +71,7 @@
 <p><strong>R</strong> is a programming language that you’ll be learning to write code in, while <strong>RStudio</strong> is what is known as an Integrated Development Environment (IDE) which makes working with R easier. I will largely use the terms "R" and "RStudio" interchangeably throughout this course, but you can think of writing in R as you would writing in English and RStudio the program you write it in. You <em>could</em> write all your written assignment in NotePad but Microsoft Word gives you a lot more freedom so that’s often the default. The same logic is true for R, using RStudio just makes life a lot easier.
 <br></p>
 <p><strong>To get started you will</strong> <strong><em>first</em></strong> <strong>need to install the language R and</strong> <strong><em>then</em></strong> <strong>the IDE of RStudio</strong>. Both can be installed, for free, from the company that maintains them, <a href="https://posit.co/download/rstudio-desktop/">Posit</a>. From there you will then need to select your operating system (Windows or Mac).</p>
-<div class="inline-figure"><img src="Images/Installing%20RStudio.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/Installing%20RStudio.png" width="100%" style="display: block; margin: auto;"></div>
 <div align="center">
 <a href="https://posit.co/download/rstudio-desktop/">Click here for the Posit R and RStudio download page</a>
 </div>
@@ -88,7 +89,7 @@
 <span class="header-section-number">3.2</span> Opening RStudio for the first time<a class="anchor" aria-label="anchor" href="#opening-rstudio-for-the-first-time"><i class="fas fa-link"></i></a>
 </h2>
 <p>When you first open RStudio you should be greeted by a page that looks like this:</p>
-<div class="inline-figure"><img src="Images/IDE%20screenshot1.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/IDE%20screenshot1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>If not double check that it is RStudio that you are opening and not just R in a text editor.</p>
 <p>First thing I suggest you do is click <strong>File</strong> <code>-&gt;</code> <strong>New File</strong> <code>-&gt;</code> <strong>R Script</strong>. This will show you the normal view you will get when working in R.
 Here you have four segments to your screen:</p>
@@ -99,12 +100,12 @@ Here you have four segments to your screen:</p>
 <li>An area that shows you any functions and objects you create (Top right).</li>
 <li>An area that shows you any of the fancy figures you create, also somewhere that you can navigate your files from (Bottom right).</li>
 </ol>
-<div class="inline-figure"><img src="Images/IDE%20screenshot2.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/IDE%20screenshot2.png" width="100%" style="display: block; margin: auto;"></div>
 <p>You’ll become intimately aware of what each of these areas do over the course of this module but if you want a overview of these sections now <a href="https://posit.co/resources/videos/programming-part-1-writing-code-in-rstudio/">this video</a> give a good introduction to each section (I recommend watching from around 5mins 45sec).</p>
 <p>Finally, for the basic set up, it is very important to look cool while doing your analysis in R. To change the basic appearance:</p>
 <p>Click <strong>Tools</strong> <code>-&gt;</code> <strong>Global Options</strong> <code>-&gt;</code> <strong>Appearance</strong>.</p>
 <p>I like the Editor Theme <em>Vibrant Ink</em>. It makes me feel like I'm a hacker from the 90's. Also, if you're getting old like me you may want to make use of <strong>View</strong> <code>-&gt;</code> <strong>Zoom in</strong> option to increase the size of the text.</p>
-<div class="inline-figure"><img src="Images/IDE%20screenshot3.PNG" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/IDE%20screenshot3.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Stressed yet? Don't worry, we'll have your screen looking like this in no time. There is a learning curve for R but once things start to click you'll love it!</p>
 </div>
 <div id="packages" class="section level2" number="3.3">
@@ -320,7 +321,7 @@ window.onload = function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>NS7154 R Workbook</strong>" was written by Dr Richard Clarke. It was last built on 2023-08-12.</p>
+    <p>"<strong>NS7154 R Handbook</strong>" was written by Richard Clarke. It was last built on 11/08/2023.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -328,6 +329,34 @@ window.onload = function() {
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

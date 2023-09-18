@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 10 Week 7 - Multiple Regression | NS7154 R Handbook</title>
+<meta name="author" content="Richard Clarke">
+<meta name="description" content="The aim of this week is to get you used to constructing multiple regression models and running statistical assumption checks in R. By this point in the semester I should have covered the theory of...">
+<meta name="generator" content="bookdown 0.35 with bs4_book()">
+<meta property="og:title" content="Chapter 10 Week 7 - Multiple Regression | NS7154 R Handbook">
+<meta property="og:type" content="book">
+<meta property="og:description" content="The aim of this week is to get you used to constructing multiple regression models and running statistical assumption checks in R. By this point in the semester I should have covered the theory of...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 10 Week 7 - Multiple Regression | NS7154 R Handbook">
+<meta name="twitter:description" content="The aim of this week is to get you used to constructing multiple regression models and running statistical assumption checks in R. By this point in the semester I should have covered the theory of...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="www/webex.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">NS7154 R Handbook</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Welcome</a></li>
+<li><a class="" href="week-1---why-learn-r.html"><span class="header-section-number">2</span> Week 1 - Why learn R?</a></li>
+<li><a class="" href="week-1---getting-started.html"><span class="header-section-number">3</span> Week 1 - Getting started</a></li>
+<li><a class="" href="week-1---writing-and-running-your-first-code.html"><span class="header-section-number">4</span> Week 1 - Writing and running your first code</a></li>
+<li><a class="" href="week-2---basic-visualisation.html"><span class="header-section-number">5</span> Week 2 - Basic visualisation</a></li>
+<li><a class="" href="week-3---working-with-data-files.html"><span class="header-section-number">6</span> Week 3 - Working with data files</a></li>
+<li><a class="" href="week-4---working-with-catagorical-variables.html"><span class="header-section-number">7</span> Week 4 - Working with catagorical variables</a></li>
+<li><a class="" href="week-5---simple-linear-regression.html"><span class="header-section-number">8</span> Week 5 - Simple Linear Regression</a></li>
+<li><a class="" href="week-6---catch-up-week.html"><span class="header-section-number">9</span> Week 6 - Catch up week</a></li>
+<li><a class="active" href="week-7---multiple-regression.html"><span class="header-section-number">10</span> Week 7 - Multiple Regression</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-7---multiple-regression" class="section level1" number="10">
+<h1>
+<span class="header-section-number">10</span> Week 7 - Multiple Regression<a class="anchor" aria-label="anchor" href="#week-7---multiple-regression"><i class="fas fa-link"></i></a>
+</h1>
+<p>The aim of this week is to get you used to constructing multiple regression models and running statistical assumption checks in R. By this point in the semester I should have covered the theory of regression analysis in NS7151 using JASP (<a href="https://richclarkepsy.github.io/NS5108/">click here for a recap</a>). And if I know me, in that session I likely got frustrated with some of the limitations of JASP as a program, especially around regression analysis. As such, this week is an opportunity to introduce you to some of the extra functionality of R that make it the clear choice for running regression analysis.</p>
+<p>Running a multiple regression in R is actually very easy, it's only a couple of lines of very simple code. So we'll also add in some data wrangling to give you a more realistic experience of what real world data analysis might look like.</p>
+<p>This week instead of replicating the findings of a published paper we will be using a open access large survey similar to that of your assignment data. This time the 2011 Health Survey for England. The <em>User Guide</em> for the data and the raw data itself can be found in this weeks folder on Moodle.</p>
+<div id="required-packages" class="section level2" number="10.1">
+<h2>
+<span class="header-section-number">10.1</span> Required Packages<a class="anchor" aria-label="anchor" href="#required-packages"><i class="fas fa-link"></i></a>
+</h2>
+<p>Here are the packages that you'll need for this week. The <code>broom</code> package is likely new to you so you'll need to install it first.</p>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://strengejacke.github.io/sjPlot/">sjPlot</a></span><span class="op">)</span> <span class="co"># for the correlation plots and presenting the regression model in a table</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span> <span class="co"># makes it easier to work with model data</span></span></code></pre></div>
+</div>
+<div id="importing-and-cleaning-the-data" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> Importing and cleaning the data<a class="anchor" aria-label="anchor" href="#importing-and-cleaning-the-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>If you have the data file in a folder set to your working directory and you have loaded the packages, the following code will import the raw data into R.</p>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">raw_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"hse2011.csv"</span><span class="op">)</span></span></code></pre></div>
+<p>For this exercise we are going to try and predict <em>Body Mass Index</em> (BMI) using age, alcohol consumption, fruits &amp; veg consumption, and smoking behaviour.</p>
+<p>Rather than work with the whole dataset, I often find that it's easier to select out just the variables we want to use in the analysis. In our case we want variables related to BMI, alcohol, age, fruits &amp; veg, and smoking.</p>
+<p>See if you can find some of the variables that we might be able to use for this analysis. You will need to cross reference the variable names in the dataset with these topics in the <em>User Guide</em>. Where possible select continuous variables.</p>
+<p>The following code selects out your chosen variables (when you replace the <code>?</code> with your chosen variables). The code goes on to deal with the missing data and filters the data so that we only have participants with complete data for these variables.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="week-7---multiple-regression.html#cb93-1" aria-hidden="true" tabindex="-1"></a>data_cleaned <span class="ot">&lt;-</span> raw_data <span class="sc">%&gt;%</span></span>
+<span id="cb93-2"><a href="week-7---multiple-regression.html#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(?) <span class="sc">%&gt;%</span></span>
+<span id="cb93-3"><a href="week-7---multiple-regression.html#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">replace</span>(., . <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">9</span>, <span class="sc">-</span><span class="dv">10</span>), <span class="cn">NA</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb93-4"><a href="week-7---multiple-regression.html#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="sc">!</span><span class="fu">is.na</span>(.)))</span></code></pre></div>
+<p>Did you hit an error when running the code? See if you can figure out why and see if you can get to the point where we have all the variables we need for our analysis.</p>
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<p>The <em>User Guide</em> says that one of our variables is in the dataset, but it's not there.</p>
+<p>Can we calculate it through another means?</p>
+</div>
+<div class="webex-solution">
+<button>
+Hint2
+</button>
+<p>BMI is missing, but we have weight and height. Here is the formula for calculating BMI:</p>
+<p><span class="math display">\[
+\text{BMI} = \frac{\text{Weight in kg}}{(\text{Height in m})^2}
+\]</span></p>
+</div>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<p>There are likely a few ways you could solve this issue, this is how I did it:</p>
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_cleaned</span> <span class="op">&lt;-</span> <span class="va">raw_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">htval</span>, <span class="va">wtval</span>, <span class="va">totalwu</span>, <span class="va">porfv</span>, <span class="va">Age</span>, <span class="va">cigst1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/replace.html">replace</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">.</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">8</span>, <span class="op">-</span><span class="fl">9</span>, <span class="op">-</span><span class="fl">10</span><span class="op">)</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>, <span class="op">~</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">data_cleaned</span> <span class="op">&lt;-</span> <span class="va">data_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>height_m <span class="op">=</span> <span class="va">htval</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bmi <span class="op">=</span> <span class="va">wtval</span><span class="op">/</span><span class="op">(</span><span class="va">height_m</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>The last bit of cleaning for this dataset is to convert the smoking variable into a binary variable. This will make the interpretation of it in the model a great deal easier at this stage. According to the User Guide the coding of <code>cigst1</code> is as follows:</p>
+<ul>
+<li>1 = Never smoked cigarettes at all</li>
+<li>2 = Used to smoke cigarettes occasionally</li>
+<li>3 = Used to smoke cigarettes regularly</li>
+<li>4 = Currently cigarette smoker</li>
+</ul>
+<p>I suggest recoding this variable so that the first two categories are <strong>low</strong> usage and categories 3 and 4 are <strong>high</strong> usage.</p>
+<p>Also, we can create a categorical variable derived from the newly constructed BMI variable, based on the different levels of BMI.</p>
+<p>Find out the category boundaries for BMI from the literature and replace the <code>?</code> in the code below.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="week-7---multiple-regression.html#cb95-1" aria-hidden="true" tabindex="-1"></a>data_cleaned <span class="ot">&lt;-</span> data_cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb95-2"><a href="week-7---multiple-regression.html#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cig_binary =</span> <span class="fu">recode</span>(cigst1, </span>
+<span id="cb95-3"><a href="week-7---multiple-regression.html#cb95-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"Low"</span>,</span>
+<span id="cb95-4"><a href="week-7---multiple-regression.html#cb95-4" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"2"</span> <span class="ot">=</span> <span class="st">"Low"</span>,</span>
+<span id="cb95-5"><a href="week-7---multiple-regression.html#cb95-5" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"3"</span> <span class="ot">=</span> <span class="st">"High"</span>,</span>
+<span id="cb95-6"><a href="week-7---multiple-regression.html#cb95-6" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"4"</span> <span class="ot">=</span> <span class="st">"High"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb95-7"><a href="week-7---multiple-regression.html#cb95-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">bmi_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb95-8"><a href="week-7---multiple-regression.html#cb95-8" aria-hidden="true" tabindex="-1"></a>      bmi <span class="sc">&lt;</span> ? <span class="sc">~</span> <span class="st">"?"</span>,</span>
+<span id="cb95-9"><a href="week-7---multiple-regression.html#cb95-9" aria-hidden="true" tabindex="-1"></a>      bmi <span class="sc">&gt;=</span> ? <span class="sc">&amp;</span> bmi <span class="sc">&lt;</span> ? <span class="sc">~</span> <span class="st">"?"</span>,</span>
+<span id="cb95-10"><a href="week-7---multiple-regression.html#cb95-10" aria-hidden="true" tabindex="-1"></a>      bmi <span class="sc">&gt;=</span> ? <span class="sc">&amp;</span> bmi <span class="sc">&lt;</span> ? <span class="sc">~</span> <span class="st">"?"</span>,</span>
+<span id="cb95-11"><a href="week-7---multiple-regression.html#cb95-11" aria-hidden="true" tabindex="-1"></a>      bmi <span class="sc">&gt;=</span> ? <span class="sc">&amp;</span> bmi <span class="sc">&lt;</span> ? <span class="sc">~</span><span class="st">"?"</span></span>
+<span id="cb95-12"><a href="week-7---multiple-regression.html#cb95-12" aria-hidden="true" tabindex="-1"></a>      bmi <span class="sc">&gt;=</span> ? <span class="sc">~</span> <span class="st">"?"</span>))</span></code></pre></div>
+</div>
+<div id="visualising-our-data" class="section level2" number="10.3">
+<h2>
+<span class="header-section-number">10.3</span> Visualising our data<a class="anchor" aria-label="anchor" href="#visualising-our-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>As usual, it's always a good idea to do a visual inspection of our data. Let's start with our DV. There's two ways that I can think of visualising this data. First is a histogram</p>
+<div class="inline-figure"><img src="Images/regression%20image%201.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="webex-solution">
+<button>
+Click for code
+</button>
+<p>I decided to just use three of our BMI categories to demonstrate the most salient weight groups. Each were added manually with a coloured line and coloured text, that I placed in an empty part of the figure. As usual there's probably a more efficient way to do this but this is the way that makes sense to me, and it also makes it easier to adapt if I need this code at a later date.</p>
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bmi</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">30</span>, alpha <span class="op">=</span> <span class="fl">0.7</span>, fill <span class="op">=</span> <span class="st">"darkgreen"</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">18.5</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"blue"</span>, </span>
+<span>             linetype <span class="op">=</span> <span class="st">"dashed"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">30</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"orange"</span>, </span>
+<span>             linetype <span class="op">=</span> <span class="st">"dashed"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">40</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span>, </span>
+<span>             linetype <span class="op">=</span> <span class="st">"dashed"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">50</span>, y <span class="op">=</span> <span class="fl">900</span>, </span>
+<span>           label <span class="op">=</span> <span class="st">"Underweight"</span>, hjust <span class="op">=</span> <span class="fl">0</span>, vjust <span class="op">=</span> <span class="fl">1</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">50</span>, y <span class="op">=</span> <span class="fl">800</span>, </span>
+<span>           label <span class="op">=</span> <span class="st">"Obese"</span>, hjust <span class="op">=</span> <span class="fl">0</span>, vjust <span class="op">=</span> <span class="fl">1</span>, color <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">50</span>, y <span class="op">=</span> <span class="fl">700</span>, </span>
+<span>           label <span class="op">=</span> <span class="st">"Severely obese"</span>, hjust <span class="op">=</span> <span class="fl">0</span>, vjust <span class="op">=</span> <span class="fl">1</span>, color <span class="op">=</span> <span class="st">"Red"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 1: Distribution of BMI in the Sample"</span>,</span>
+<span>       x <span class="op">=</span> <span class="st">"Body Mass Index (BMI)"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Frequency"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>Another way we could visualise this variable is in the same way that we visualised the blood pressure data in week 4. See if you can adapt that code to make the following figure (or something close to it).</p>
+<div class="inline-figure"><img src="Images/regression%20image%202.png" width="100%" style="display: block; margin: auto;"></div>
+<p>The figure certainly looks pretty, but perhaps it's not overly informative.</p>
+<p>We should also check the predictor variables as well. As they are all continuous variables we can create the plots for these all together just as we did in week 5 with the piviot and facet_wrap.</p>
+<div class="inline-figure"><img src="Images/regression%20image%203.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="webex-solution">
+<button>
+Click for code
+</button>
+<p>You can of course run these as three separate histograms if you find it easier.</p>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">totalwu</span>, <span class="va">Age</span>, <span class="va">porfv</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>Alcohol <span class="op">=</span> <span class="va">totalwu</span>,</span>
+<span>         `Fruit&amp;Veg` <span class="op">=</span> <span class="va">porfv</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Alcohol</span>, <span class="va">Age</span>, <span class="va">`Fruit&amp;Veg`</span><span class="op">)</span>,</span>
+<span>               names_to <span class="op">=</span> <span class="st">"Variable"</span>,</span>
+<span>               values_to <span class="op">=</span> <span class="st">"Value"</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">Value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"darkred"</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">Variable</span>, scale <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 3: Histograms of continuious predictor variables"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Frequency"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>It looks like the alcohol and fruit &amp; veg variables are both right skewed. This is not necessary a violation of our statistical assumption for regression models, but we very likely have some outliers. We could consider removing these if our statistical assumptions for the model <em>are</em> violated.</p>
+</div>
+<div id="fitting-the-multiple-regression-model" class="section level2" number="10.4">
+<h2>
+<span class="header-section-number">10.4</span> Fitting the multiple regression model<a class="anchor" aria-label="anchor" href="#fitting-the-multiple-regression-model"><i class="fas fa-link"></i></a>
+</h2>
+<p>As I mentioned up top, fitting a regression model in R is very simple. Here is the code for our model first model that predicts BMI using alcohol consumption, age, portions of fruit and veg and smoking behaviour:</p>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">bmi</span> <span class="op">~</span> <span class="va">totalwu</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">porfv</span> <span class="op">+</span> <span class="va">cig_binary</span>, data <span class="op">=</span> <span class="va">data_cleaned</span><span class="op">)</span></span></code></pre></div>
+<p>It uses the <code>lm</code> function which in this context stands for <em>linear model</em>. We add the <code>bmi</code> variable as our dependent variable, and each variable after the <code>~</code> are our predictor variables. It is then important to include the <code>data =</code> argument as, sadly, we can't pipe the data in as we often do. Also, this needs to go at the end of the expression rather than the beginning (an aspect that often trips me up).</p>
+<p>The <code>lm</code> function creates a <strong>list object</strong> (instead of a dataframe or tibble as you're often used to seeing). These are not easy to read (click on the <code>model</code> object you have just created to see for yourself). So instead, to get the results of the model you can run the following to print the results in the console:</p>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<p>Or, if you have the <code>broom</code> package loaded you can add the tidy function to the model expression to store the model as a tibble.</p>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
+<span><span class="va">model_tibble</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">bmi</span> <span class="op">~</span> <span class="va">totalwu</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">porfv</span> <span class="op">+</span> <span class="va">cig_binary</span>, data <span class="op">=</span> <span class="va">data_cleaned</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Both of these ways of presenting our model are of course very ugly and won't do for communicating our findings. The <code>sjPlots</code> package is the best package that I've found for putting our regression findings into APA style tables. Make sure the package is loaded and run the following to get the results in a nice table, fit for exporting.</p>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://strengejacke.github.io/sjPlot/">sjPlot</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/tab_model.html">tab_model</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<p>As with most functions there are some arguments we can use to improve this table somewhat. Here is the code for the final table.</p>
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/tab_model.html">tab_model</a></span><span class="op">(</span><span class="va">model</span>,</span>
+<span>          pred.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"(Intercept)"</span>, </span>
+<span>                          <span class="st">"Alcohol"</span>,</span>
+<span>                          <span class="st">"Age"</span>,</span>
+<span>                          <span class="st">"Portions of Fruit &amp; Veg"</span>,</span>
+<span>                          <span class="st">"Smoker(ref=high)"</span><span class="op">)</span>,</span>
+<span>          dv.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"BMI"</span><span class="op">)</span>,</span>
+<span>          string.est <span class="op">=</span> <span class="st">"B"</span>,</span>
+<span>          title <span class="op">=</span> <span class="st">"Table 1. Predictors of BMI (Model 1)"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="Images/regression%20image%204.png" width="100%" style="display: block; margin: auto;"></div>
+</div>
+<div id="how-to-read-a-regression-model" class="section level2" number="10.5">
+<h2>
+<span class="header-section-number">10.5</span> How to read a regression model<a class="anchor" aria-label="anchor" href="#how-to-read-a-regression-model"><i class="fas fa-link"></i></a>
+</h2>
+<p>Make sure to check back to my <a href="https://richclarkepsy.github.io/NS5108/multiple-regression.html">NS7151 content</a> for a full explanation of how to interpret a regression analysis, however, here are the main takeaways:</p>
+<p><strong>R-Squared and Adjusted R-Squared</strong>:
+The <span class="math inline">\(R^2\)</span> value in our model is 0.031, indicating that 3.1% of the variance in BMI is explained by our predictors. It's essential to look at the adjusted <span class="math inline">\(R^2\)</span> for multiple regression, which penalises the model for including non-useful predictors.</p>
+<p><strong>Estimates (Coefficients)</strong>:</p>
+<p>Continuous Variables - The coefficient for Age is 0.051. This means that for each additional year of life, BMI is expected to increase by 0.051 points, assuming all other variables are held constant.</p>
+<p>Categorical Variables - The coefficient for <code>cig_binary</code> is -0.22. Having 'low' cigarette usage is associated with a 0.22-point decrease in BMI compared to having 'high' usage. This interpretation can also be flipped given the negative sign.</p>
+<p>Just to be on the safe side it might make sense for us to change the reference category for this variable, rather than remembering to flip the sign during the write up. This amendment only changes the interpretation of the model and not this fit. We can do that with the following code:</p>
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_cleaned</span><span class="op">$</span><span class="va">cig_binary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">data_cleaned</span><span class="op">$</span><span class="va">cig_binary</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">data_cleaned</span><span class="op">$</span><span class="va">cig_binary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="va">data_cleaned</span><span class="op">$</span><span class="va">cig_binary</span>, ref <span class="op">=</span> <span class="st">"Low"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">bmi</span> <span class="op">~</span> <span class="va">totalwu</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">porfv</span> <span class="op">+</span> <span class="va">cig_binary</span>, data <span class="op">=</span> <span class="va">data_cleaned</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Confidence Intervals</strong>:
+A 95% Confidence Interval (CI) gives us a range in which we can be 95% confident that the population parameter lies. Narrower CIs indicate more reliable estimates. If the CI for a coefficient does not include zero, it's generally considered statistically significant.</p>
+<p><strong>P-Value</strong>:
+The p-value indicates the probability that the observed effect occurred by chance if there were actually no effect. A p-value less than 0.05 is generally considered statistically significant, although this threshold can vary.</p>
+<p><strong>Standard Error</strong>:
+Standard error measures the amount of variability in the estimate for the coefficient. Lower standard error values imply more precise estimates.</p>
+<div id="regression-equation" class="section level3" number="10.5.1">
+<h3>
+<span class="header-section-number">10.5.1</span> Regression Equation<a class="anchor" aria-label="anchor" href="#regression-equation"><i class="fas fa-link"></i></a>
+</h3>
+<p>To summarise the linear model fitted to predict <code>bmi</code>, the regression equation is as follows:</p>
+<p><span class="math display">\[
+\text{BMI} = 25.29 + 0.05 \times \text{Age} - 0.05 \times \text{PorFV} + \epsilon
+\]</span></p>
+</div>
+</div>
+<div id="statistical-assumption-checks" class="section level2" number="10.6">
+<h2>
+<span class="header-section-number">10.6</span> Statistical assumption checks<a class="anchor" aria-label="anchor" href="#statistical-assumption-checks"><i class="fas fa-link"></i></a>
+</h2>
+<p>I wanted to explain the above modelling aspect prior to this section on statistical assumption checks (as its likely the main reason why you're here), but in reality these assumption checks either take place prior to, or during, the model fitting process. The assumptions we'll check for this example are as followed:</p>
+<p><strong>- Linearity</strong>: Predictor variables should have a linear relationship with the dependent variable.</p>
+<p><strong>- Multicollinearity</strong>: Predictor variables should not share particularly strong relationships with each other.</p>
+<p><strong>- Normality of residuals</strong>: The residuals—the difference between the observed and predicted values—should be approximately normally distributed.</p>
+<p><strong>- Homoscedasticity</strong>: The data should be homoscedastic, meaning the variance of the errors should remain constant across levels of the independent variable(s).</p>
+<p>More assumptions exist, but this should be sufficient for this level of your study.</p>
+<div id="linear-relationship-with-the-dv" class="section level3" number="10.6.1">
+<h3>
+<span class="header-section-number">10.6.1</span> Linear relationship with the DV<a class="anchor" aria-label="anchor" href="#linear-relationship-with-the-dv"><i class="fas fa-link"></i></a>
+</h3>
+<p>To check to see if we have a linear relationship with the DV we can use our <code>pivot_longer</code> trick to run all three scatter plots simultaneously for the three continuous variables in our model.</p>
+<p>Take and adapt the histogram code from above and try to make the image below for yourself.</p>
+<div class="inline-figure"><img src="Images/regression%20image%205.png" width="100%" style="display: block; margin: auto;"></div>
+<p>For Age we have evidence of a nice liner trend with BMI. For the Alcohol and Fruit&amp;Veg it is hard to tell. This is perhaps and argument to check again later if we decide to remove those outliers.</p>
+</div>
+<div id="check-for-multicollinearity" class="section level3" number="10.6.2">
+<h3>
+<span class="header-section-number">10.6.2</span> Check for Multicollinearity<a class="anchor" aria-label="anchor" href="#check-for-multicollinearity"><i class="fas fa-link"></i></a>
+</h3>
+<p>Next, we need to check the relationships between our predictor variables. Here we are looking for the correlation coefficient of each relationship to be no more than around r = 0.7.</p>
+<p>Adapt the code from week 5 to make the following correlation matrix and correlation plot.</p>
+<div class="inline-figure"><img src="Images/regression%20image%206.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/regression%20image%207.png" width="100%" style="display: block; margin: auto;"></div>
+<p>This looks good to me. The greatest magnitude correlation coefficient between our predictor variables is that of <em>Age</em> and <em>Portions of fruit &amp; Veg</em> at r = 0.086. Far below our multicollinearity cut off of 0.7. Next week I'll show you another check (VIF) which is more intuitive for use with categorical variables.</p>
+</div>
+<div id="check-the-residuals-normality" class="section level3" number="10.6.3">
+<h3>
+<span class="header-section-number">10.6.3</span> Check the residuals (normality)<a class="anchor" aria-label="anchor" href="#check-the-residuals-normality"><i class="fas fa-link"></i></a>
+</h3>
+<p>Our normality check for regression is not the normality of the continuous variables themselves but the residuals of the model. For a reminder on residuals see the content I shared with you in NS7151(<a href="https://richclarkepsy.github.io/NS5108/statistical-assumption-checks-for-multiple-regression.html#checks-of-residuals">Link</a>).</p>
+<p>Unlike when using JASP, in R we can extract the residuals and fitted values from our model. Which we can then use to manually create the assumption check visualisations. The code below extracts these values from the model I have created.</p>
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">residuals_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>model_residuals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>                          model_fitted_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Once the residuals are extracted from the model it's just a matter of running a histogram. In the image below I've run this and added a normal distribution curve to compare our distribution to, and a bar along the bottom to show where some of our harder to spot data points are.</p>
+<div class="inline-figure"><img src="Images/regression%20image%208.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="webex-solution">
+<button>
+Click for code
+</button>
+<p>By adding <code>aes(y = ..density..</code> to <code>geom_histogram</code> and the <code>stat_function</code> expression we can compare our data to that of a perfect normal distribution. The <code>geom_rug</code> is a handy addition that allows us to see where the data points are on plots where were dealing with a lot of data.</p>
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">residuals_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">model_residuals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">..density..</span><span class="op">)</span>, bins <span class="op">=</span> <span class="fl">50</span>, colour <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">stat_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dnorm</span>, </span>
+<span>                args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">residuals_data</span><span class="op">$</span><span class="va">model_residuals</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>                                         sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">residuals_data</span><span class="op">$</span><span class="va">model_residuals</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>                colour <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">1.5</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html">geom_rug</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Figure 5. Histogram of Residuals (model 1)"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Residuals"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Density"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="check-for-homoscedasticity" class="section level3" number="10.6.4">
+<h3>
+<span class="header-section-number">10.6.4</span> Check for homoscedasticity<a class="anchor" aria-label="anchor" href="#check-for-homoscedasticity"><i class="fas fa-link"></i></a>
+</h3>
+<p>Homoscedasticity implies that the variance of the error terms (the residuals) is constant across the independent variables. In other words, the "spread" of the residuals should remain consistent as the fitted value changes. Violations of this assumption, known as heteroscedasticity, can lead to inefficient parameter estimates and unreliable significance tests.</p>
+<p>To visually inspect for homoscedasticity, we often use a plot of residuals against the fitted values (values that your model predicts). A "well-behaved" plot would show a random scattering of points, which would indicate heteroscedasticity.</p>
+<p>A smooth fitted line of best fit (a <code>loess</code> curve) should be a flat line at zero.</p>
+<p>Below is the R code that generates such a plot:</p>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">residuals_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">model_fitted_values</span>, y <span class="op">=</span> <span class="va">model_residuals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"loess"</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, colour <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Residuals vs Fitted Values"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Fitted Values"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Residuals"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>And hmmm, it looks like we have an issue here. That's a pain, it's likely caused by our outlines so it's probably worth conducting a <em>sensitivity analysis</em>.</p>
+</div>
+</div>
+<div id="sensitivity-analysis" class="section level2" number="10.7">
+<h2>
+<span class="header-section-number">10.7</span> Sensitivity analysis<a class="anchor" aria-label="anchor" href="#sensitivity-analysis"><i class="fas fa-link"></i></a>
+</h2>
+<p>Sensitivity analysis is a technique employed to assess how robust your model's results are to changes in data or assumptions. In the context of regression modelling, it often involves running multiple versions of the same model to see how certain modifications affect the outcomes. As with our current analysis we have run the model with outliers included, now lets run it again with outliers removed.</p>
+<p>The following code calculates the outliers based on the upper and lower quartile + or - 1.5 time the interquartile range. Here is an explanation of this technique (<a href="https://www.scribbr.co.uk/stats/statistical-outliers/">Link</a>), we also used this briefly with labelling out outliers in a boxplot in week 2.</p>
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sensitivity_model_data</span> <span class="op">&lt;-</span> <span class="va">data_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>iqr_totalwu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">totalwu</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>         iqr_porfv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">porfv</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>         upper_totalwu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">totalwu</span>, <span class="fl">0.75</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> <span class="va">iqr_totalwu</span>,</span>
+<span>         lower_totalwu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">totalwu</span>, <span class="fl">0.25</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> <span class="va">iqr_totalwu</span>,</span>
+<span>         upper_porfv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">porfv</span>, <span class="fl">0.75</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> <span class="va">iqr_porfv</span>,</span>
+<span>         lower_porfv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">porfv</span>, <span class="fl">0.25</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> <span class="va">iqr_porfv</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">totalwu</span> <span class="op">&lt;</span> <span class="va">upper_totalwu</span> <span class="op">&amp;</span> <span class="va">totalwu</span> <span class="op">&gt;</span> <span class="va">lower_totalwu</span>,</span>
+<span>         <span class="va">porfv</span> <span class="op">&lt;</span> <span class="va">upper_porfv</span> <span class="op">&amp;</span> <span class="va">porfv</span> <span class="op">&gt;</span> <span class="va">lower_porfv</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">totalwu</span>, <span class="va">Age</span>, <span class="va">porfv</span>, <span class="va">cig_binary</span>, <span class="va">bmi</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="test-yourself-exercise-1-1" class="section level2" number="10.8">
+<h2>
+<span class="header-section-number">10.8</span> Test yourself Exercise 1<a class="anchor" aria-label="anchor" href="#test-yourself-exercise-1-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>Run the model and the assumption checks again for the <code>sensitivity_model_data</code>. If you name your model <code>sensitivity_model</code> then the below code will allow you to combine both of the models together into the same table. Don't forget to also change the reference category for the smoking variable (or at least keep them consistant across the models).</p>
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/tab_model.html">tab_model</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">sensitivity_model</span>,</span>
+<span>          pred.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"(Intercept)"</span>, </span>
+<span>                          <span class="st">"Alcohol"</span>,</span>
+<span>                          <span class="st">"Age"</span>,</span>
+<span>                          <span class="st">"Portions of Fruit &amp; Veg"</span>,</span>
+<span>                          <span class="st">"Smoker(ref=Low)"</span><span class="op">)</span>,</span>
+<span>          dv.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Model"</span>, <span class="st">"Sensitivity model"</span><span class="op">)</span>,</span>
+<span>          string.est <span class="op">=</span> <span class="st">"B"</span>,</span>
+<span>          title <span class="op">=</span> <span class="st">"Table 3. Predictors of BMI (Model &amp; Sensitivity model)"</span><span class="op">)</span></span></code></pre></div>
+<div id="what-does-the-sensitivity-analysis-tell-us" class="section level3" number="10.8.1">
+<h3>
+<span class="header-section-number">10.8.1</span> What does the sensitivity analysis tell us?<a class="anchor" aria-label="anchor" href="#what-does-the-sensitivity-analysis-tell-us"><i class="fas fa-link"></i></a>
+</h3>
+<div id="sensitivity-assumption-checks" class="section level4" number="10.8.1.1">
+<h4>
+<span class="header-section-number">10.8.1.1</span> Sensitivity assumption checks<a class="anchor" aria-label="anchor" href="#sensitivity-assumption-checks"><i class="fas fa-link"></i></a>
+</h4>
+<p>From your assumption checks on the sensitivity analysis data, you might have noticed a slight difference in the homoscedasticity plot, but the data still violates the assumption (in my opinion).</p>
+<p>If you ran the histograms again you will have seen that the alcohol variable is still right skewed. At this point in the analysis I took the log of the alcohol variable, to see if that solves the issue. It didn't and anyway this would in-turn make it harder to in interpret the findings so perhaps the two models we have might be the best we can do with this data.</p>
+<p>If I we're to continue this research, I would also want to read further into the alcohol research literature and see how they most often use such a variable. There is often added complexity with asking people about alcohol consumption. <code>0</code> alcohol intake can be explained by a respondent being under 18, a non-drinker adult, or an ex-alcoholic that now abstains, all of which are likely to differ greatly in other related health statuses.</p>
+<p>Either way it is important to report this violation and present both models so that the reader can make their own interpretation.</p>
+</div>
+<div id="sensitivity-model-results" class="section level4" number="10.8.1.2">
+<h4>
+<span class="header-section-number">10.8.1.2</span> Sensitivity model results<a class="anchor" aria-label="anchor" href="#sensitivity-model-results"><i class="fas fa-link"></i></a>
+</h4>
+<p>Here are the results you will hopefully end up with:</p>
+<div class="inline-figure"><img src="Images/regression%20image%209.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="webex-solution">
+<button>
+Interpretation of sensitivity results
+</button>
+<p><strong>Alcohol</strong>: for every one-point increase on the alcohol variable, BMI decreases by 0.02 points.</p>
+<p><strong>Age</strong>: for every one-year increase in age BMI increases by 0.05 points</p>
+<p><strong>Fruit &amp; Veg</strong>: for every one-point increase on the fruit &amp; veg variable, BMI decreases by -0.08 points</p>
+<p><strong>Smoking</strong>: being a high smoker (as compared to low) is associated with a 0.082 point increase in BMI</p>
+</div>
+<p>From this comparison hopefully you can see how fickle p-values can be. Just a small change in the data and the findings change completely. This is why it's important to look at effect sizes and decide for yourself what is meaningful. Personally, it seems to me that like Age is the most meaningful predictor of BMI in this model. Just see what happens to the <span class="math inline">\(R^2\)</span> value when you run the model with and without the age variable.</p>
+<p>If you're surprised by the lack of influence of any of these variables, it's worth remembering <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/296290/obesity-map-full-hi-res.pdf">just how complicated understanding the predictors of weight can be</a>.</p>
+</div>
+</div>
+</div>
+<div id="test-yourself-exercise-2-1" class="section level2" number="10.9">
+<h2>
+<span class="header-section-number">10.9</span> Test yourself exercise 2<a class="anchor" aria-label="anchor" href="#test-yourself-exercise-2-1"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li><p>Take the multiple regression exercise that I gave you to run in NS7151 and see if you can run them again in R.</p></li>
+<li><p>Do you get the same results? If not, can you work out why?</p></li>
+<li><p>Bring your code script for one of the analyses to class next week. After setting the working directory, I would like to see if we can run your code with just one click!</p></li>
+</ol>
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+  
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+  
+  var cl = this.classList
+  
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+  
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+  
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+  
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+  }
+
+  update_total_correct();
+}
+
+</script><div class="chapter-nav">
+<div class="prev"><a href="week-6---catch-up-week.html"><span class="header-section-number">9</span> Week 6 - Catch up week</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-7---multiple-regression"><span class="header-section-number">10</span> Week 7 - Multiple Regression</a></li>
+<li><a class="nav-link" href="#required-packages"><span class="header-section-number">10.1</span> Required Packages</a></li>
+<li><a class="nav-link" href="#importing-and-cleaning-the-data"><span class="header-section-number">10.2</span> Importing and cleaning the data</a></li>
+<li><a class="nav-link" href="#visualising-our-data"><span class="header-section-number">10.3</span> Visualising our data</a></li>
+<li><a class="nav-link" href="#fitting-the-multiple-regression-model"><span class="header-section-number">10.4</span> Fitting the multiple regression model</a></li>
+<li>
+<a class="nav-link" href="#how-to-read-a-regression-model"><span class="header-section-number">10.5</span> How to read a regression model</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#regression-equation"><span class="header-section-number">10.5.1</span> Regression Equation</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#statistical-assumption-checks"><span class="header-section-number">10.6</span> Statistical assumption checks</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#linear-relationship-with-the-dv"><span class="header-section-number">10.6.1</span> Linear relationship with the DV</a></li>
+<li><a class="nav-link" href="#check-for-multicollinearity"><span class="header-section-number">10.6.2</span> Check for Multicollinearity</a></li>
+<li><a class="nav-link" href="#check-the-residuals-normality"><span class="header-section-number">10.6.3</span> Check the residuals (normality)</a></li>
+<li><a class="nav-link" href="#check-for-homoscedasticity"><span class="header-section-number">10.6.4</span> Check for homoscedasticity</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#sensitivity-analysis"><span class="header-section-number">10.7</span> Sensitivity analysis</a></li>
+<li>
+<a class="nav-link" href="#test-yourself-exercise-1-1"><span class="header-section-number">10.8</span> Test yourself Exercise 1</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#what-does-the-sensitivity-analysis-tell-us"><span class="header-section-number">10.8.1</span> What does the sensitivity analysis tell us?</a></li></ul>
+</li>
+<li><a class="nav-link" href="#test-yourself-exercise-2-1"><span class="header-section-number">10.9</span> Test yourself exercise 2</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>NS7154 R Handbook</strong>" was written by Richard Clarke. It was last built on 11/08/2023.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
