@@ -90,7 +90,7 @@ The proliferation of ggplot
 <button>
 Reminder about packages
 </button>
-<p>Remember if you are using any of these packages for the first time you will need to run <code>install.packages("packagename")</code>. It is often best to run this in the console just so you're not re-installing the package each time you run your code.</p>
+<p>Remember if you are using any of these packages (e.g. <code>ggrepel</code>) for the first time you will need to run <code>install.packages("packagename")</code>. It is often best to run this in the console just so you're not re-installing the package each time you run your code.</p>
 <p>Note the quotation marks around the package name. R is quite sensitive to this sort of precision and, as such, attention to detail ends up solving most of the errors you get. Either that or just ask ChatGPT to do it for you. Both completely legitimate ways to code!</p>
 <p>If you've worked your way through the content from last week, then you'll already have <code>tidyverse</code> installed but you'll likely need to install <code>ggrepel</code>.</p>
 </div>
@@ -118,7 +118,7 @@ Click on the dataset or run <code>view(who_rawdata)</code> to take a look at the
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">who_rawdata</span><span class="op">)</span></span></code></pre></div>
 <p>From viewing the output of the above code...</p>
 <p>What is the variable name for life expectancy? <input class="webex-solveme nospaces" size="8" data-answer='["Life_exp"]'></p>
-<p>Name a variable that has letters and numbers as data. This is known as character (chr) data <input class="webex-solveme nospaces" size="9" data-answer='["Country","Continent"]'></p>
+<p>Name a variable that can have letters or numbers as data. This is known as character (chr) data <input class="webex-solveme nospaces" size="9" data-answer='["Country","Continent"]'></p>
 <p>What is the average number of years of schooling across all countries? <input class="webex-solveme nospaces" size="5" data-answer='["12.93"]'></p>
 </div>
 <div id="visualising-global-life-expectancy" class="section level2" number="5.3">
@@ -140,7 +140,7 @@ Extra details on pipes %&gt;%
 <p>You'll see the code for pipes like this <code>%&gt;%</code> through this module but this <code>|&gt;</code> also does the same job. <a href="https://www.r-bloggers.com/2021/05/the-new-r-pipe/">The difference is far too nerdy for any of us to care about</a> right now, but just know that they both do basically the same thing.</p>
 <p>For most of this book you can just adapt the code I have given you, and you'll get more used to the notation like this in time.</p>
 </div>
-<p>Each ggplot visulisation is made up of layers. You start by mapping an aesthetic (<code>aes</code>), which involves the organisation of which data goes on which axis and how data is segmented within the visualisation. Then you layer on (using a <code>+</code> sign) a geometry to combine the data with a desired visual format. The following example takes our data, <em>then</em> places life expectancy on the x-axis, and uses the histogram geometry.</p>
+<p>Each ggplot visualisation is made up of layers. You start by mapping an aesthetic (<code>aes</code>), which involves the organisation of which data goes on which axis and how data is segmented within the visualisation. Then you layer on (using a <code>+</code> sign) a geometry to combine the data with a desired visual format. The following example takes our data, <em>then</em> places life expectancy on the x-axis, and uses the histogram geometry.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">who_rawdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Life_exp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -224,7 +224,7 @@ Note about ~
 2. Add some colour.
 3. Add a title and label the x-axis.</p>
 <p>The first point is genuinely quite hard to solve and involves the two lines of code below.</p>
-<p>The first line creates a new function that can be used to identify outliers in a variable. Then, in the next line, I use the function to make a new variables where ever time the function finds an outlier in <code>Life_exp</code> it assigns the text from the <code>Country</code> variable.</p>
+<p>The first line creates a new function that can be used to identify outliers in a variable. Then, in the next line, I use the function to make a new variable where evertime the function finds an outlier in <code>Life_exp</code> it assigns the text from the <code>Country</code> variable.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">findoutlier</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">.25</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1.5</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">|</span> <span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">.75</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1.5</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
@@ -237,12 +237,14 @@ Note about ~
 <p>To add these outlines to the figure I've added a layer of text above the box plot layer.</p>
 <p>For points two and three I've selected a pre-existing colour pallet and mapped it to our <code>Continent</code> variable and I've added labels with the <code>labs</code> function.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">who_with_outliers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span> <span class="co"># you'll need to install this if you've not already done so</span></span>
+<span></span>
+<span><span class="va">who_with_outliers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Life_exp</span>, y<span class="op">=</span><span class="va">Continent</span>, fill <span class="op">=</span> <span class="va">Continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>               alpha <span class="op">=</span> <span class="fl">0.75</span>,</span>
 <span>               show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_text_repel</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label<span class="op">=</span><span class="va">outlier_LE</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label<span class="op">=</span><span class="va">outlier_LE</span><span class="op">)</span>,</span>
 <span>                  position <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>                  size <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>                  na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
@@ -308,7 +310,7 @@ Solution
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>               alpha <span class="op">=</span> <span class="fl">0.75</span>,</span>
 <span>               show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_text_repel</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label<span class="op">=</span><span class="va">outlier_BMI</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label<span class="op">=</span><span class="va">outlier_BMI</span><span class="op">)</span>,</span>
 <span>                  position <span class="op">=</span> <span class="st">"identity"</span>,</span>
 <span>                  size <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>                  na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
@@ -352,7 +354,7 @@ Solution
 <option value="">Only the dots are visable</option>
 <option value="">Only the line is visable</option>
 <option value="answer">The dots now appear ontop of the line</option>
-<option value="">Everything brakes!</option></select></p>
+<option value="">Everything breaks!</option></select></p>
 <p>There are usually multiple different ways to achieve what you want to achieve with ggplot.</p>
 <p>If you delete the bottom two lines of code, can you find a way to label the x and y-axes within the labs function?</p>
 <div class="webex-solution">
@@ -416,7 +418,7 @@ Solution
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">gapminder_data</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va">gapminder</span></span></code></pre></div>
+<span><span class="va">gapminder_data</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html">gapminder</a></span></span></code></pre></div>
 <p>By looking at the data you can likely see that there's a lot more of it this time. That's due to there also being a year variable. The code below just extracts the data for the most recent year in the dataset, 2007.</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gapminder_2007</span> <span class="op">&lt;-</span> <span class="va">gapminder_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -427,7 +429,7 @@ Solution
 <li>Create boxplots for life expectancy and GDP.</li>
 <li>Create a simple scatter plot of life expectancy and GDP.</li>
 <li>Add the continent and population size data to your scatter plot from 3.</li>
-<li>Make sure each has an appropriate title and axis labels.</li>
+<li>Make sure each has an appropriate title and axis.</li>
 </ol>
 <p>Good luck, and feel free to share what you create on our module teams area.</p>
 <hr>
