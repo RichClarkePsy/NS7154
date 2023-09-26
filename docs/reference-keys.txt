@@ -85,3 +85,15 @@ what-does-the-sensitivity-analysis-tell-us
 sensitivity-assumption-checks
 sensitivity-model-results
 test-yourself-exercise-2-1
+week-9-assignment-data-details
+read-in-the-data-and-codebook
+sample-code-fo-you-to-adapt
+dealing-with-missing-data
+checking-missing-data
+summary-of-catagorical-variables
+summary-of-numerical-variables
+converting-variable-from-character-to-numerical
+recode-a-catagorical-variable-into-different-groupings
+reverse-code-a-numerical-likert-scale
+coding-a-psychometric-scale-into-a-single-variable
+suggested-workflow
