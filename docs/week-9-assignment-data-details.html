@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 11 Week 9 Assignment data details | NS7154 handbook</title>
+<meta name="author" content="Richard Clarke">
+<meta name="description" content="This week, and for the rest of this module now, we'll be working on the Scottish Health Survey 2021 data to set you up for your chosen analysis for this modules final assessment.  11.1 Read in the...">
+<meta name="generator" content="bookdown 0.35 with bs4_book()">
+<meta property="og:title" content="Chapter 11 Week 9 Assignment data details | NS7154 handbook">
+<meta property="og:type" content="book">
+<meta property="og:description" content="This week, and for the rest of this module now, we'll be working on the Scottish Health Survey 2021 data to set you up for your chosen analysis for this modules final assessment.  11.1 Read in the...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 11 Week 9 Assignment data details | NS7154 handbook">
+<meta name="twitter:description" content="This week, and for the rest of this module now, we'll be working on the Scottish Health Survey 2021 data to set you up for your chosen analysis for this modules final assessment.  11.1 Read in the...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="www/webex.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">NS7154 handbook</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Welcome</a></li>
+<li><a class="" href="week-1---why-learn-r.html"><span class="header-section-number">2</span> Week 1 - Why learn R?</a></li>
+<li><a class="" href="week-1---getting-started.html"><span class="header-section-number">3</span> Week 1 - Getting started</a></li>
+<li><a class="" href="week-1---writing-and-running-your-first-code.html"><span class="header-section-number">4</span> Week 1 - Writing and running your first code</a></li>
+<li><a class="" href="week-2---basic-visualisation.html"><span class="header-section-number">5</span> Week 2 - Basic visualisation</a></li>
+<li><a class="" href="week-3---working-with-data-files.html"><span class="header-section-number">6</span> Week 3 - Working with data files</a></li>
+<li><a class="" href="week-4---working-with-catagorical-variables.html"><span class="header-section-number">7</span> Week 4 - Working with catagorical variables</a></li>
+<li><a class="" href="week-5---simple-linear-regression.html"><span class="header-section-number">8</span> Week 5 - Simple Linear Regression</a></li>
+<li><a class="" href="week-6---catch-up-week.html"><span class="header-section-number">9</span> Week 6 - Catch up week</a></li>
+<li><a class="" href="week-7---multiple-regression.html"><span class="header-section-number">10</span> Week 7 - Multiple Regression</a></li>
+<li><a class="active" href="week-9-assignment-data-details.html"><span class="header-section-number">11</span> Week 9 Assignment data details</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-9-assignment-data-details" class="section level1" number="11">
+<h1>
+<span class="header-section-number">11</span> Week 9 Assignment data details<a class="anchor" aria-label="anchor" href="#week-9-assignment-data-details"><i class="fas fa-link"></i></a>
+</h1>
+<p>This week, and for the rest of this module now, we'll be working on the Scottish Health Survey 2021 data to set you up for your chosen analysis for this modules final assessment.</p>
+<div id="read-in-the-data-and-codebook" class="section level2" number="11.1">
+<h2>
+<span class="header-section-number">11.1</span> Read in the data and codebook<a class="anchor" aria-label="anchor" href="#read-in-the-data-and-codebook"><i class="fas fa-link"></i></a>
+</h2>
+<p>By now I likely don't need to explain how to read data into R, but seeing as it's essential for the assignment it's probably best to go over best practices.</p>
+<p>As you'll likely be coming back to you analysis script multiple times I suggest creating a folder with three files. 1. A R script (or RMarkdown script, more on this next week), 2. the data file, 3. the codebook. It might also make good sense to include any of the pdfs related to the dataset, just so you know where to find them.</p>
+<p>Open you script file and set your working directory. You can do this by clicking <strong>Session</strong> <code>-&gt;</code> <strong>Set Working Directory</strong> <code>-&gt;</code> <strong>Choose Directory</strong> or <strong>To Source File Location</strong>. Alternatively, just to avoid doing this every time you open your script, you can do this with code with the <code>setwd</code> function. Also it makes sense to include all packages you use in your script at the top of the page.</p>
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"your_directory_path_here"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"packagename1"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"packagename2"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"packagename3"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"packagename~"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">raw_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"Suggested SHES21 Dataset.csv"</span><span class="op">)</span></span>
+<span><span class="va">codebook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"Codebook.csv"</span><span class="op">)</span></span></code></pre></div>
+<p>I have been kind and cut down of the over 2000 variables in the original dataset and given you a far more manageable 107 variables.</p>
+<p>Many of these vairable will still take some data wrangling to get into a usable format for the assignment analysis. To help you out, I've include some modifiable code chunks that you should be able to use to achieve this.</p>
+<p>The codebook document gives you a brief description of the variables (for a full account of the questions asked see the associated questionnaire materials).</p>
+<div class="webex-solution">
+<button>
+Give me all the data, I'm ready for it!
+</button>
+<p>So, you want to full experience of analysis this dataset? Excellent!</p>
+<p>The original file actually came to me in SPSS format. As such, it takes a little playing with to get it into R. The <code>haven</code> package is useful for this. I'd suggest saving file out as a csv file and then continue with the analysis from that file.</p>
+<p>There will be around 2000 variables for you to hack your way through, but perhaps you'll be able to spot some interesting variable that I missed. Some questions were only asked to children so this could be an good angle that my selection dataset does not cover.</p>
+<p>Good luck!</p>
+</div>
+</div>
+<div id="sample-code-fo-you-to-adapt" class="section level2" number="11.2">
+<h2>
+<span class="header-section-number">11.2</span> Sample code fo you to adapt<a class="anchor" aria-label="anchor" href="#sample-code-fo-you-to-adapt"><i class="fas fa-link"></i></a>
+</h2>
+<div id="dealing-with-missing-data" class="section level3" number="11.2.1">
+<h3>
+<span class="header-section-number">11.2.1</span> Dealing with missing data<a class="anchor" aria-label="anchor" href="#dealing-with-missing-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>This code should be adequate for labeling all of your missing data with real <code>NA</code>'s.</p>
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">missing_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Unclassifiable"</span>, <span class="st">"Refused"</span>, <span class="st">"Don't know"</span>, </span>
+<span>                    <span class="st">"Schedule not obtained"</span>, <span class="st">"Schedule not applicable"</span>, <span class="st">"Not applicable"</span>, <span class="st">"Reading not obtained"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">data_cleaned</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_all</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/replace.html">replace</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">.</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">missing_values</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="checking-missing-data" class="section level3" number="11.2.2">
+<h3>
+<span class="header-section-number">11.2.2</span> Checking missing data<a class="anchor" aria-label="anchor" href="#checking-missing-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code>naniar</code> package is useful for checking missing data in large data sets. Install the package and run the following code to get plots that summarise the missing data</p>
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/njtierney/naniar">naniar</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/naniar/man/gg_miss_var.html">gg_miss_var</a></span><span class="op">(</span><span class="va">cleaned_data</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://docs.ropensci.org/visdat/reference/vis_miss.html">vis_miss</a></span><span class="op">(</span><span class="va">cleaned_data</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="summary-of-catagorical-variables" class="section level3" number="11.2.3">
+<h3>
+<span class="header-section-number">11.2.3</span> Summary of catagorical variables<a class="anchor" aria-label="anchor" href="#summary-of-catagorical-variables"><i class="fas fa-link"></i></a>
+</h3>
+<p>This code summarises a single categorical variable</p>
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">variable</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="summary-of-numerical-variables" class="section level3" number="11.2.4">
+<h3>
+<span class="header-section-number">11.2.4</span> Summary of numerical variables<a class="anchor" aria-label="anchor" href="#summary-of-numerical-variables"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>average_x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="converting-variable-from-character-to-numerical" class="section level3" number="11.2.5">
+<h3>
+<span class="header-section-number">11.2.5</span> Converting variable from character to numerical<a class="anchor" aria-label="anchor" href="#converting-variable-from-character-to-numerical"><i class="fas fa-link"></i></a>
+</h3>
+<p>Due to the missing data being initially coded as words (e.g. "Unclassifiable", "Refused", etc) the date is imported as a character variable, even if the data in the variable are actually numbers. Run the code below after replacing the missing data to get your numerical variables ready for analysis.</p>
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_cleaned</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="recode-a-catagorical-variable-into-different-groupings" class="section level3" number="11.2.6">
+<h3>
+<span class="header-section-number">11.2.6</span> Recode a catagorical variable into different groupings<a class="anchor" aria-label="anchor" href="#recode-a-catagorical-variable-into-different-groupings"><i class="fas fa-link"></i></a>
+</h3>
+<p>This code takes a variable and computes a new variable based on your specification. Useful for if you want to dichotomous a catagorical variable with more than two options.</p>
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_cleaned</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>recoded_var <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>      <span class="va">original_var</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Category1"</span>,</span>
+<span>      <span class="va">original_var</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Category2"</span>,</span>
+<span>      <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Other"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="reverse-code-a-numerical-likert-scale" class="section level3" number="11.2.7">
+<h3>
+<span class="header-section-number">11.2.7</span> Reverse code a numerical likert scale<a class="anchor" aria-label="anchor" href="#reverse-code-a-numerical-likert-scale"><i class="fas fa-link"></i></a>
+</h3>
+<p>An easy way to reverse code a variable is to take the original value away from one more than the top of your scale.</p>
+<p>For example if you have a five point Likert scale. The calculation would be 6 - [each value]. And for a 7 point Likert scale it would be 8 - [each value]</p>
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data_cleaned</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>var_5_point_reversed <span class="op">=</span> <span class="fl">6</span> <span class="op">-</span> <span class="va">var_5_point</span>,</span>
+<span>         var_7_point_reversed <span class="op">=</span> <span class="fl">8</span> <span class="op">-</span> <span class="va">var_7_point</span>,</span>
+<span>         var_10_point_reversed <span class="op">=</span> <span class="fl">11</span> <span class="op">-</span> <span class="va">var_10_point</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="coding-a-psychometric-scale-into-a-single-variable" class="section level3" number="11.2.8">
+<h3>
+<span class="header-section-number">11.2.8</span> Coding a psychometric scale into a single variable<a class="anchor" aria-label="anchor" href="#coding-a-psychometric-scale-into-a-single-variable"><i class="fas fa-link"></i></a>
+</h3>
+<p>The first expression here is for use with numerical data. The second expression takes a likert scale expressed in words and converts it to numbers.</p>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">recoded_data</span> <span class="op">&lt;-</span> <span class="va">recoded_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>scale_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/c_across.html">c_across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"item1"</span>, <span class="st">"item2"</span><span class="op">)</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#note you may need to convert the variable to numerical first</span></span>
+<span></span>
+<span><span class="va">recoded_data</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>variable1 <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">variable1</span>,</span>
+<span>                           <span class="st">"Not at all"</span> <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>                           <span class="st">"No more than usual"</span> <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                           <span class="st">"Rather more than usual"</span> <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>                           <span class="st">"Much more than usual"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>variable2 <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">variable2</span>,</span>
+<span>                           <span class="st">"Not at all"</span> <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>                           <span class="st">"No more than usual"</span> <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                           <span class="st">"Rather more than usual"</span> <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>                           <span class="st">"Much more than usual"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="suggested-workflow" class="section level2" number="11.3">
+<h2>
+<span class="header-section-number">11.3</span> Suggested workflow<a class="anchor" aria-label="anchor" href="#suggested-workflow"><i class="fas fa-link"></i></a>
+</h2>
+<p>I suggest having a cleaning and wrangling script that ends with you writing your final data object as a csv file with the following code:</p>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"name for your new csv file.csv"</span><span class="op">)</span> <span class="co">#the .csv is important to  include.</span></span></code></pre></div>
+<p>Then start a fresh R script or RMarkdown file for the analysis.</p>
+
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+  
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+  
+  var cl = this.classList
+  
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+  
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+  
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+  
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+  }
+
+  update_total_correct();
+}
+
+</script><div class="chapter-nav">
+<div class="prev"><a href="week-7---multiple-regression.html"><span class="header-section-number">10</span> Week 7 - Multiple Regression</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-9-assignment-data-details"><span class="header-section-number">11</span> Week 9 Assignment data details</a></li>
+<li><a class="nav-link" href="#read-in-the-data-and-codebook"><span class="header-section-number">11.1</span> Read in the data and codebook</a></li>
+<li>
+<a class="nav-link" href="#sample-code-fo-you-to-adapt"><span class="header-section-number">11.2</span> Sample code fo you to adapt</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#dealing-with-missing-data"><span class="header-section-number">11.2.1</span> Dealing with missing data</a></li>
+<li><a class="nav-link" href="#checking-missing-data"><span class="header-section-number">11.2.2</span> Checking missing data</a></li>
+<li><a class="nav-link" href="#summary-of-catagorical-variables"><span class="header-section-number">11.2.3</span> Summary of catagorical variables</a></li>
+<li><a class="nav-link" href="#summary-of-numerical-variables"><span class="header-section-number">11.2.4</span> Summary of numerical variables</a></li>
+<li><a class="nav-link" href="#converting-variable-from-character-to-numerical"><span class="header-section-number">11.2.5</span> Converting variable from character to numerical</a></li>
+<li><a class="nav-link" href="#recode-a-catagorical-variable-into-different-groupings"><span class="header-section-number">11.2.6</span> Recode a catagorical variable into different groupings</a></li>
+<li><a class="nav-link" href="#reverse-code-a-numerical-likert-scale"><span class="header-section-number">11.2.7</span> Reverse code a numerical likert scale</a></li>
+<li><a class="nav-link" href="#coding-a-psychometric-scale-into-a-single-variable"><span class="header-section-number">11.2.8</span> Coding a psychometric scale into a single variable</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#suggested-workflow"><span class="header-section-number">11.3</span> Suggested workflow</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>NS7154 handbook</strong>" was written by Richard Clarke. It was last built on 11/08/2023.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
