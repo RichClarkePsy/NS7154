@@ -11,6 +11,7 @@ meet-your-pesonal-r-tutor-chatgpt-or-alternitive
 back-to-the-coding
 assigning-numbers-to-objects
 assigning-multiple-data-point-to-an-object
+video-walkthrough
 test-yourself-exercises
 exercise-1
 exercise-2

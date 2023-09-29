@@ -240,13 +240,21 @@ Click if you're intrested in the algebre
 <p>From this you can see that we've created a new type of object in our environment window, a Data object. It tells us how many observations there are (in this case, rows of data) and how many variables there are (in this case, columns of data). We can now view this data by clicking on it or by using the <code><a href="https://tibble.tidyverse.org/reference/view.html">view()</a></code> command.</p>
 </div>
 </div>
-<div id="test-yourself-exercises" class="section level2" number="4.5">
+<div id="video-walkthrough" class="section level2" number="4.5">
 <h2>
-<span class="header-section-number">4.5</span> Test yourself exercises<a class="anchor" aria-label="anchor" href="#test-yourself-exercises"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5</span> Video walkthrough<a class="anchor" aria-label="anchor" href="#video-walkthrough"><i class="fas fa-link"></i></a>
 </h2>
-<div id="exercise-1" class="section level3" number="4.5.1">
+<p>Here is a video of me talking through some of the basics and working through the above content:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HadpvyJ37qo?si=S0fq_6fm9NeiCYjf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+</div>
+<div id="test-yourself-exercises" class="section level2" number="4.6">
+<h2>
+<span class="header-section-number">4.6</span> Test yourself exercises<a class="anchor" aria-label="anchor" href="#test-yourself-exercises"><i class="fas fa-link"></i></a>
+</h2>
+<div id="exercise-1" class="section level3" number="4.6.1">
 <h3>
-<span class="header-section-number">4.5.1</span> Exercise 1<a class="anchor" aria-label="anchor" href="#exercise-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6.1</span> Exercise 1<a class="anchor" aria-label="anchor" href="#exercise-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Create a dataframe that contains the data from the following table:</p>
 <div class="inline-figure"><img src="Images/table%20of%20data.png" width="25%" style="display: block; margin: auto;"></div>
@@ -267,9 +275,9 @@ Solution
 <span><span class="va">testscore</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">ID</span>, <span class="va">Age</span>, <span class="va">Gender</span>, <span class="va">Score</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="exercise-2" class="section level3" number="4.5.2">
+<div id="exercise-2" class="section level3" number="4.6.2">
 <h3>
-<span class="header-section-number">4.5.2</span> Exercise 2<a class="anchor" aria-label="anchor" href="#exercise-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6.2</span> Exercise 2<a class="anchor" aria-label="anchor" href="#exercise-2"><i class="fas fa-link"></i></a>
 </h3>
 <p>Next use the <code>rnorm</code> function to generate a variable called <code>IQ</code> that includes a data point for each participant in our dataset (e.g. whatever our <code>N</code> equals). Mean should equal 100 and you can choose a realistic standard deviation.</p>
 <div class="webex-solution">
@@ -290,9 +298,9 @@ Solution
 <span><span class="va">testscore</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">ID</span>, <span class="va">Age</span>, <span class="va">Gender</span>, <span class="va">Score</span>, <span class="va">IQ</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="exercise-3" class="section level3" number="4.5.3">
+<div id="exercise-3" class="section level3" number="4.6.3">
 <h3>
-<span class="header-section-number">4.5.3</span> Exercise 3<a class="anchor" aria-label="anchor" href="#exercise-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6.3</span> Exercise 3<a class="anchor" aria-label="anchor" href="#exercise-3"><i class="fas fa-link"></i></a>
 </h3>
 <p>A cup of tea and a biscuit together cost £1.50. The cup of tea costs £1.30 more than the biscuit. How much does the biscuit cost?</p>
 <div class="webex-solution">
@@ -502,11 +510,12 @@ window.onload = function() {
 <li><a class="nav-link" href="#assigning-multiple-data-point-to-an-object"><span class="header-section-number">4.4.2</span> Assigning multiple data point to an object</a></li>
 </ul>
 </li>
+<li><a class="nav-link" href="#video-walkthrough"><span class="header-section-number">4.5</span> Video walkthrough</a></li>
 <li>
-<a class="nav-link" href="#test-yourself-exercises"><span class="header-section-number">4.5</span> Test yourself exercises</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#exercise-1"><span class="header-section-number">4.5.1</span> Exercise 1</a></li>
-<li><a class="nav-link" href="#exercise-2"><span class="header-section-number">4.5.2</span> Exercise 2</a></li>
-<li><a class="nav-link" href="#exercise-3"><span class="header-section-number">4.5.3</span> Exercise 3</a></li>
+<a class="nav-link" href="#test-yourself-exercises"><span class="header-section-number">4.6</span> Test yourself exercises</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exercise-1"><span class="header-section-number">4.6.1</span> Exercise 1</a></li>
+<li><a class="nav-link" href="#exercise-2"><span class="header-section-number">4.6.2</span> Exercise 2</a></li>
+<li><a class="nav-link" href="#exercise-3"><span class="header-section-number">4.6.3</span> Exercise 3</a></li>
 </ul>
 </li>
 </ul>
