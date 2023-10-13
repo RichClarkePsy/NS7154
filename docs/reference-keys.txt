@@ -42,6 +42,7 @@ selecting-variables-for-our-analysis
 mutating-the-sample-id-variable
 grouping-and-summarising-the-data
 recreating-the-figure
+video-walkthrough-2
 test-yourself-exercise
 week-4---working-with-catagorical-variables
 missing-data
