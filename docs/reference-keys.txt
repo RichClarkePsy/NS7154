@@ -51,6 +51,7 @@ filter-relevant-cases
 additional-tidying
 visual-representation-using-catagorical-data
 discriptive-statistics-tables-for-catagorical-data
+video-walkthrough-3
 test-yourself-exercises-1
 exercise-1-1
 exercise-2-1

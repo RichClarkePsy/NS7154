@@ -365,13 +365,21 @@ Code for making this table
 <span>                                   rows <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="test-yourself-exercises-1" class="section level2" number="7.5">
+<div id="video-walkthrough-3" class="section level2" number="7.5">
 <h2>
-<span class="header-section-number">7.5</span> Test yourself exercises:<a class="anchor" aria-label="anchor" href="#test-yourself-exercises-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.5</span> Video walkthrough<a class="anchor" aria-label="anchor" href="#video-walkthrough-3"><i class="fas fa-link"></i></a>
 </h2>
-<div id="exercise-1-1" class="section level3" number="7.5.1">
+<p>Here is a video of me talking through some of the basics and working through some of the above content:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CN5SFLMAHZw?si=bnL2cp4TSBOKz0-W" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+</div>
+<div id="test-yourself-exercises-1" class="section level2" number="7.6">
+<h2>
+<span class="header-section-number">7.6</span> Test yourself exercises:<a class="anchor" aria-label="anchor" href="#test-yourself-exercises-1"><i class="fas fa-link"></i></a>
+</h2>
+<div id="exercise-1-1" class="section level3" number="7.6.1">
 <h3>
-<span class="header-section-number">7.5.1</span> Exercise 1<a class="anchor" aria-label="anchor" href="#exercise-1-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6.1</span> Exercise 1<a class="anchor" aria-label="anchor" href="#exercise-1-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Dichotomise the <code>age</code> variable using a median split.</p>
 <div class="webex-solution">
@@ -395,9 +403,9 @@ Solution
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>age_cat <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">Age</span> <span class="op">&lt;=</span> <span class="fl">54</span>, <span class="st">"Young"</span>, <span class="st">"Old"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="exercise-2-1" class="section level3" number="7.5.2">
+<div id="exercise-2-1" class="section level3" number="7.6.2">
 <h3>
-<span class="header-section-number">7.5.2</span> Exercise 2<a class="anchor" aria-label="anchor" href="#exercise-2-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6.2</span> Exercise 2<a class="anchor" aria-label="anchor" href="#exercise-2-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Create a plot of Diastolic compared to Systolic with colour indicating either a "Old" or "Young" participant.</p>
 <div class="webex-solution">
@@ -419,9 +427,9 @@ Solution
 <span>       y <span class="op">=</span> <span class="st">"Systolic Blood Pressure"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="exercise-3-1" class="section level3" number="7.5.3">
+<div id="exercise-3-1" class="section level3" number="7.6.3">
 <h3>
-<span class="header-section-number">7.5.3</span> Exercise 3<a class="anchor" aria-label="anchor" href="#exercise-3-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6.3</span> Exercise 3<a class="anchor" aria-label="anchor" href="#exercise-3-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Create the descriptive statistics for hypertension by your new dicotomised age variable.</p>
 <div class="webex-solution">
@@ -436,9 +444,9 @@ Solution
 <span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="exercise-4" class="section level3" number="7.5.4">
+<div id="exercise-4" class="section level3" number="7.6.4">
 <h3>
-<span class="header-section-number">7.5.4</span> Exercise 4<a class="anchor" aria-label="anchor" href="#exercise-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6.4</span> Exercise 4<a class="anchor" aria-label="anchor" href="#exercise-4"><i class="fas fa-link"></i></a>
 </h3>
 <p>Create multiple age ranges i.e. &lt;18, 18 - 30, 31 - 40, 41 - 50, 51 - 60, 60+ and rerun the descriptive statistics. For this you'll need to investigate how to use the <code>case_when</code> function.</p>
 <div class="webex-solution">
@@ -463,9 +471,9 @@ Solution
 <span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="exercise-5" class="section level3" number="7.5.5">
+<div id="exercise-5" class="section level3" number="7.6.5">
 <h3>
-<span class="header-section-number">7.5.5</span> Exercise 5<a class="anchor" aria-label="anchor" href="#exercise-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6.5</span> Exercise 5<a class="anchor" aria-label="anchor" href="#exercise-5"><i class="fas fa-link"></i></a>
 </h3>
 <p>Create the count and percentages for the Scottish Index of Multiple Deprivation variable.</p>
 <div class="webex-solution">
@@ -480,9 +488,9 @@ Solution
 <span>         Percentage <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">Percentage</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="exercise-6-very-much-optional-just-for-fun" class="section level3" number="7.5.6">
+<div id="exercise-6-very-much-optional-just-for-fun" class="section level3" number="7.6.6">
 <h3>
-<span class="header-section-number">7.5.6</span> Exercise 6 (very much optional / just for fun)<a class="anchor" aria-label="anchor" href="#exercise-6-very-much-optional-just-for-fun"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6.6</span> Exercise 6 (very much optional / just for fun)<a class="anchor" aria-label="anchor" href="#exercise-6-very-much-optional-just-for-fun"><i class="fas fa-link"></i></a>
 </h3>
 <p>Create a table that includes the frequency and percentage of health and hypertensive participants for <code>Sex</code>, <code>UrbanRural</code>, <code>Age</code> <code>SIMD</code>.</p>
 <p>And if you find a quicker and easier way to do this please do let me know!</p>
@@ -784,14 +792,15 @@ window.onload = function() {
 </li>
 <li><a class="nav-link" href="#visual-representation-using-catagorical-data"><span class="header-section-number">7.3</span> Visual representation using catagorical data</a></li>
 <li><a class="nav-link" href="#discriptive-statistics-tables-for-catagorical-data"><span class="header-section-number">7.4</span> Discriptive statistics tables for catagorical data</a></li>
+<li><a class="nav-link" href="#video-walkthrough-3"><span class="header-section-number">7.5</span> Video walkthrough</a></li>
 <li>
-<a class="nav-link" href="#test-yourself-exercises-1"><span class="header-section-number">7.5</span> Test yourself exercises:</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#exercise-1-1"><span class="header-section-number">7.5.1</span> Exercise 1</a></li>
-<li><a class="nav-link" href="#exercise-2-1"><span class="header-section-number">7.5.2</span> Exercise 2</a></li>
-<li><a class="nav-link" href="#exercise-3-1"><span class="header-section-number">7.5.3</span> Exercise 3</a></li>
-<li><a class="nav-link" href="#exercise-4"><span class="header-section-number">7.5.4</span> Exercise 4</a></li>
-<li><a class="nav-link" href="#exercise-5"><span class="header-section-number">7.5.5</span> Exercise 5</a></li>
-<li><a class="nav-link" href="#exercise-6-very-much-optional-just-for-fun"><span class="header-section-number">7.5.6</span> Exercise 6 (very much optional / just for fun)</a></li>
+<a class="nav-link" href="#test-yourself-exercises-1"><span class="header-section-number">7.6</span> Test yourself exercises:</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#exercise-1-1"><span class="header-section-number">7.6.1</span> Exercise 1</a></li>
+<li><a class="nav-link" href="#exercise-2-1"><span class="header-section-number">7.6.2</span> Exercise 2</a></li>
+<li><a class="nav-link" href="#exercise-3-1"><span class="header-section-number">7.6.3</span> Exercise 3</a></li>
+<li><a class="nav-link" href="#exercise-4"><span class="header-section-number">7.6.4</span> Exercise 4</a></li>
+<li><a class="nav-link" href="#exercise-5"><span class="header-section-number">7.6.5</span> Exercise 5</a></li>
+<li><a class="nav-link" href="#exercise-6-very-much-optional-just-for-fun"><span class="header-section-number">7.6.6</span> Exercise 6 (very much optional / just for fun)</a></li>
 </ul>
 </li>
 </ul>
