@@ -65,6 +65,7 @@ replicating-kim-et-al-2017-correlational-analyses
 one-more-annoying-thing-before-we-can-actually-analyse-the-data
 correlation-matrix
 simple-regression-plots.
+video-walkthrough-4
 test-yourself-exercise-3
 week-6---catch-up-week
 psyteachr

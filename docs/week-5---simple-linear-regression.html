@@ -7,7 +7,7 @@
 <title>Chapter 8 Week 5 - Simple Linear Regression | NS7154 handbook</title>
 <meta name="author" content="Richard Clarke">
 <meta name="description" content="This week we'll be looking at the data behind a paper titled Effects of self-reported sensitivity and road-traffic noise levels on the immune system by Kim et al (2017). If I'm being honest, the...">
-<meta name="generator" content="bookdown 0.35 with bs4_book()">
+<meta name="generator" content="bookdown 0.31 with bs4_book()">
 <meta property="og:title" content="Chapter 8 Week 5 - Simple Linear Regression | NS7154 handbook">
 <meta property="og:type" content="book">
 <meta property="og:description" content="This week we'll be looking at the data behind a paper titled Effects of self-reported sensitivity and road-traffic noise levels on the immune system by Kim et al (2017). If I'm being honest, the...">
@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="This week we'll be looking at the data behind a paper titled Effects of self-reported sensitivity and road-traffic noise levels on the immune system by Kim et al (2017). If I'm being honest, the...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -67,7 +67,7 @@
 </h1>
 <p>This week we'll be looking at the data behind a paper titled <strong><em>Effects of self-reported sensitivity and road-traffic noise levels on the immune system</em></strong> by Kim et al (2017). If I'm being honest, the findings of the paper are slightly underwhelming, but none-the-less their shared data allows us to apply some of our existing R skills and learn some new functions that will be directly applicable to your assignment.</p>
 <p>The paper is open access and available in full here: <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0187084">Kim et al (2017)</a>. Familiarise yourself with the details of the study and then we'll take a look at replicating some of the basic correlational findings.</p>
-<div class="inline-figure"><img src="Images/Week%205%20paper.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/week%205%20paper.png" width="100%" style="display: block; margin: auto;"></div>
 <p>The authors shared their data, but did the authors share their data in an easy to use format? No of course not, they shared it as a PDF. Luckily for you, I have converted their PDF data file into a CSV file that you can find on this weeks Moodle page.</p>
 <div class="webex-solution">
 <button>
@@ -192,7 +192,7 @@ What is Pivoting?
 <p>In a 'long' format, each row still represents a single observation, but the variables you're examining are compiled into one column. Additional columns provide distinct information for each observation. For example, you might have one row for each measurement taken, with one column specifying the type of measurement and another giving the measurement value itself.</p>
 <p>This makes more sense when you look at the data. Here's an example of:</p>
 <p>A dataset in wide format:</p>
-<div class="inline-figure"><img src="Images/wide%20data.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="Images/Wide%20data.png" width="100%" style="display: block; margin: auto;"></div>
 <p>And here is an example of the same dataset in long format (after pivoting)</p>
 <div class="inline-figure"><img src="Images/long%20data.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
@@ -358,9 +358,17 @@ Where is the p-value?
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">88</span>, y <span class="op">=</span> <span class="fl">2.8</span>, label <span class="op">=</span> <span class="va">equation</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">95</span>, y <span class="op">=</span> <span class="fl">3.5</span>, label <span class="op">=</span> <span class="va">r_squared</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="test-yourself-exercise-3" class="section level2" number="8.4">
+<div id="video-walkthrough-4" class="section level2" number="8.4">
 <h2>
-<span class="header-section-number">8.4</span> Test yourself exercise<a class="anchor" aria-label="anchor" href="#test-yourself-exercise-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4</span> Video walkthrough<a class="anchor" aria-label="anchor" href="#video-walkthrough-4"><i class="fas fa-link"></i></a>
+</h2>
+<p>Here is a video of me talking through some of the basics and working through some of the above content:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PDJnw2akk84?si=9sRKvOCah-dihe2K" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+</div>
+<div id="test-yourself-exercise-3" class="section level2" number="8.5">
+<h2>
+<span class="header-section-number">8.5</span> Test yourself exercise<a class="anchor" aria-label="anchor" href="#test-yourself-exercise-3"><i class="fas fa-link"></i></a>
 </h2>
 <p>Create the plots for each of the significant findings in Figure 2. Try and get them to resemble the original as closely as you can.</p>
 <div class="webex-solution">
@@ -568,7 +576,8 @@ window.onload = function() {
 </li>
 <li><a class="nav-link" href="#correlation-matrix"><span class="header-section-number">8.2</span> Correlation matrix</a></li>
 <li><a class="nav-link" href="#simple-regression-plots."><span class="header-section-number">8.3</span> Simple Regression Plots.</a></li>
-<li><a class="nav-link" href="#test-yourself-exercise-3"><span class="header-section-number">8.4</span> Test yourself exercise</a></li>
+<li><a class="nav-link" href="#video-walkthrough-4"><span class="header-section-number">8.4</span> Video walkthrough</a></li>
+<li><a class="nav-link" href="#test-yourself-exercise-3"><span class="header-section-number">8.5</span> Test yourself exercise</a></li>
 </ul>
 
       <div class="book-extra">
