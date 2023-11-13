@@ -7,7 +7,7 @@
 <title>Chapter 10 Week 7 - Multiple Regression | NS7154 handbook</title>
 <meta name="author" content="Richard Clarke">
 <meta name="description" content="The aim of this week is to get you used to constructing multiple regression models and running statistical assumption checks in R. By this point in the semester I should have covered the theory of...">
-<meta name="generator" content="bookdown 0.31 with bs4_book()">
+<meta name="generator" content="bookdown 0.35 with bs4_book()">
 <meta property="og:title" content="Chapter 10 Week 7 - Multiple Regression | NS7154 handbook">
 <meta property="og:type" content="book">
 <meta property="og:description" content="The aim of this week is to get you used to constructing multiple regression models and running statistical assumption checks in R. By this point in the semester I should have covered the theory of...">
@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="The aim of this week is to get you used to constructing multiple regression models and running statistical assumption checks in R. By this point in the semester I should have covered the theory of...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
@@ -53,7 +53,8 @@
 <li><a class="" href="week-5---simple-linear-regression.html"><span class="header-section-number">8</span> Week 5 - Simple Linear Regression</a></li>
 <li><a class="" href="week-6---catch-up-week.html"><span class="header-section-number">9</span> Week 6 - Catch up week</a></li>
 <li><a class="active" href="week-7---multiple-regression.html"><span class="header-section-number">10</span> Week 7 - Multiple Regression</a></li>
-<li><a class="" href="week-9-assignment-data-details.html"><span class="header-section-number">11</span> Week 9 Assignment data details</a></li>
+<li><a class="" href="week-8---logistic-regression.html"><span class="header-section-number">11</span> Week 8 - Logistic regression</a></li>
+<li><a class="" href="week-9-assignment-data-details.html"><span class="header-section-number">12</span> Week 9 Assignment data details</a></li>
 </ul>
 
         <div class="book-extra">
@@ -89,10 +90,10 @@
 <p>Rather than work with the whole dataset, I often find that it's easier to select out just the variables we want to use in the analysis. In our case we want variables related to BMI, alcohol, age, fruits &amp; veg, and smoking.</p>
 <p>See if you can find some of the variables that we might be able to use for this analysis. You will need to cross reference the variable names in the dataset with these topics in the <em>User Guide</em>. Where possible select continuous variables.</p>
 <p>The following code selects out your chosen variables (when you replace the <code>?</code> with your chosen variables). The code goes on to deal with the missing data and filters the data so that we only have participants with complete data for these variables.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="week-7---multiple-regression.html#cb93-1" tabindex="-1"></a>data_cleaned <span class="ot">&lt;-</span> raw_data <span class="sc">%&gt;%</span></span>
-<span id="cb93-2"><a href="week-7---multiple-regression.html#cb93-2" tabindex="-1"></a>  <span class="fu">select</span>(?) <span class="sc">%&gt;%</span></span>
-<span id="cb93-3"><a href="week-7---multiple-regression.html#cb93-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">replace</span>(., . <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">9</span>, <span class="sc">-</span><span class="dv">10</span>), <span class="cn">NA</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb93-4"><a href="week-7---multiple-regression.html#cb93-4" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="sc">!</span><span class="fu">is.na</span>(.)))</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="week-7---multiple-regression.html#cb93-1" aria-hidden="true" tabindex="-1"></a>data_cleaned <span class="ot">&lt;-</span> raw_data <span class="sc">%&gt;%</span></span>
+<span id="cb93-2"><a href="week-7---multiple-regression.html#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(?) <span class="sc">%&gt;%</span></span>
+<span id="cb93-3"><a href="week-7---multiple-regression.html#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">replace</span>(., . <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">9</span>, <span class="sc">-</span><span class="dv">10</span>), <span class="cn">NA</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb93-4"><a href="week-7---multiple-regression.html#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="sc">!</span><span class="fu">is.na</span>(.)))</span></code></pre></div>
 <p>Did you hit an error when running the code? See if you can figure out why and see if you can get to the point where we have all the variables we need for our analysis.</p>
 <div class="webex-solution">
 <button>
@@ -135,18 +136,18 @@ Solution
 <p>I suggest recoding this variable so that the first two categories are <strong>low</strong> usage and categories 3 and 4 are <strong>high</strong> usage.</p>
 <p>Also, we can create a categorical variable derived from the newly constructed BMI variable, based on the different levels of BMI.</p>
 <p>Find out the category boundaries for BMI from the literature and replace the <code>?</code> in the code below.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="week-7---multiple-regression.html#cb95-1" tabindex="-1"></a>data_cleaned <span class="ot">&lt;-</span> data_cleaned <span class="sc">%&gt;%</span></span>
-<span id="cb95-2"><a href="week-7---multiple-regression.html#cb95-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cig_binary =</span> <span class="fu">recode</span>(cigst1, </span>
-<span id="cb95-3"><a href="week-7---multiple-regression.html#cb95-3" tabindex="-1"></a>                         <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"Low"</span>,</span>
-<span id="cb95-4"><a href="week-7---multiple-regression.html#cb95-4" tabindex="-1"></a>                         <span class="st">"2"</span> <span class="ot">=</span> <span class="st">"Low"</span>,</span>
-<span id="cb95-5"><a href="week-7---multiple-regression.html#cb95-5" tabindex="-1"></a>                         <span class="st">"3"</span> <span class="ot">=</span> <span class="st">"High"</span>,</span>
-<span id="cb95-6"><a href="week-7---multiple-regression.html#cb95-6" tabindex="-1"></a>                         <span class="st">"4"</span> <span class="ot">=</span> <span class="st">"High"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb95-7"><a href="week-7---multiple-regression.html#cb95-7" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">bmi_cat =</span> <span class="fu">case_when</span>(</span>
-<span id="cb95-8"><a href="week-7---multiple-regression.html#cb95-8" tabindex="-1"></a>      bmi <span class="sc">&lt;</span> ? <span class="sc">~</span> <span class="st">"?"</span>,</span>
-<span id="cb95-9"><a href="week-7---multiple-regression.html#cb95-9" tabindex="-1"></a>      bmi <span class="sc">&gt;=</span> ? <span class="sc">&amp;</span> bmi <span class="sc">&lt;</span> ? <span class="sc">~</span> <span class="st">"?"</span>,</span>
-<span id="cb95-10"><a href="week-7---multiple-regression.html#cb95-10" tabindex="-1"></a>      bmi <span class="sc">&gt;=</span> ? <span class="sc">&amp;</span> bmi <span class="sc">&lt;</span> ? <span class="sc">~</span> <span class="st">"?"</span>,</span>
-<span id="cb95-11"><a href="week-7---multiple-regression.html#cb95-11" tabindex="-1"></a>      bmi <span class="sc">&gt;=</span> ? <span class="sc">&amp;</span> bmi <span class="sc">&lt;</span> ? <span class="sc">~</span><span class="st">"?"</span></span>
-<span id="cb95-12"><a href="week-7---multiple-regression.html#cb95-12" tabindex="-1"></a>      bmi <span class="sc">&gt;=</span> ? <span class="sc">~</span> <span class="st">"?"</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="week-7---multiple-regression.html#cb95-1" aria-hidden="true" tabindex="-1"></a>data_cleaned <span class="ot">&lt;-</span> data_cleaned <span class="sc">%&gt;%</span></span>
+<span id="cb95-2"><a href="week-7---multiple-regression.html#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cig_binary =</span> <span class="fu">recode</span>(cigst1, </span>
+<span id="cb95-3"><a href="week-7---multiple-regression.html#cb95-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"1"</span> <span class="ot">=</span> <span class="st">"Low"</span>,</span>
+<span id="cb95-4"><a href="week-7---multiple-regression.html#cb95-4" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"2"</span> <span class="ot">=</span> <span class="st">"Low"</span>,</span>
+<span id="cb95-5"><a href="week-7---multiple-regression.html#cb95-5" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"3"</span> <span class="ot">=</span> <span class="st">"High"</span>,</span>
+<span id="cb95-6"><a href="week-7---multiple-regression.html#cb95-6" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"4"</span> <span class="ot">=</span> <span class="st">"High"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb95-7"><a href="week-7---multiple-regression.html#cb95-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">bmi_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb95-8"><a href="week-7---multiple-regression.html#cb95-8" aria-hidden="true" tabindex="-1"></a>      bmi <span class="sc">&lt;</span> ? <span class="sc">~</span> <span class="st">"?"</span>,</span>
+<span id="cb95-9"><a href="week-7---multiple-regression.html#cb95-9" aria-hidden="true" tabindex="-1"></a>      bmi <span class="sc">&gt;=</span> ? <span class="sc">&amp;</span> bmi <span class="sc">&lt;</span> ? <span class="sc">~</span> <span class="st">"?"</span>,</span>
+<span id="cb95-10"><a href="week-7---multiple-regression.html#cb95-10" aria-hidden="true" tabindex="-1"></a>      bmi <span class="sc">&gt;=</span> ? <span class="sc">&amp;</span> bmi <span class="sc">&lt;</span> ? <span class="sc">~</span> <span class="st">"?"</span>,</span>
+<span id="cb95-11"><a href="week-7---multiple-regression.html#cb95-11" aria-hidden="true" tabindex="-1"></a>      bmi <span class="sc">&gt;=</span> ? <span class="sc">&amp;</span> bmi <span class="sc">&lt;</span> ? <span class="sc">~</span><span class="st">"?"</span></span>
+<span id="cb95-12"><a href="week-7---multiple-regression.html#cb95-12" aria-hidden="true" tabindex="-1"></a>      bmi <span class="sc">&gt;=</span> ? <span class="sc">~</span> <span class="st">"?"</span>))</span></code></pre></div>
 </div>
 <div id="visualising-our-data" class="section level2" number="10.3">
 <h2>
@@ -356,7 +357,7 @@ Click for code
 <span>    y <span class="op">=</span> <span class="st">"Residuals"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>And hmmm, it looks like we have an issue here. That's a pain, it's likely caused by our outlines so it's probably worth conducting a <em>sensitivity analysis</em>.</p>
+<p>And hmmm, it looks like we have an issue here. That's a pain, it's likely caused by our outliers so it's probably worth conducting a <em>sensitivity analysis</em>.</p>
 </div>
 </div>
 <div id="sensitivity-analysis" class="section level2" number="10.7">
@@ -377,9 +378,9 @@ Click for code
 <span>         <span class="va">porfv</span> <span class="op">&lt;</span> <span class="va">upper_porfv</span> <span class="op">&amp;</span> <span class="va">porfv</span> <span class="op">&gt;</span> <span class="va">lower_porfv</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">totalwu</span>, <span class="va">Age</span>, <span class="va">porfv</span>, <span class="va">cig_binary</span>, <span class="va">bmi</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="test-yourself-exercise-1-1" class="section level2" number="10.8">
+<div id="test-yourself-exercise-4" class="section level2" number="10.8">
 <h2>
-<span class="header-section-number">10.8</span> Test yourself Exercise 1<a class="anchor" aria-label="anchor" href="#test-yourself-exercise-1-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.8</span> Test yourself Exercise<a class="anchor" aria-label="anchor" href="#test-yourself-exercise-4"><i class="fas fa-link"></i></a>
 </h2>
 <p>Run the model and the assumption checks again for the <code>sensitivity_model_data</code>. If you name your model <code>sensitivity_model</code> then the below code will allow you to combine both of the models together into the same table. Don't forget to also change the reference category for the smoking variable (or at least keep them consistant across the models).</p>
 <div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
@@ -422,22 +423,12 @@ Interpretation of sensitivity results
 </div>
 <p>From this comparison hopefully you can see how fickle p-values can be. Just a small change in the data and the findings change completely. This is why it's important to look at effect sizes and decide for yourself what is meaningful. Personally, it seems to me that like Age is the most meaningful predictor of BMI in this model. Just see what happens to the <span class="math inline">\(R^2\)</span> value when you run the model with and without the age variable.</p>
 <p>If you're surprised by the lack of influence of any of these variables, it's worth remembering <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/296290/obesity-map-full-hi-res.pdf">just how complicated understanding the predictors of weight can be</a>.</p>
-</div>
-</div>
-</div>
-<div id="test-yourself-exercise-2-1" class="section level2" number="10.9">
-<h2>
-<span class="header-section-number">10.9</span> Test yourself exercise 2<a class="anchor" aria-label="anchor" href="#test-yourself-exercise-2-1"><i class="fas fa-link"></i></a>
-</h2>
-<ol style="list-style-type: decimal">
-<li><p>Take the multiple regression exercise that I gave you to run in NS7151 and see if you can run them again in R.</p></li>
-<li><p>Do you get the same results? If not, can you work out why?</p></li>
-<li><p>Bring your code script for one of the analyses to class next week. After setting the working directory, I would like to see if we can run your code with just one click!</p></li>
-</ol>
 <hr>
 <hr>
 <p>This book is a work in progress. If you have any feedback or spot any mistakes please enter them into <a href="https://glos.onlinesurveys.ac.uk/r-codebook-feedback">this feedback survey</a> quoting the week your comment is referring to. Thank you! :-)</p>
 
+</div>
+</div>
 </div>
 </div>
 <script>
@@ -612,7 +603,7 @@ window.onload = function() {
 
 </script><div class="chapter-nav">
 <div class="prev"><a href="week-6---catch-up-week.html"><span class="header-section-number">9</span> Week 6 - Catch up week</a></div>
-<div class="next"><a href="week-9-assignment-data-details.html"><span class="header-section-number">11</span> Week 9 Assignment data details</a></div>
+<div class="next"><a href="week-8---logistic-regression.html"><span class="header-section-number">11</span> Week 8 - Logistic regression</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -634,9 +625,8 @@ window.onload = function() {
 </li>
 <li><a class="nav-link" href="#sensitivity-analysis"><span class="header-section-number">10.7</span> Sensitivity analysis</a></li>
 <li>
-<a class="nav-link" href="#test-yourself-exercise-1-1"><span class="header-section-number">10.8</span> Test yourself Exercise 1</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#what-does-the-sensitivity-analysis-tell-us"><span class="header-section-number">10.8.1</span> What does the sensitivity analysis tell us?</a></li></ul>
+<a class="nav-link" href="#test-yourself-exercise-4"><span class="header-section-number">10.8</span> Test yourself Exercise</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#what-does-the-sensitivity-analysis-tell-us"><span class="header-section-number">10.8.1</span> What does the sensitivity analysis tell us?</a></li></ul>
 </li>
-<li><a class="nav-link" href="#test-yourself-exercise-2-1"><span class="header-section-number">10.9</span> Test yourself exercise 2</a></li>
 </ul>
 
       <div class="book-extra">

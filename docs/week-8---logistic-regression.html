@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 11 Week 8 - Logistic regression | NS7154 handbook</title>
+<meta name="author" content="Richard Clarke">
+<meta name="description" content="This week we'll be replicating the analysis related to a recent paper by Jamil et al (2023) titled Socio-demographic determinants of Monkeypox virus preventive behaviour: A cross-sectional study...">
+<meta name="generator" content="bookdown 0.35 with bs4_book()">
+<meta property="og:title" content="Chapter 11 Week 8 - Logistic regression | NS7154 handbook">
+<meta property="og:type" content="book">
+<meta property="og:description" content="This week we'll be replicating the analysis related to a recent paper by Jamil et al (2023) titled Socio-demographic determinants of Monkeypox virus preventive behaviour: A cross-sectional study...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 11 Week 8 - Logistic regression | NS7154 handbook">
+<meta name="twitter:description" content="This week we'll be replicating the analysis related to a recent paper by Jamil et al (2023) titled Socio-demographic determinants of Monkeypox virus preventive behaviour: A cross-sectional study...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="www/webex.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">NS7154 handbook</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Welcome</a></li>
+<li><a class="" href="week-1---why-learn-r.html"><span class="header-section-number">2</span> Week 1 - Why learn R?</a></li>
+<li><a class="" href="week-1---getting-started.html"><span class="header-section-number">3</span> Week 1 - Getting started</a></li>
+<li><a class="" href="week-1---writing-and-running-your-first-code.html"><span class="header-section-number">4</span> Week 1 - Writing and running your first code</a></li>
+<li><a class="" href="week-2---basic-visualisation.html"><span class="header-section-number">5</span> Week 2 - Basic visualisation</a></li>
+<li><a class="" href="week-3---working-with-data-files.html"><span class="header-section-number">6</span> Week 3 - Working with data files</a></li>
+<li><a class="" href="week-4---working-with-catagorical-variables.html"><span class="header-section-number">7</span> Week 4 - Working with catagorical variables</a></li>
+<li><a class="" href="week-5---simple-linear-regression.html"><span class="header-section-number">8</span> Week 5 - Simple Linear Regression</a></li>
+<li><a class="" href="week-6---catch-up-week.html"><span class="header-section-number">9</span> Week 6 - Catch up week</a></li>
+<li><a class="" href="week-7---multiple-regression.html"><span class="header-section-number">10</span> Week 7 - Multiple Regression</a></li>
+<li><a class="active" href="week-8---logistic-regression.html"><span class="header-section-number">11</span> Week 8 - Logistic regression</a></li>
+<li><a class="" href="week-9-assignment-data-details.html"><span class="header-section-number">12</span> Week 9 Assignment data details</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="week-8---logistic-regression" class="section level1" number="11">
+<h1>
+<span class="header-section-number">11</span> Week 8 - Logistic regression<a class="anchor" aria-label="anchor" href="#week-8---logistic-regression"><i class="fas fa-link"></i></a>
+</h1>
+<p>This week we'll be replicating the analysis related to a recent paper by Jamil et al (2023) titled <a href="https://doi.org/10.1371/journal.pone.0279952">Socio-demographic determinants of Monkeypox virus preventive behaviour: A cross-sectional study in Pakistan</a>. The study uses a frequent framing in Public Health; surveying on <strong>knowledge</strong>, <strong>attitudes</strong> and <strong>perceptions</strong> (KAP).</p>
+<p>Researcher often uses KAP studies to identify knowledge gaps, misconceptions and attitudes that may influence preventative practices. With Monkeypox being <a href="https://doi.org/10.1136/bmj.o1874">declared a public health emergency of international concern in mid 2022</a> this is kind of study is an understandable first step in a public health response.</p>
+<p>The authors conduct a series of logistic regressions and have shared their data. Making this good candidate for us to practice logistic regression prior to your potentially using such an analysis in your assignment.</p>
+<p>This weeks code replicates Table 1 and last three columns of Table 5 from the paper.</p>
+<div class="inline-figure"><img src="Images/logistic%20regression%201.png" width="100%" style="display: block; margin: auto;"></div>
+<div id="the-data" class="section level2" number="11.1">
+<h2>
+<span class="header-section-number">11.1</span> The Data<a class="anchor" aria-label="anchor" href="#the-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>The authors shared the data as an SPSS file. Fiddling around with the SPSS file to get it into a format to use in this analysis is a useful skill but not one related to your assignment. So, instead, I've given you a somewhat cleaned up version of the dataset as a <code>.csv</code> file.</p>
+<p>Download the file <code>Jamil et al 2023 cleaned.csv</code> from Moodle. Set your working directory and load the data into RStudio.</p>
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">jamil2023</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"Jamil et al 2023 cleaned.csv"</span><span class="op">)</span> </span></code></pre></div>
+<p>Take a look at the data file and take a look at <a href="https://doi.org/10.1136/bmj.o1874">Table 1 from Jamil et al</a>. See if you can identify which variables we need to recreate that table.</p>
+<p>From the looking at the dataset, the age variable will need to be converted into a categorical variable. See if you can do this without looking at the code in the blue box below. You'll need to use the <code>case_when</code> function. I've given you example of how to use this function <a href="https://richclarkepsy.github.io/NS7154/week-4---working-with-catagorical-variables.html#exercise-4">previously</a>. Check the paper paper for the categories that the authors used and make sure to call your variable <code>age_cat</code> so that the rest of the code in this chapter works.</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">jamil2023</span> <span class="op">&lt;-</span> <span class="va">jamil2023</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>age_cat <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>    <span class="va">age</span> <span class="op">&lt;=</span> <span class="fl">20</span> <span class="op">~</span> <span class="st">"less than 20"</span>,</span>
+<span>    <span class="va">age</span> <span class="op">&gt;</span> <span class="fl">20</span> <span class="op">&amp;</span> <span class="va">age</span> <span class="op">&lt;</span> <span class="fl">31</span> <span class="op">~</span> <span class="st">"21 - 30"</span>,</span>
+<span>    <span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">31</span> <span class="op">&amp;</span> <span class="va">age</span> <span class="op">&lt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"31 - 40"</span>,</span>
+<span>    <span class="va">age</span> <span class="op">&gt;</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"40+"</span>,</span>
+<span>    <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Other"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>Run the following code to get a count for each of the age groups. You may need to replace <code>age_cat</code> with your own variable name if you mutated this variable without my code.</p>
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">jamil2023</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">age_cat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Do our numbers match that of Table 1 in the paper? No, it doesn't look like they do.</p>
+<p>Does that mean we've recoded the variable incorrectly? No, I don't think that's it either.</p>
+<p>Then why do we have different numbers to them?</p>
+<p>Well, for after a lot of head scratching, I found that their 21-30 category is actually 21-29 and their 31-40 category is actually 29-39. The code below creates their calculation and adds it to the dataset.</p>
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">jamil2023</span> <span class="op">&lt;-</span> <span class="va">jamil2023</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>age_cat_author <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>    <span class="va">age</span> <span class="op">&lt;=</span> <span class="fl">20</span> <span class="op">~</span> <span class="st">"less than 20"</span>,</span>
+<span>    <span class="va">age</span> <span class="op">&gt;</span> <span class="fl">20</span> <span class="op">&amp;</span> <span class="va">age</span> <span class="op">&lt;</span> <span class="fl">29</span> <span class="op">~</span> <span class="st">"21 - 30"</span>,</span>
+<span>    <span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">29</span> <span class="op">&amp;</span> <span class="va">age</span> <span class="op">&lt;</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"31 - 40"</span>,</span>
+<span>    <span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"40+"</span>,</span>
+<span>    <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Other"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">jamil2023</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">age_cat_author</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Very strange way to code a variable. I wonder if this will prove to be an important difference later in the analysis.</p>
+</div>
+<div id="data-wrangling-1" class="section level2" number="11.2">
+<h2>
+<span class="header-section-number">11.2</span> Data wrangling<a class="anchor" aria-label="anchor" href="#data-wrangling-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>The following code chunk gets the data in the right form for the table and the later regression all in one go.</p>
+<p>The code:
+1. Renames the variables so they look appropriate on the tables.
+2. Changes the data type of each variable to a factor (rather than just character data)
+3. Changes the order for each variable that needs its order changed.
+4. Dummy codes the the dependent variables ready for the logistic regression.</p>
+<div class="webex-solution">
+<button>
+What is dummy coding?
+</button>
+<p>Dummy coding is used in regression analysis to transform a categorical variable into a binary variable (0s and 1s). This is necessary because regression models require numerical input. In dummy coding, one category is chosen as a reference group and is assigned a value of 0. The other categories are then compared against this reference group.</p>
+<p>In this case, we want to take the continuous knowledge variable and use that in our model so that "Good Knowledge" is given the value of 1 and "Poor Knowledge" is given the value of 0.</p>
+</div>
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">analysis_data</span> <span class="op">&lt;-</span> <span class="va">jamil2023</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">gender</span>, </span>
+<span>                         levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         Age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">age_cat_author</span>,</span>
+<span>                      levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"less than 20"</span>, <span class="st">"21 - 30"</span>, <span class="st">"31 - 40"</span>, <span class="st">"40+"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         `Marital status` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">marital_status</span>,</span>
+<span>                                   levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Married"</span>, <span class="st">"Unmarried"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         Residence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">residence</span>,</span>
+<span>                            levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Urban"</span>, <span class="st">"Rural"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         Education <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">education</span>,</span>
+<span>                            levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Primary up to Matriculation"</span>,</span>
+<span>                                       <span class="st">"Intermediate"</span>,</span>
+<span>                                       <span class="st">"Graduation"</span>,</span>
+<span>                                       <span class="st">"Post-graduation"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         `Monthly income in PKR` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">income</span>,</span>
+<span>                                          levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&lt;50,000"</span>,</span>
+<span>                                                     <span class="st">"50,000 - 100,000"</span>,</span>
+<span>                                                     <span class="st">"&gt;100,000"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>knowledge_dummy <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">knowledge_cat</span>,</span>
+<span>                                  <span class="st">"Poor knowledge"</span> <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>                                  <span class="st">"Good knowledge"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>         attitude_dummy <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">attitude_cat</span>,</span>
+<span>                                   <span class="st">"Negative attitude"</span> <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>                                   <span class="st">"Positive attitude"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>         practice_dummy <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">practice_cat</span>,</span>
+<span>                                   <span class="st">"Not positive practice"</span> <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>                                   <span class="st">"Positive practice"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Remember, if you see a big chunk of code like this and you would like it explained to you, this is an excellent way to use an AI. Here's what Chat GPT says about the above code: <a href="https://chat.openai.com/share/bc9eea5f-0e14-4464-b0c9-0ca1b8eb1e7b">Link</a></p>
+</div>
+<div id="recreating-table-1" class="section level2" number="11.3">
+<h2>
+<span class="header-section-number">11.3</span> Recreating Table 1<a class="anchor" aria-label="anchor" href="#recreating-table-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>The <code>gtsummary</code> package is really useful for creating a descriptive statistics table such as Table 1 in Jamil et al (2023).</p>
+<p>First, make sure the package is installed and loaded and then all you need to do is select the variables you need to summaries and use the <code><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_summary.html">tbl_summary()</a></code> function.</p>
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ddsjoberg/gtsummary">gtsummary</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">table1_data</span> <span class="op">&lt;-</span> <span class="va">analysis_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Gender</span>, <span class="va">Age</span>, <span class="va">`Marital status`</span>, <span class="va">Residence</span>, <span class="va">Education</span>, <span class="va">`Monthly income in PKR`</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_summary.html">tbl_summary</a></span><span class="op">(</span><span class="va">table1_data</span><span class="op">)</span></span></code></pre></div>
+<p>That last line should create the table in your <em>Viewer</em> window. If you want to see the table in its full glory, click the "Show in new window" button and that will open the table through your web browser.</p>
+<p>This isn't quite the same as the authors version, but we can tidy it up a little by playing around with some of the arguments by converting this in to a table that is compatible with the <code>gt</code> package. <a href="https://www.youtube.com/watch?v=aPRVzk9pvno">Here is a video</a> explaining the <code>gt</code> package and what its possible to build with it.</p>
+<p>If you save the web browser version and open it in Microsoft Word you can also edit the table. Really useful for adding your final last few touches.</p>
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com/">gt</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">table1_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_summary.html">tbl_summary</a></span><span class="op">(</span><span class="va">table1_data</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">table1_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_header.html">tab_header</a></span><span class="op">(</span><span class="st">"Table 1. Study sample socio-demographic characteristics (N = 1041)"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_style.html">tab_style</a></span><span class="op">(</span>style <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/cell_text.html">cell_text</a></span><span class="op">(</span>align <span class="op">=</span> <span class="st">"left"</span>, weight <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,</span>
+<span>            locations <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/cells_title.html">cells_title</a></span><span class="op">(</span>groups <span class="op">=</span> <span class="st">"title"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/cols_label.html">cols_label</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Variables"</span>,</span>
+<span>             stat_0 <span class="op">=</span> <span class="st">"Frequency"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_footnote.html">tab_footnote</a></span><span class="op">(</span><span class="st">"PKR: Pakistani Rupee"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="running-and-interpreting-a-logistic-regression" class="section level2" number="11.4">
+<h2>
+<span class="header-section-number">11.4</span> Running and interpreting a logistic regression<a class="anchor" aria-label="anchor" href="#running-and-interpreting-a-logistic-regression"><i class="fas fa-link"></i></a>
+</h2>
+<p>In table 5 and 6 the author runs a series of univariate logistic regression (i.e. a simple regression with just the one variable) and then a multivariate logistic regression with any univariate analysis with a p-value less than 0.25. Normally the cut off for this sort of procedure is 0.1. However this would have just left two variables for the model so I can see why they chose to pick 0.25.</p>
+<p>An important step of conducting a logistic regression is to carefully consider the category that you would like all of the other categories to be compared to.</p>
+<p>The following code tells out data which categories we want for a reference category and then performs the logistic regression.</p>
+<p>The <code>tab_model</code> function from the <code>sjPlot</code> package is likely the best and easiest way to present the findings of a logistic regression in a good looking table.</p>
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">analysis_data</span> <span class="op">&lt;-</span> <span class="va">analysis_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Education <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Education</span><span class="op">)</span>, ref <span class="op">=</span> <span class="st">"Intermediate"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">univariate_ed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">knowledge_dummy</span> <span class="op">~</span> <span class="va">Education</span>, data <span class="op">=</span> <span class="va">analysis_data</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/tab_model.html">tab_model</a></span><span class="op">(</span><span class="va">univariate_ed</span>,</span>
+<span>          show.reflvl <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>          show.intercept <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p>Run the code again but with <code>ref = "Graduation"</code> to see how this changes the reference category. The underlying results are still the same but now each group is in comparison to the <em>Graduation</em> group as opposed to the <em>Intermediate</em> group.</p>
+<p>To run the full multivariate model all we need to do is build out the code so that each reference category is set and the model contains all the relevant variables.</p>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">analysis_data</span> <span class="op">&lt;-</span> <span class="va">analysis_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Gender</span><span class="op">)</span>, ref <span class="op">=</span> <span class="st">"Female"</span><span class="op">)</span>,</span>
+<span>    Age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Age</span><span class="op">)</span>, ref <span class="op">=</span> <span class="st">"40+"</span><span class="op">)</span>,</span>
+<span>    age_cat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">age_cat</span><span class="op">)</span>, ref <span class="op">=</span> <span class="st">"40+"</span><span class="op">)</span>,</span>
+<span>    `Marital status` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">`Marital status`</span><span class="op">)</span>, ref <span class="op">=</span> <span class="st">"Unmarried"</span><span class="op">)</span>,</span>
+<span>    Residence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Residence</span><span class="op">)</span>, ref <span class="op">=</span> <span class="st">"Urban"</span><span class="op">)</span>,</span>
+<span>    Education <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Education</span><span class="op">)</span>, ref <span class="op">=</span> <span class="st">"Intermediate"</span><span class="op">)</span>,</span>
+<span>    `Monthly income in PKR` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">`Monthly income in PKR`</span><span class="op">)</span>, ref <span class="op">=</span> <span class="st">"&gt;100,000"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">multivariate_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">knowledge_dummy</span> <span class="op">~</span> <span class="va">Gender</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">Residence</span> <span class="op">+</span> <span class="va">Education</span>, </span>
+<span>                          data <span class="op">=</span> <span class="va">analysis_data</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/tab_model.html">tab_model</a></span><span class="op">(</span><span class="va">multivariate_model</span>,</span>
+<span>          show.reflvl <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>          show.intercept <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>          dv.labels <span class="op">=</span> <span class="st">""</span>,</span>
+<span>          title <span class="op">=</span> <span class="st">"Model 1: Predictors of MPox knowledge (author age coded)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">multivariate_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">knowledge_dummy</span> <span class="op">~</span> <span class="va">Gender</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="va">Residence</span> <span class="op">+</span> <span class="va">Education</span>, </span>
+<span>                          data <span class="op">=</span> <span class="va">analysis_data</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/tab_model.html">tab_model</a></span><span class="op">(</span><span class="va">multivariate_model</span>,</span>
+<span>          show.reflvl <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>          show.intercept <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>          dv.labels <span class="op">=</span> <span class="st">""</span>,</span>
+<span>          title <span class="op">=</span> <span class="st">"Model 1: Predictors of MPox knowledge (author age coded)"</span><span class="op">)</span></span></code></pre></div>
+<p>Remember earlier when we coded the age variable and found that the authors misscoded in their initial attempt. The code above sets the reference catagory for the variable that we calculated (which I called <code>age_cat</code>) see if you can rerun the mode with that variable. Which variables are significant in the authors model and which are significant when the age variable is coded correctly.</p>
+<div class="webex-solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">multivariate_model2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">knowledge_dummy</span> <span class="op">~</span> <span class="va">Gender</span> <span class="op">+</span> <span class="va">age_cat</span> <span class="op">+</span> <span class="va">Residence</span> <span class="op">+</span> <span class="va">Education</span>, </span>
+<span>                          data <span class="op">=</span> <span class="va">analysis_data</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/tab_model.html">tab_model</a></span><span class="op">(</span><span class="va">multivariate_model2</span>,</span>
+<span>          show.reflvl <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>          show.intercept <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>          dv.labels <span class="op">=</span> <span class="st">""</span>,</span>
+<span>          title <span class="op">=</span> <span class="st">"Model 2: Predictors of MPox knowledge (corrected age coding)"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="inline-figure"><img src="Images/week%208%20comparison.png" width="100%" style="display: block; margin: auto;"></div>
+</div>
+<div id="test-yourself-1" class="section level2" number="11.5">
+<h2>
+<span class="header-section-number">11.5</span> Test yourself<a class="anchor" aria-label="anchor" href="#test-yourself-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>Run an additional model to see what the findings would have been if all of the variables were included in the analysis.</p>
+
+</div>
+</div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+  
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+  
+  var cl = this.classList
+  
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+  
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+  
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+  
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+  }
+
+  update_total_correct();
+}
+
+</script><div class="chapter-nav">
+<div class="prev"><a href="week-7---multiple-regression.html"><span class="header-section-number">10</span> Week 7 - Multiple Regression</a></div>
+<div class="next"><a href="week-9-assignment-data-details.html"><span class="header-section-number">12</span> Week 9 Assignment data details</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#week-8---logistic-regression"><span class="header-section-number">11</span> Week 8 - Logistic regression</a></li>
+<li><a class="nav-link" href="#the-data"><span class="header-section-number">11.1</span> The Data</a></li>
+<li><a class="nav-link" href="#data-wrangling-1"><span class="header-section-number">11.2</span> Data wrangling</a></li>
+<li><a class="nav-link" href="#recreating-table-1"><span class="header-section-number">11.3</span> Recreating Table 1</a></li>
+<li><a class="nav-link" href="#running-and-interpreting-a-logistic-regression"><span class="header-section-number">11.4</span> Running and interpreting a logistic regression</a></li>
+<li><a class="nav-link" href="#test-yourself-1"><span class="header-section-number">11.5</span> Test yourself</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>NS7154 handbook</strong>" was written by Richard Clarke. It was last built on 11/08/2023.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
