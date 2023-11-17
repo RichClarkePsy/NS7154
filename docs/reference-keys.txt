@@ -89,6 +89,7 @@ test-yourself-exercise-4
 what-does-the-sensitivity-analysis-tell-us
 sensitivity-assumption-checks
 sensitivity-model-results
+video-walkthrough-5
 week-8---logistic-regression
 the-data
 data-wrangling-1
