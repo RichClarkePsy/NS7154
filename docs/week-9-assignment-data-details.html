@@ -83,8 +83,8 @@
 <span></span>
 <span><span class="va">raw_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"Suggested SHES21 Dataset.csv"</span><span class="op">)</span></span>
 <span><span class="va">codebook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"Codebook.csv"</span><span class="op">)</span></span></code></pre></div>
-<p>I have been kind and cut down of the over 2000 variables in the original dataset and given you a far more manageable 107 variables.</p>
-<p>Many of these vairable will still take some data wrangling to get into a usable format for the assignment analysis. To help you out, I've include some modifiable code chunks that you should be able to use to achieve this.</p>
+<p>I have been kind and cut down of the over 2000 variables in the original dataset and given you a far more manageable 66 variables.</p>
+<p>Many of these variables will still take some data wrangling to get into a usable format for the assignment analysis. To help you out, I've include some modifiable code chunks that you should be able to use to achieve this.</p>
 <p>The codebook document gives you a brief description of the variables (for a full account of the questions asked see the associated questionnaire materials).</p>
 <div class="webex-solution">
 <button>
@@ -96,13 +96,34 @@ Give me all the data, I'm ready for it!
 <p>Good luck!</p>
 </div>
 </div>
-<div id="sample-code-fo-you-to-adapt" class="section level2" number="12.2">
+<div id="video-walkthroughs" class="section level2" number="12.2">
 <h2>
-<span class="header-section-number">12.2</span> Sample code fo you to adapt<a class="anchor" aria-label="anchor" href="#sample-code-fo-you-to-adapt"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.2</span> Video walkthroughs<a class="anchor" aria-label="anchor" href="#video-walkthroughs"><i class="fas fa-link"></i></a>
 </h2>
-<div id="dealing-with-missing-data" class="section level3" number="12.2.1">
+<div id="multiple-regression" class="section level3" number="12.2.1">
 <h3>
-<span class="header-section-number">12.2.1</span> Dealing with missing data<a class="anchor" aria-label="anchor" href="#dealing-with-missing-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.2.1</span> Multiple regression<a class="anchor" aria-label="anchor" href="#multiple-regression"><i class="fas fa-link"></i></a>
+</h3>
+<p>This is a video of me setting up the data (which you'll need no matter which analysis you'll conduct) and then conducting a multiple regression.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ABovU_7S09s?si=nQUTCCTwkMnJSY7p" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+</div>
+<div id="logistic-regression" class="section level3" number="12.2.2">
+<h3>
+<span class="header-section-number">12.2.2</span> Logistic regression<a class="anchor" aria-label="anchor" href="#logistic-regression"><i class="fas fa-link"></i></a>
+</h3>
+<p>In this video I conduct a logistic regression.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/b477GJqRkN4?si=o-Xfnrrk_imVM4wJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+</div>
+</div>
+<div id="samples-code-for-you-to-adapt" class="section level2" number="12.3">
+<h2>
+<span class="header-section-number">12.3</span> Samples code for you to adapt:<a class="anchor" aria-label="anchor" href="#samples-code-for-you-to-adapt"><i class="fas fa-link"></i></a>
+</h2>
+<div id="dealing-with-missing-data" class="section level3" number="12.3.1">
+<h3>
+<span class="header-section-number">12.3.1</span> Dealing with missing data<a class="anchor" aria-label="anchor" href="#dealing-with-missing-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>This code should be adequate for labeling all of your missing data with real <code>NA</code>'s.</p>
 <div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
@@ -112,9 +133,9 @@ Give me all the data, I'm ready for it!
 <span><span class="va">data_cleaned</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_all</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/replace.html">replace</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">.</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">missing_values</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="checking-missing-data" class="section level3" number="12.2.2">
+<div id="checking-missing-data" class="section level3" number="12.3.2">
 <h3>
-<span class="header-section-number">12.2.2</span> Checking missing data<a class="anchor" aria-label="anchor" href="#checking-missing-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.3.2</span> Checking missing data<a class="anchor" aria-label="anchor" href="#checking-missing-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code>naniar</code> package is useful for checking missing data in large data sets. Install the package and run the following code to get plots that summarise the missing data</p>
 <div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
@@ -124,9 +145,9 @@ Give me all the data, I'm ready for it!
 <span></span>
 <span><span class="fu"><a href="https://docs.ropensci.org/visdat/reference/vis_miss.html">vis_miss</a></span><span class="op">(</span><span class="va">cleaned_data</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="summary-of-catagorical-variables" class="section level3" number="12.2.3">
+<div id="summary-of-catagorical-variables" class="section level3" number="12.3.3">
 <h3>
-<span class="header-section-number">12.2.3</span> Summary of catagorical variables<a class="anchor" aria-label="anchor" href="#summary-of-catagorical-variables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.3.3</span> Summary of catagorical variables<a class="anchor" aria-label="anchor" href="#summary-of-catagorical-variables"><i class="fas fa-link"></i></a>
 </h3>
 <p>This code summarises a single categorical variable</p>
 <div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
@@ -134,26 +155,26 @@ Give me all the data, I'm ready for it!
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">variable</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="summary-of-numerical-variables" class="section level3" number="12.2.4">
+<div id="summary-of-numerical-variables" class="section level3" number="12.3.4">
 <h3>
-<span class="header-section-number">12.2.4</span> Summary of numerical variables<a class="anchor" aria-label="anchor" href="#summary-of-numerical-variables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.3.4</span> Summary of numerical variables<a class="anchor" aria-label="anchor" href="#summary-of-numerical-variables"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_cleaned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>average_x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="converting-variable-from-character-to-numerical" class="section level3" number="12.2.5">
+<div id="converting-variable-from-character-to-numerical" class="section level3" number="12.3.5">
 <h3>
-<span class="header-section-number">12.2.5</span> Converting variable from character to numerical<a class="anchor" aria-label="anchor" href="#converting-variable-from-character-to-numerical"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.3.5</span> Converting variable from character to numerical<a class="anchor" aria-label="anchor" href="#converting-variable-from-character-to-numerical"><i class="fas fa-link"></i></a>
 </h3>
 <p>Due to the missing data being initially coded as words (e.g. "Unclassifiable", "Refused", etc) the date is imported as a character variable, even if the data in the variable are actually numbers. Run the code below after replacing the missing data to get your numerical variables ready for analysis.</p>
 <div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_cleaned</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="recode-a-catagorical-variable-into-different-groupings" class="section level3" number="12.2.6">
+<div id="recode-a-catagorical-variable-into-different-groupings" class="section level3" number="12.3.6">
 <h3>
-<span class="header-section-number">12.2.6</span> Recode a catagorical variable into different groupings<a class="anchor" aria-label="anchor" href="#recode-a-catagorical-variable-into-different-groupings"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.3.6</span> Recode a catagorical variable into different groupings<a class="anchor" aria-label="anchor" href="#recode-a-catagorical-variable-into-different-groupings"><i class="fas fa-link"></i></a>
 </h3>
 <p>This code takes a variable and computes a new variable based on your specification. Useful for if you want to dichotomous a catagorical variable with more than two options.</p>
 <div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
@@ -163,9 +184,9 @@ Give me all the data, I'm ready for it!
 <span>      <span class="va">original_var</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Category2"</span>,</span>
 <span>      <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Other"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="reverse-code-a-numerical-likert-scale" class="section level3" number="12.2.7">
+<div id="reverse-code-a-numerical-likert-scale" class="section level3" number="12.3.7">
 <h3>
-<span class="header-section-number">12.2.7</span> Reverse code a numerical likert scale<a class="anchor" aria-label="anchor" href="#reverse-code-a-numerical-likert-scale"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.3.7</span> Reverse code a numerical likert scale<a class="anchor" aria-label="anchor" href="#reverse-code-a-numerical-likert-scale"><i class="fas fa-link"></i></a>
 </h3>
 <p>An easy way to reverse code a variable is to take the original value away from one more than the top of your scale.</p>
 <p>For example if you have a five point Likert scale. The calculation would be 6 - [each value]. And for a 7 point Likert scale it would be 8 - [each value]</p>
@@ -175,9 +196,9 @@ Give me all the data, I'm ready for it!
 <span>         var_7_point_reversed <span class="op">=</span> <span class="fl">8</span> <span class="op">-</span> <span class="va">var_7_point</span>,</span>
 <span>         var_10_point_reversed <span class="op">=</span> <span class="fl">11</span> <span class="op">-</span> <span class="va">var_10_point</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="coding-a-psychometric-scale-into-a-single-variable" class="section level3" number="12.2.8">
+<div id="coding-a-psychometric-scale-into-a-single-variable" class="section level3" number="12.3.8">
 <h3>
-<span class="header-section-number">12.2.8</span> Coding a psychometric scale into a single variable<a class="anchor" aria-label="anchor" href="#coding-a-psychometric-scale-into-a-single-variable"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.3.8</span> Coding a psychometric scale into a single variable<a class="anchor" aria-label="anchor" href="#coding-a-psychometric-scale-into-a-single-variable"><i class="fas fa-link"></i></a>
 </h3>
 <p>The first expression here is for use with numerical data. The second expression takes a likert scale expressed in words and converts it to numbers.</p>
 <div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
@@ -199,9 +220,9 @@ Give me all the data, I'm ready for it!
 <span>                           <span class="st">"Much more than usual"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="suggested-workflow" class="section level2" number="12.3">
+<div id="suggested-workflow" class="section level2" number="12.4">
 <h2>
-<span class="header-section-number">12.3</span> Suggested workflow<a class="anchor" aria-label="anchor" href="#suggested-workflow"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.4</span> Suggested workflow<a class="anchor" aria-label="anchor" href="#suggested-workflow"><i class="fas fa-link"></i></a>
 </h2>
 <p>I suggest having a cleaning and wrangling script that ends with you writing your final data object as a csv file with the following code:</p>
 <div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
@@ -389,18 +410,24 @@ window.onload = function() {
 <li><a class="nav-link" href="#week-9-assignment-data-details"><span class="header-section-number">12</span> Week 9 Assignment data details</a></li>
 <li><a class="nav-link" href="#read-in-the-data-and-codebook"><span class="header-section-number">12.1</span> Read in the data and codebook</a></li>
 <li>
-<a class="nav-link" href="#sample-code-fo-you-to-adapt"><span class="header-section-number">12.2</span> Sample code fo you to adapt</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#dealing-with-missing-data"><span class="header-section-number">12.2.1</span> Dealing with missing data</a></li>
-<li><a class="nav-link" href="#checking-missing-data"><span class="header-section-number">12.2.2</span> Checking missing data</a></li>
-<li><a class="nav-link" href="#summary-of-catagorical-variables"><span class="header-section-number">12.2.3</span> Summary of catagorical variables</a></li>
-<li><a class="nav-link" href="#summary-of-numerical-variables"><span class="header-section-number">12.2.4</span> Summary of numerical variables</a></li>
-<li><a class="nav-link" href="#converting-variable-from-character-to-numerical"><span class="header-section-number">12.2.5</span> Converting variable from character to numerical</a></li>
-<li><a class="nav-link" href="#recode-a-catagorical-variable-into-different-groupings"><span class="header-section-number">12.2.6</span> Recode a catagorical variable into different groupings</a></li>
-<li><a class="nav-link" href="#reverse-code-a-numerical-likert-scale"><span class="header-section-number">12.2.7</span> Reverse code a numerical likert scale</a></li>
-<li><a class="nav-link" href="#coding-a-psychometric-scale-into-a-single-variable"><span class="header-section-number">12.2.8</span> Coding a psychometric scale into a single variable</a></li>
+<a class="nav-link" href="#video-walkthroughs"><span class="header-section-number">12.2</span> Video walkthroughs</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#multiple-regression"><span class="header-section-number">12.2.1</span> Multiple regression</a></li>
+<li><a class="nav-link" href="#logistic-regression"><span class="header-section-number">12.2.2</span> Logistic regression</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#suggested-workflow"><span class="header-section-number">12.3</span> Suggested workflow</a></li>
+<li>
+<a class="nav-link" href="#samples-code-for-you-to-adapt"><span class="header-section-number">12.3</span> Samples code for you to adapt:</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#dealing-with-missing-data"><span class="header-section-number">12.3.1</span> Dealing with missing data</a></li>
+<li><a class="nav-link" href="#checking-missing-data"><span class="header-section-number">12.3.2</span> Checking missing data</a></li>
+<li><a class="nav-link" href="#summary-of-catagorical-variables"><span class="header-section-number">12.3.3</span> Summary of catagorical variables</a></li>
+<li><a class="nav-link" href="#summary-of-numerical-variables"><span class="header-section-number">12.3.4</span> Summary of numerical variables</a></li>
+<li><a class="nav-link" href="#converting-variable-from-character-to-numerical"><span class="header-section-number">12.3.5</span> Converting variable from character to numerical</a></li>
+<li><a class="nav-link" href="#recode-a-catagorical-variable-into-different-groupings"><span class="header-section-number">12.3.6</span> Recode a catagorical variable into different groupings</a></li>
+<li><a class="nav-link" href="#reverse-code-a-numerical-likert-scale"><span class="header-section-number">12.3.7</span> Reverse code a numerical likert scale</a></li>
+<li><a class="nav-link" href="#coding-a-psychometric-scale-into-a-single-variable"><span class="header-section-number">12.3.8</span> Coding a psychometric scale into a single variable</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#suggested-workflow"><span class="header-section-number">12.4</span> Suggested workflow</a></li>
 </ul>
 
       <div class="book-extra">

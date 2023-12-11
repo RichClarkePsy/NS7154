@@ -98,7 +98,10 @@ running-and-interpreting-a-logistic-regression
 test-yourself-1
 week-9-assignment-data-details
 read-in-the-data-and-codebook
-sample-code-fo-you-to-adapt
+video-walkthroughs
+multiple-regression
+logistic-regression
+samples-code-for-you-to-adapt
 dealing-with-missing-data
 checking-missing-data
 summary-of-catagorical-variables
